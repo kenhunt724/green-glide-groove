@@ -96,9 +96,39 @@ function EnergyPage() {
           </div>
         </section>
 
-        <DetachedVault />
+        {/* Detached outbuilding vaults */}
+        <section id="vaults" className="scroll-mt-20 border-b border-border bg-background">
+          <div className="mx-auto max-w-7xl px-5 py-20 md:py-24">
+            <p className="label-mono text-energy">Standard installation model</p>
+            <h2 className="mt-3 max-w-3xl text-3xl font-bold md:text-5xl">
+              Detached outbuilding power vaults
+            </h2>
+            <p className="mt-5 max-w-2xl text-muted-foreground">
+              High-voltage storage, inverters and cooling live in a dedicated exterior pod — faster
+              permitting, zero living-space intrusion, and service without disturbing occupants.
+            </p>
+            <div className="mt-12">
+              <DetachedVault />
+            </div>
+          </div>
+        </section>
 
-        <MobileGenerators />
+        {/* Mobile silent generators */}
+        <section id="mobile" className="scroll-mt-20 border-b border-border">
+          <div className="mx-auto max-w-7xl px-5 py-20 md:py-24">
+            <p className="label-mono text-emerald">Gas generator replacement</p>
+            <h2 className="mt-3 max-w-3xl text-3xl font-bold md:text-5xl">
+              Mobile silent LiFePO4 generators
+            </h2>
+            <p className="mt-5 max-w-2xl text-muted-foreground">
+              Community-built heavy-duty power stations for jobsites, emergency backup, food trucks
+              and events — charged three ways, with no fumes and no noise.
+            </p>
+            <div className="mt-12">
+              <MobileGenerators />
+            </div>
+          </div>
+        </section>
 
         {/* Calculator */}
         <section id="calculator" className="scroll-mt-20 border-b border-border bg-background">
