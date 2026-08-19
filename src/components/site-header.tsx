@@ -20,6 +20,7 @@ import { deepDive } from "@/content/deep-dive";
 const wings = [
   { to: "/store", label: "Ultra-Streaming" },
   { to: "/mobility", label: "Mobility" },
+  { to: "/energy", label: "Energy" },
   { to: "/about", label: "About" },
 ] as const;
 

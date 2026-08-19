@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as EnergyRouteImport } from './routes/energy'
 import { Route as MobilityRouteImport } from './routes/mobility'
 import { Route as StoreRouteImport } from './routes/store'
 
@@ -22,6 +23,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnergyRoute = EnergyRouteImport.update({
+  id: '/energy',
+  path: '/energy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MobilityRoute = MobilityRouteImport.update({
@@ -38,12 +44,14 @@ const StoreRoute = StoreRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/energy': typeof EnergyRoute
   '/mobility': typeof MobilityRoute
   '/store': typeof StoreRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/energy': typeof EnergyRoute
   '/mobility': typeof MobilityRoute
   '/store': typeof StoreRoute
 }
@@ -51,20 +59,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/energy': typeof EnergyRoute
   '/mobility': typeof MobilityRoute
   '/store': typeof StoreRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/mobility' | '/store'
+  fullPaths: '/' | '/about' | '/energy' | '/mobility' | '/store'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/mobility' | '/store'
-  id: '__root__' | '/' | '/about' | '/mobility' | '/store'
+  to: '/' | '/about' | '/energy' | '/mobility' | '/store'
+  id: '__root__' | '/' | '/about' | '/energy' | '/mobility' | '/store'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  EnergyRoute: typeof EnergyRoute
   MobilityRoute: typeof MobilityRoute
   StoreRoute: typeof StoreRoute
 }
@@ -83,6 +93,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/energy': {
+      id: '/energy'
+      path: '/energy'
+      fullPath: '/energy'
+      preLoaderRoute: typeof EnergyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mobility': {
@@ -105,6 +122,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  EnergyRoute: EnergyRoute,
   MobilityRoute: MobilityRoute,
   StoreRoute: StoreRoute,
 }
