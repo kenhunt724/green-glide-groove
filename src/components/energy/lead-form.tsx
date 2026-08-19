@@ -106,9 +106,10 @@ export function LeadForm() {
         <CheckCircle2 className="size-8 text-energy" aria-hidden="true" />
         <h3 className="font-display text-2xl font-semibold">Assessment request received</h3>
         <p className="text-sm leading-relaxed text-muted-foreground">
-          A community-trained technician will reach out at{" "}
-          <span className="text-foreground">{form.email}</span> to confirm your{" "}
-          {form.preferred_time.toLowerCase()} slot and pull your utility interval data.
+          Your slot is locked in for{" "}
+          <span className="text-foreground">{form.preferred_time}</span>. A community-trained
+          technician will confirm at <span className="text-foreground">{form.email}</span> and pull
+          your utility interval data.
         </p>
         <button
           type="button"
