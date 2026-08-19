@@ -111,6 +111,148 @@ export type Database = {
           },
         ]
       }
+      producer_orders: {
+        Row: {
+          buyer_email: string
+          buyer_name: string | null
+          checkout_reference: string | null
+          created_at: string
+          id: string
+          items: Json
+          producer_id: string
+          status: string
+          total_cents: number
+        }
+        Insert: {
+          buyer_email: string
+          buyer_name?: string | null
+          checkout_reference?: string | null
+          created_at?: string
+          id?: string
+          items?: Json
+          producer_id: string
+          status?: string
+          total_cents: number
+        }
+        Update: {
+          buyer_email?: string
+          buyer_name?: string | null
+          checkout_reference?: string | null
+          created_at?: string
+          id?: string
+          items?: Json
+          producer_id?: string
+          status?: string
+          total_cents?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "producer_orders_producer_id_fkey"
+            columns: ["producer_id"]
+            isOneToOne: false
+            referencedRelation: "producers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      producer_products: {
+        Row: {
+          artwork_url: string | null
+          bpm: number | null
+          created_at: string
+          description: string
+          id: string
+          kind: string
+          license_terms: string
+          preview_url: string | null
+          price_cents: number
+          producer_id: string
+          published: boolean
+          song_key: string | null
+          sort_order: number
+          title: string
+        }
+        Insert: {
+          artwork_url?: string | null
+          bpm?: number | null
+          created_at?: string
+          description?: string
+          id?: string
+          kind?: string
+          license_terms?: string
+          preview_url?: string | null
+          price_cents: number
+          producer_id: string
+          published?: boolean
+          song_key?: string | null
+          sort_order?: number
+          title: string
+        }
+        Update: {
+          artwork_url?: string | null
+          bpm?: number | null
+          created_at?: string
+          description?: string
+          id?: string
+          kind?: string
+          license_terms?: string
+          preview_url?: string | null
+          price_cents?: number
+          producer_id?: string
+          published?: boolean
+          song_key?: string | null
+          sort_order?: number
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "producer_products_producer_id_fkey"
+            columns: ["producer_id"]
+            isOneToOne: false
+            referencedRelation: "producers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      producers: {
+        Row: {
+          accent: string
+          bio: string
+          city: string
+          created_at: string
+          display_name: string
+          id: string
+          published: boolean
+          slug: string
+          tagline: string
+          updated_at: string
+        }
+        Insert: {
+          accent?: string
+          bio?: string
+          city?: string
+          created_at?: string
+          display_name: string
+          id?: string
+          published?: boolean
+          slug: string
+          tagline?: string
+          updated_at?: string
+        }
+        Update: {
+          accent?: string
+          bio?: string
+          city?: string
+          created_at?: string
+          display_name?: string
+          id?: string
+          published?: boolean
+          slug?: string
+          tagline?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

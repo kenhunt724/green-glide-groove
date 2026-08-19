@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as EnergyRouteImport } from './routes/energy'
 import { Route as MobilityRouteImport } from './routes/mobility'
 import { Route as StoreRouteImport } from './routes/store'
+import { Route as ProducersSlugRouteImport } from './routes/producers.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +41,11 @@ const StoreRoute = StoreRouteImport.update({
   path: '/store',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProducersSlugRoute = ProducersSlugRouteImport.update({
+  id: '/producers/$slug',
+  path: '/producers/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/energy': typeof EnergyRoute
   '/mobility': typeof MobilityRoute
   '/store': typeof StoreRoute
+  '/producers/$slug': typeof ProducersSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/energy': typeof EnergyRoute
   '/mobility': typeof MobilityRoute
   '/store': typeof StoreRoute
+  '/producers/$slug': typeof ProducersSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,22 @@ export interface FileRoutesById {
   '/energy': typeof EnergyRoute
   '/mobility': typeof MobilityRoute
   '/store': typeof StoreRoute
+  '/producers/$slug': typeof ProducersSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/energy' | '/mobility' | '/store'
+  fullPaths:
+    '/' | '/about' | '/energy' | '/mobility' | '/store' | '/producers/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/energy' | '/mobility' | '/store'
-  id: '__root__' | '/' | '/about' | '/energy' | '/mobility' | '/store'
+  to: '/' | '/about' | '/energy' | '/mobility' | '/store' | '/producers/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/energy'
+    | '/mobility'
+    | '/store'
+    | '/producers/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +94,7 @@ export interface RootRouteChildren {
   EnergyRoute: typeof EnergyRoute
   MobilityRoute: typeof MobilityRoute
   StoreRoute: typeof StoreRoute
+  ProducersSlugRoute: typeof ProducersSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +134,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StoreRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/producers/$slug': {
+      id: '/producers/$slug'
+      path: '/producers/$slug'
+      fullPath: '/producers/$slug'
+      preLoaderRoute: typeof ProducersSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +150,7 @@ const rootRouteChildren: RootRouteChildren = {
   EnergyRoute: EnergyRoute,
   MobilityRoute: MobilityRoute,
   StoreRoute: StoreRoute,
+  ProducersSlugRoute: ProducersSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
