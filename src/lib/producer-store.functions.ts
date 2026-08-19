@@ -95,18 +95,20 @@ export const createProducerOrder = createServerFn({ method: "POST" })
 
     const { data: producer, error: prodErr } = await admin
       .from("producers")
-      .select("id")
+      .select("id, platform_share_bps")
       .eq("slug", data.slug)
       .eq("published", true)
       .maybeSingle();
     if (prodErr) throw new Error(prodErr.message);
     if (!producer) return { ok: false as const, message: "That storefront is not available." };
 
+    const prod = producer as { id: string; platform_share_bps: number };
+
     // Price server-side; never trust client totals.
     const { data: products, error: itemsErr } = await admin
       .from("producer_products")
       .select("id, title, price_cents")
-      .eq("producer_id", (producer as { id: string }).id)
+      .eq("producer_id", prod.id)
       .eq("published", true)
       .in("id", data.product_ids);
     if (itemsErr) throw new Error(itemsErr.message);
@@ -117,15 +119,19 @@ export const createProducerOrder = createServerFn({ method: "POST" })
     }
 
     const total = items.reduce((sum, i) => sum + i.price_cents, 0);
+    const platformFee = Math.round((total * prod.platform_share_bps) / 10000);
+    const payout = total - platformFee;
 
     const { data: order, error: orderErr } = await admin
       .from("producer_orders")
       .insert({
-        producer_id: (producer as { id: string }).id,
+        producer_id: prod.id,
         buyer_email: data.buyer_email,
         buyer_name: data.buyer_name,
         items,
         total_cents: total,
+        platform_fee_cents: platformFee,
+        producer_payout_cents: payout,
         status: "pending",
       })
       .select("id")
@@ -139,3 +145,4 @@ export const createProducerOrder = createServerFn({ method: "POST" })
       item_count: items.length,
     };
   });
+

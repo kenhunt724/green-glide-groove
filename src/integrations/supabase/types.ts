@@ -119,7 +119,9 @@ export type Database = {
           created_at: string
           id: string
           items: Json
+          platform_fee_cents: number
           producer_id: string
+          producer_payout_cents: number
           status: string
           total_cents: number
         }
@@ -130,7 +132,9 @@ export type Database = {
           created_at?: string
           id?: string
           items?: Json
+          platform_fee_cents?: number
           producer_id: string
+          producer_payout_cents?: number
           status?: string
           total_cents: number
         }
@@ -141,7 +145,9 @@ export type Database = {
           created_at?: string
           id?: string
           items?: Json
+          platform_fee_cents?: number
           producer_id?: string
+          producer_payout_cents?: number
           status?: string
           total_cents?: number
         }
@@ -222,6 +228,7 @@ export type Database = {
           created_at: string
           display_name: string
           id: string
+          platform_share_bps: number
           published: boolean
           slug: string
           tagline: string
@@ -234,6 +241,7 @@ export type Database = {
           created_at?: string
           display_name: string
           id?: string
+          platform_share_bps?: number
           published?: boolean
           slug: string
           tagline?: string
@@ -246,6 +254,7 @@ export type Database = {
           created_at?: string
           display_name?: string
           id?: string
+          platform_share_bps?: number
           published?: boolean
           slug?: string
           tagline?: string
