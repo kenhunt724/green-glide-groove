@@ -14,6 +14,44 @@ export type Database = {
   }
   public: {
     Tables: {
+      consultation_slots: {
+        Row: {
+          created_at: string
+          duration_minutes: number
+          id: string
+          is_booked: boolean
+          lead_id: string | null
+          slot_at: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          duration_minutes?: number
+          id?: string
+          is_booked?: boolean
+          lead_id?: string | null
+          slot_at: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          duration_minutes?: number
+          id?: string
+          is_booked?: boolean
+          lead_id?: string | null
+          slot_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "consultation_slots_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "energy_leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       energy_leads: {
         Row: {
           created_at: string
@@ -26,6 +64,7 @@ export type Database = {
           preferred_time: string
           property_type: string
           roof_condition: string
+          slot_id: string | null
           zip_code: string
         }
         Insert: {
@@ -39,6 +78,7 @@ export type Database = {
           preferred_time: string
           property_type: string
           roof_condition: string
+          slot_id?: string | null
           zip_code: string
         }
         Update: {
@@ -52,9 +92,18 @@ export type Database = {
           preferred_time?: string
           property_type?: string
           roof_condition?: string
+          slot_id?: string | null
           zip_code?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "energy_leads_slot_id_fkey"
+            columns: ["slot_id"]
+            isOneToOne: false
+            referencedRelation: "consultation_slots"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {

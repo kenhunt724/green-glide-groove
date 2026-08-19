@@ -1,12 +1,13 @@
 import { useId, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { submitEnergyLead } from "@/lib/energy-leads.functions";
-import { billRanges, consultationTimes, propertyTypes, roofConditions } from "@/content/energy";
+import { SlotPicker, formatSlotLabel } from "@/components/energy/slot-picker";
+import { billRanges, propertyTypes, roofConditions } from "@/content/energy";
 
 type FormState = {
   full_name: string;
@@ -17,6 +18,7 @@ type FormState = {
   monthly_bill_range: string;
   roof_condition: string;
   preferred_time: string;
+  slot_id: string;
   notes: string;
 };
 
@@ -29,6 +31,7 @@ const empty: FormState = {
   monthly_bill_range: "",
   roof_condition: "",
   preferred_time: "",
+  slot_id: "",
   notes: "",
 };
 
@@ -74,9 +77,11 @@ export function LeadForm() {
   const [form, setForm] = useState<FormState>(empty);
   const [error, setError] = useState<string | null>(null);
 
+  const queryClient = useQueryClient();
   const submit = useServerFn(submitEnergyLead);
   const mutation = useMutation({
     mutationFn: (data: FormState) => submit({ data }),
+    onSettled: () => queryClient.invalidateQueries({ queryKey: ["consultation-slots"] }),
   });
 
   const set = (k: keyof FormState) => (v: string) => setForm((f) => ({ ...f, [k]: v }));
@@ -92,7 +97,7 @@ export function LeadForm() {
     }
     if (step === 1) return form.property_type !== "";
     if (step === 2) return form.monthly_bill_range !== "" && form.roof_condition !== "";
-    return form.preferred_time !== "";
+    return form.slot_id !== "" && form.preferred_time !== "";
   })();
 
   if (mutation.isSuccess) {
@@ -101,9 +106,10 @@ export function LeadForm() {
         <CheckCircle2 className="size-8 text-energy" aria-hidden="true" />
         <h3 className="font-display text-2xl font-semibold">Assessment request received</h3>
         <p className="text-sm leading-relaxed text-muted-foreground">
-          A community-trained technician will reach out at{" "}
-          <span className="text-foreground">{form.email}</span> to confirm your{" "}
-          {form.preferred_time.toLowerCase()} slot and pull your utility interval data.
+          Your slot is locked in for{" "}
+          <span className="text-foreground">{form.preferred_time}</span>. A community-trained
+          technician will confirm at <span className="text-foreground">{form.email}</span> and pull
+          your utility interval data.
         </p>
         <button
           type="button"
@@ -242,11 +248,15 @@ export function LeadForm() {
           <>
             <div className="space-y-3">
               <p className="label-mono">Preferred consultation time</p>
-              <OptionGrid
-                name="Preferred consultation time"
-                options={consultationTimes}
-                value={form.preferred_time}
-                onChange={set("preferred_time")}
+              <SlotPicker
+                value={form.slot_id}
+                onChange={(slot) =>
+                  setForm((f) => ({
+                    ...f,
+                    slot_id: slot.id,
+                    preferred_time: formatSlotLabel(slot.slot_at),
+                  }))
+                }
               />
             </div>
             <div className="space-y-2">
