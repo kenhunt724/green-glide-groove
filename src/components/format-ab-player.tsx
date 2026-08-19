@@ -128,10 +128,12 @@ export function FormatABPlayer({ sample, label }: FormatABPlayerProps) {
         src={sample.wav}
         preload="auto"
         muted
+        onLoadedMetadata={(e) => setDuration((d) => d || e.currentTarget.duration)}
         onTimeUpdate={(e) => {
           if (format === "wav") setTime(e.currentTarget.currentTime);
         }}
       />
+
 
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="label-mono">Hear the difference · {blind ? "Blind test" : "A/B compare"}</p>
