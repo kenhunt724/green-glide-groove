@@ -86,10 +86,15 @@ export const submitEnergyLead = createServerFn({ method: "POST" })
       throw new Error("That slot was just taken. Please pick another time.");
     }
 
-    const { slot_id, notes, ...lead } = data;
+    const { slot_id, notes, roof_condition, ...lead } = data;
     const { data: inserted, error } = await supabaseAdmin
       .from("energy_leads")
-      .insert({ ...lead, notes: notes ? notes : null, slot_id })
+      .insert({
+        ...lead,
+        roof_condition: roof_condition ? roof_condition : null,
+        notes: notes ? notes : null,
+        slot_id,
+      })
       .select("id")
       .single();
 
