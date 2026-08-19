@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as EnergyRouteImport } from './routes/energy'
 import { Route as MobilityRouteImport } from './routes/mobility'
 import { Route as StoreRouteImport } from './routes/store'
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EnergyRoute = EnergyRouteImport.update({
@@ -50,6 +56,7 @@ const ProducersSlugRoute = ProducersSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/energy': typeof EnergyRoute
   '/mobility': typeof MobilityRoute
   '/store': typeof StoreRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/energy': typeof EnergyRoute
   '/mobility': typeof MobilityRoute
   '/store': typeof StoreRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/energy': typeof EnergyRoute
   '/mobility': typeof MobilityRoute
   '/store': typeof StoreRoute
@@ -75,13 +84,27 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/about' | '/energy' | '/mobility' | '/store' | '/producers/$slug'
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/energy'
+    | '/mobility'
+    | '/store'
+    | '/producers/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/energy' | '/mobility' | '/store' | '/producers/$slug'
+  to:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/energy'
+    | '/mobility'
+    | '/store'
+    | '/producers/$slug'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/auth'
     | '/energy'
     | '/mobility'
     | '/store'
@@ -91,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRoute
   EnergyRoute: typeof EnergyRoute
   MobilityRoute: typeof MobilityRoute
   StoreRoute: typeof StoreRoute
@@ -111,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/energy': {
@@ -147,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AuthRoute: AuthRoute,
   EnergyRoute: EnergyRoute,
   MobilityRoute: MobilityRoute,
   StoreRoute: StoreRoute,
