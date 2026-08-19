@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Eye, EyeOff, Pause, Play, RotateCcw } from "lucide-react";
+import { Eye, EyeOff, Pause, Play, RotateCcw, Upload, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePlayerSettings } from "@/components/player-settings";
 import type { AudioSample } from "@/content/audio-samples";
@@ -38,7 +38,44 @@ export function FormatABPlayer({ sample, label }: FormatABPlayerProps) {
   const [guess, setGuess] = useState<"A" | "B" | null>(null);
   const [revealed, setRevealed] = useState(false);
 
+  /** Locally loaded files (object URLs) override the hosted excerpts. */
+  const [local, setLocal] = useState<{ mp3?: { url: string; name: string }; wav?: { url: string; name: string } }>(
+    {},
+  );
+
   const activeRef = format === "mp3" ? mp3Ref : wavRef;
+
+  const loadLocal = (slot: Format, file: File | undefined) => {
+    if (!file) return;
+    setLocal((prev) => {
+      if (prev[slot]) URL.revokeObjectURL(prev[slot]!.url);
+      return { ...prev, [slot]: { url: URL.createObjectURL(file), name: file.name } };
+    });
+    setPlaying(false);
+    setTime(0);
+    setDuration(0);
+    mp3Ref.current?.pause();
+    wavRef.current?.pause();
+  };
+
+  const clearLocal = () => {
+    setLocal((prev) => {
+      for (const v of Object.values(prev)) if (v) URL.revokeObjectURL(v.url);
+      return {};
+    });
+    setPlaying(false);
+    setTime(0);
+    setDuration(0);
+  };
+
+  // Release object URLs when the component goes away.
+  useEffect(
+    () => () => {
+      for (const v of Object.values(local)) if (v) URL.revokeObjectURL(v.url);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
 
   // Keep gains in sync with the global player volume.
   useEffect(() => {
