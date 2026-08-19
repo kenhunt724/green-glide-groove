@@ -127,7 +127,7 @@ export function WaveformPlayer({ seed, duration, compact, label }: WaveformPlaye
           return (
             <span
               key={start + i}
-              style={{ height: `${h * (0.35 + volume * 0.65) * 100}%` }}
+              style={{ height: `${(h * (0.35 + volume * 0.65) * 100).toFixed(2)}%` }}
               className={cn(
                 "flex-1 rounded-full transition-[background-color,height] duration-150",
                 played
