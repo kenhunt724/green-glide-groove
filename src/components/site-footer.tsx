@@ -15,6 +15,9 @@ export function SiteFooter() {
           <Link to="/mobility" className="label-mono hover:text-signal">
             Mobility
           </Link>
+          <Link to="/energy" className="label-mono hover:text-signal">
+            Energy
+          </Link>
           <Link to="/about" className="label-mono hover:text-signal">
             About
           </Link>
