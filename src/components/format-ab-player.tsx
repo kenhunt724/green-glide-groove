@@ -323,10 +323,48 @@ export function FormatABPlayer({ sample, label }: FormatABPlayerProps) {
         </div>
       )}
 
-      <p className="mt-3 text-xs text-muted-foreground">
-        Placeholder excerpts for demonstration. Use wired headphones or monitors — Bluetooth
-        re-encodes both sources and erases the difference.
-      </p>
+      <div className="mt-4 border-t border-border pt-3">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="label-mono">Load from this computer</span>
+          <label className="label-mono flex min-h-9 cursor-pointer items-center gap-2 border border-border px-3 text-muted-foreground transition-colors hover:border-signal hover:text-signal">
+            <Upload className="size-3.5" aria-hidden="true" />
+            Lossy file
+            <input
+              type="file"
+              accept="audio/*"
+              className="sr-only"
+              onChange={(e) => loadLocal("mp3", e.target.files?.[0])}
+            />
+          </label>
+          <label className="label-mono flex min-h-9 cursor-pointer items-center gap-2 border border-border px-3 text-muted-foreground transition-colors hover:border-signal hover:text-signal">
+            <Upload className="size-3.5" aria-hidden="true" />
+            Uncompressed file
+            <input
+              type="file"
+              accept="audio/*,.wav,.flac,.aiff,.aif"
+              className="sr-only"
+              onChange={(e) => loadLocal("wav", e.target.files?.[0])}
+            />
+          </label>
+          {usingLocal && (
+            <button
+              type="button"
+              onClick={clearLocal}
+              className="label-mono flex min-h-9 items-center gap-2 border border-border px-3 text-muted-foreground transition-colors hover:border-signal hover:text-signal focus-visible:ring-2 focus-visible:ring-signal focus-visible:outline-none"
+            >
+              <X className="size-3.5" aria-hidden="true" />
+              Reset to demo clips
+            </button>
+          )}
+        </div>
+        <p className="mt-2 text-xs text-muted-foreground">
+          {usingLocal
+            ? "Playing your local files — they stay on this computer and are never uploaded."
+            : "Placeholder excerpts for demonstration. Drop in your own WAV/FLAC master and a lossy encode to compare them here."}{" "}
+          Use wired headphones or monitors — Bluetooth re-encodes both sources and erases the
+          difference.
+        </p>
+      </div>
     </div>
   );
 }
