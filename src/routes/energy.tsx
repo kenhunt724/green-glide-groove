@@ -16,9 +16,9 @@ import { HardwareTiers } from "@/components/energy/hardware-tiers";
 import { LeadForm } from "@/components/energy/lead-form";
 import { services, steps, trustBadges } from "@/content/energy";
 
-const TITLE = "Cut Peak Power Rates 90% | EPS Energy Division";
+const TITLE = "Battery Vaults & Silent Mobile Generators | EPS Clean Energy";
 const DESC =
-  "Smart off-peak LiFePO4 battery vaults and zero-export solar engineered for Georgia Power tariffs. Charge at ~2.3¢/kWh overnight and never pay peak rates again.";
+  "Detached outbuilding LiFePO4 battery vaults that cut peak utility rates up to 90%, plus silent mobile generators that replace gas engines. Charge at ~2.3¢/kWh, from solar, or off your alternator.";
 
 export const Route = createFileRoute("/energy")({
   head: () => ({
