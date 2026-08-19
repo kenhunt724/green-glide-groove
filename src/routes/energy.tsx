@@ -96,6 +96,10 @@ function EnergyPage() {
           </div>
         </section>
 
+        <DetachedVault />
+
+        <MobileGenerators />
+
         {/* Calculator */}
         <section id="calculator" className="scroll-mt-20 border-b border-border bg-background">
           <div className="mx-auto max-w-7xl px-5 py-20 md:py-24">
