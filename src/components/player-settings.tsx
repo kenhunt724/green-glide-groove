@@ -40,9 +40,7 @@ export function PlayerSettingsProvider({ children }: { children: ReactNode }) {
     [volume, zoom, buffer],
   );
 
-  return (
-    <PlayerSettingsContext.Provider value={value}>{children}</PlayerSettingsContext.Provider>
-  );
+  return <PlayerSettingsContext.Provider value={value}>{children}</PlayerSettingsContext.Provider>;
 }
 
 const fallbackSettings: PlayerSettings = {

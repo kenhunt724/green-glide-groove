@@ -61,77 +61,75 @@ function MobilityPage() {
     <div className="min-h-screen bg-background">
       <SiteHeader />
       <main id="main">
-
-      <section className="border-b border-border">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-2 lg:items-center">
-          <div>
-            <p className="label-mono">Wing II · Industrial Mobility</p>
-            <h1 className="mt-5 text-4xl font-bold md:text-6xl">
-              Series-hybrid flex-fuel <span className="text-signal">glider trucks</span>, built by
-              the block that drives them.
-            </h1>
-            <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-              No mechanical driveline. A Brogen e-axle does all the work, a LiFePO4 buffer absorbs
-              the duty cycle, and a small flex-fuel genset holds state of charge on long hauls.
-            </p>
-          </div>
-          <img
-            src={gliderTruck}
-            alt="Community-built aerodynamic series-hybrid glider truck in a dark studio"
-            width={1600}
-            height={1008}
-            className="w-full border border-border object-cover"
-          />
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-5 py-16">
-        <h2 className="text-2xl font-semibold">Platform specification</h2>
-        <dl className="mt-8 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
-          {spec.map((s) => (
-            <div key={s.label} className="bg-background p-6">
-              <dt className="label-mono">{s.label}</dt>
-              <dd className="mt-3 text-base leading-snug">{s.value}</dd>
+        <section className="border-b border-border">
+          <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-2 lg:items-center">
+            <div>
+              <p className="label-mono">Wing II · Industrial Mobility</p>
+              <h1 className="mt-5 text-4xl font-bold md:text-6xl">
+                Series-hybrid flex-fuel <span className="text-signal">glider trucks</span>, built by
+                the block that drives them.
+              </h1>
+              <p className="mt-6 max-w-xl text-lg text-muted-foreground">
+                No mechanical driveline. A Brogen e-axle does all the work, a LiFePO4 buffer absorbs
+                the duty cycle, and a small flex-fuel genset holds state of charge on long hauls.
+              </p>
             </div>
-          ))}
-        </dl>
-      </section>
+            <img
+              src={gliderTruck}
+              alt="Community-built aerodynamic series-hybrid glider truck in a dark studio"
+              width={1600}
+              height={1008}
+              className="w-full border border-border object-cover"
+            />
+          </div>
+        </section>
 
-      <section className="border-y border-border bg-surface">
-        <div className="mx-auto max-w-7xl px-5 py-16">
-          <h2 className="text-2xl font-semibold">Build sequence</h2>
-          <div className="mt-10 grid gap-px bg-border md:grid-cols-2 xl:grid-cols-4">
-            {buildStages.map((b) => (
-              <div key={b.step} className="bg-surface p-6">
-                <span className="font-display text-3xl font-bold text-signal">{b.step}</span>
-                <h3 className="mt-4 text-lg font-semibold">{b.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{b.body}</p>
+        <section className="mx-auto max-w-7xl px-5 py-16">
+          <h2 className="text-2xl font-semibold">Platform specification</h2>
+          <dl className="mt-8 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
+            {spec.map((s) => (
+              <div key={s.label} className="bg-background p-6">
+                <dt className="label-mono">{s.label}</dt>
+                <dd className="mt-3 text-base leading-snug">{s.value}</dd>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
+          </dl>
+        </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-16">
-        <div className="surface-panel p-8 md:p-12">
-          <h2 className="text-2xl font-semibold">Why series, why flex-fuel</h2>
-          <div className="mt-6 grid gap-8 md:grid-cols-3">
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              A series layout lets the engine ignore the road entirely. It runs at one load point or
-              not at all, which is where a small combustion unit is actually efficient.
-            </p>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              Flex-fuel means the truck accepts what the district can produce — ethanol from
-              regional stock, biogas from the digesters, petrol only as a fallback.
-            </p>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              LiFePO4 carries the duty cycle without cobalt, tolerates deep cycling, and retires
-              into the campus UPS bank when it drops below traction spec.
-            </p>
+        <section className="border-y border-border bg-surface">
+          <div className="mx-auto max-w-7xl px-5 py-16">
+            <h2 className="text-2xl font-semibold">Build sequence</h2>
+            <div className="mt-10 grid gap-px bg-border md:grid-cols-2 xl:grid-cols-4">
+              {buildStages.map((b) => (
+                <div key={b.step} className="bg-surface p-6">
+                  <span className="font-display text-3xl font-bold text-signal">{b.step}</span>
+                  <h3 className="mt-4 text-lg font-semibold">{b.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{b.body}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
+        <section className="mx-auto max-w-7xl px-5 py-16">
+          <div className="surface-panel p-8 md:p-12">
+            <h2 className="text-2xl font-semibold">Why series, why flex-fuel</h2>
+            <div className="mt-6 grid gap-8 md:grid-cols-3">
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                A series layout lets the engine ignore the road entirely. It runs at one load point
+                or not at all, which is where a small combustion unit is actually efficient.
+              </p>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                Flex-fuel means the truck accepts what the district can produce — ethanol from
+                regional stock, biogas from the digesters, petrol only as a fallback.
+              </p>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                LiFePO4 carries the duty cycle without cobalt, tolerates deep cycling, and retires
+                into the campus UPS bank when it drops below traction spec.
+              </p>
+            </div>
+          </div>
+        </section>
       </main>
       <SiteFooter />
     </div>
