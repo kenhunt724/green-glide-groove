@@ -31,6 +31,7 @@ const empty: FormState = {
   monthly_bill_range: "",
   roof_condition: "",
   preferred_time: "",
+  slot_id: "",
   notes: "",
 };
 
