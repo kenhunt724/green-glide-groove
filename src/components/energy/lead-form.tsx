@@ -77,9 +77,11 @@ export function LeadForm() {
   const [form, setForm] = useState<FormState>(empty);
   const [error, setError] = useState<string | null>(null);
 
+  const queryClient = useQueryClient();
   const submit = useServerFn(submitEnergyLead);
   const mutation = useMutation({
     mutationFn: (data: FormState) => submit({ data }),
+    onSettled: () => queryClient.invalidateQueries({ queryKey: ["consultation-slots"] }),
   });
 
   const set = (k: keyof FormState) => (v: string) => setForm((f) => ({ ...f, [k]: v }));
