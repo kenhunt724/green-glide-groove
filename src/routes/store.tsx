@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { WaveformPlayer } from "@/components/waveform-player";
+import { FormatABPlayer } from "@/components/format-ab-player";
+import { audioSamples } from "@/content/audio-samples";
 import { PlayerSettingsPanel, PlayerSettingsProvider } from "@/components/player-settings";
 import cover1 from "@/assets/cover-1.jpg";
 import cover2 from "@/assets/cover-2.jpg";
@@ -279,6 +281,11 @@ function StorePage() {
                         label={`${r.title} by ${r.artist}`}
                       />
                     </div>
+                    {audioSamples[r.title] && (
+                      <div className="mt-4">
+                        <FormatABPlayer sample={audioSamples[r.title]!} label={r.title} />
+                      </div>
+                    )}
                   </div>
                   <div className="flex items-center gap-3 md:flex-col md:items-end">
                     <span className="font-display text-2xl font-bold">{r.price}</span>
