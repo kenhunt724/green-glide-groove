@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import gliderTruck from "@/assets/glider-truck.jpg";
+import freightlinerGlider from "@/assets/freightliner-glider.jpg";
 
 export const Route = createFileRoute("/mobility")({
   head: () => ({
