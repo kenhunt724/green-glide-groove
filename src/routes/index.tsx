@@ -53,6 +53,7 @@ function Index() {
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
+      <main id="main">
 
       <section className="relative overflow-hidden border-b border-border">
         <img
@@ -123,6 +124,7 @@ function Index() {
         </div>
       </section>
 
+      </main>
       <SiteFooter />
     </div>
   );

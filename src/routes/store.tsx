@@ -146,6 +146,7 @@ function StorePage() {
     <PlayerSettingsProvider>
     <div className="min-h-screen bg-background">
       <SiteHeader />
+      <main id="main">
 
 
       <section className="border-b border-border">
@@ -319,6 +320,7 @@ function StorePage() {
         </div>
       </section>
 
+      </main>
       <SiteFooter />
     </div>
     </PlayerSettingsProvider>

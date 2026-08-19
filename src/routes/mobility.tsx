@@ -60,6 +60,7 @@ function MobilityPage() {
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
+      <main id="main">
 
       <section className="border-b border-border">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-2 lg:items-center">
@@ -131,6 +132,7 @@ function MobilityPage() {
         </div>
       </section>
 
+      </main>
       <SiteFooter />
     </div>
   );

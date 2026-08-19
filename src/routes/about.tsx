@@ -27,6 +27,7 @@ function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
+      <main id="main">
 
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-5 py-20">
@@ -72,6 +73,7 @@ function AboutPage() {
         </section>
       ))}
 
+      </main>
       <SiteFooter />
     </div>
   );
