@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      capacity_settings: {
+        Row: {
+          build_bays: number
+          created_at: string
+          generator_builds_per_week: number
+          id: string
+          service_visits_per_week: number
+          technician_count: number
+          technician_days_per_week: number
+          updated_at: string
+          vault_installs_per_week: number
+        }
+        Insert: {
+          build_bays?: number
+          created_at?: string
+          generator_builds_per_week?: number
+          id?: string
+          service_visits_per_week?: number
+          technician_count?: number
+          technician_days_per_week?: number
+          updated_at?: string
+          vault_installs_per_week?: number
+        }
+        Update: {
+          build_bays?: number
+          created_at?: string
+          generator_builds_per_week?: number
+          id?: string
+          service_visits_per_week?: number
+          technician_count?: number
+          technician_days_per_week?: number
+          updated_at?: string
+          vault_installs_per_week?: number
+        }
+        Relationships: []
+      }
       consultation_slots: {
         Row: {
           created_at: string
@@ -60,10 +96,14 @@ export type Database = {
           id: string
           monthly_bill_range: string
           notes: string | null
+          outcome: string
+          outcome_at: string | null
           phone: string
           preferred_time: string
           property_type: string
           roof_condition: string | null
+          score: number | null
+          scored_at: string | null
           slot_id: string | null
           solution_interest: string | null
           vehicle_type: string | null
@@ -76,10 +116,14 @@ export type Database = {
           id?: string
           monthly_bill_range: string
           notes?: string | null
+          outcome?: string
+          outcome_at?: string | null
           phone: string
           preferred_time: string
           property_type: string
           roof_condition?: string | null
+          score?: number | null
+          scored_at?: string | null
           slot_id?: string | null
           solution_interest?: string | null
           vehicle_type?: string | null
@@ -92,10 +136,14 @@ export type Database = {
           id?: string
           monthly_bill_range?: string
           notes?: string | null
+          outcome?: string
+          outcome_at?: string | null
           phone?: string
           preferred_time?: string
           property_type?: string
           roof_condition?: string | null
+          score?: number | null
+          scored_at?: string | null
           slot_id?: string | null
           solution_interest?: string | null
           vehicle_type?: string | null
@@ -110,6 +158,39 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      job_profiles: {
+        Row: {
+          build_hours: number
+          created_at: string
+          id: string
+          parts_lead_time_days: number
+          solution_interest: string
+          technician_days: number
+          unit_kind: string
+          updated_at: string
+        }
+        Insert: {
+          build_hours?: number
+          created_at?: string
+          id?: string
+          parts_lead_time_days?: number
+          solution_interest: string
+          technician_days?: number
+          unit_kind?: string
+          updated_at?: string
+        }
+        Update: {
+          build_hours?: number
+          created_at?: string
+          id?: string
+          parts_lead_time_days?: number
+          solution_interest?: string
+          technician_days?: number
+          unit_kind?: string
+          updated_at?: string
+        }
+        Relationships: []
       }
       producer_orders: {
         Row: {
@@ -262,15 +343,42 @@ export type Database = {
         }
         Relationships: []
       }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "staff" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -397,6 +505,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "staff", "user"],
+    },
   },
 } as const

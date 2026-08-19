@@ -10,20 +10,32 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as EnergyRouteImport } from './routes/energy'
 import { Route as MobilityRouteImport } from './routes/mobility'
 import { Route as StoreRouteImport } from './routes/store'
 import { Route as ProducersSlugRouteImport } from './routes/producers.$slug'
+import { Route as AuthenticatedOpsCapacityRouteImport } from './routes/_authenticated/ops/capacity'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EnergyRoute = EnergyRouteImport.update({
@@ -46,51 +58,84 @@ const ProducersSlugRoute = ProducersSlugRouteImport.update({
   path: '/producers/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedOpsCapacityRoute =
+  AuthenticatedOpsCapacityRouteImport.update({
+    id: '/ops/capacity',
+    path: '/ops/capacity',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/energy': typeof EnergyRoute
   '/mobility': typeof MobilityRoute
   '/store': typeof StoreRoute
   '/producers/$slug': typeof ProducersSlugRoute
+  '/ops/capacity': typeof AuthenticatedOpsCapacityRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/energy': typeof EnergyRoute
   '/mobility': typeof MobilityRoute
   '/store': typeof StoreRoute
   '/producers/$slug': typeof ProducersSlugRoute
+  '/ops/capacity': typeof AuthenticatedOpsCapacityRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/energy': typeof EnergyRoute
   '/mobility': typeof MobilityRoute
   '/store': typeof StoreRoute
   '/producers/$slug': typeof ProducersSlugRoute
+  '/_authenticated/ops/capacity': typeof AuthenticatedOpsCapacityRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/about' | '/energy' | '/mobility' | '/store' | '/producers/$slug'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/energy' | '/mobility' | '/store' | '/producers/$slug'
-  id:
-    | '__root__'
     | '/'
     | '/about'
+    | '/auth'
     | '/energy'
     | '/mobility'
     | '/store'
     | '/producers/$slug'
+    | '/ops/capacity'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/energy'
+    | '/mobility'
+    | '/store'
+    | '/producers/$slug'
+    | '/ops/capacity'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/about'
+    | '/auth'
+    | '/energy'
+    | '/mobility'
+    | '/store'
+    | '/producers/$slug'
+    | '/_authenticated/ops/capacity'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRoute
   EnergyRoute: typeof EnergyRoute
   MobilityRoute: typeof MobilityRoute
   StoreRoute: typeof StoreRoute
@@ -106,11 +151,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/energy': {
@@ -141,12 +200,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProducersSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/ops/capacity': {
+      id: '/_authenticated/ops/capacity'
+      path: '/ops/capacity'
+      fullPath: '/ops/capacity'
+      preLoaderRoute: typeof AuthenticatedOpsCapacityRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedOpsCapacityRoute: typeof AuthenticatedOpsCapacityRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedOpsCapacityRoute: AuthenticatedOpsCapacityRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AboutRoute: AboutRoute,
+  AuthRoute: AuthRoute,
   EnergyRoute: EnergyRoute,
   MobilityRoute: MobilityRoute,
   StoreRoute: StoreRoute,
