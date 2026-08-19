@@ -143,12 +143,17 @@ export function FormatABPlayer({ sample, label }: FormatABPlayerProps) {
   const pickSlot = (slot: "A" | "B") => toggleFormat(slot === wavSlot ? "wav" : "mp3");
   const currentSlot: "A" | "B" = format === "wav" ? wavSlot : wavSlot === "A" ? "B" : "A";
   const progress = duration ? time / duration : 0;
+  const usingLocal = Boolean(local.mp3 || local.wav);
+  const mp3Src = local.mp3?.url ?? sample.mp3;
+  const wavSrc = local.wav?.url ?? sample.wav;
+  const mp3Label = local.mp3?.name ?? sample.mp3Label;
+  const wavLabel = local.wav?.name ?? sample.wavLabel;
 
   return (
     <div className="border border-border bg-surface p-4">
       <audio
         ref={mp3Ref}
-        src={sample.mp3}
+        src={mp3Src}
         preload="auto"
         onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
         onTimeUpdate={(e) => {
@@ -162,7 +167,7 @@ export function FormatABPlayer({ sample, label }: FormatABPlayerProps) {
       />
       <audio
         ref={wavRef}
-        src={sample.wav}
+        src={wavSrc}
         preload="auto"
         muted
         onLoadedMetadata={(e) => setDuration((d) => d || e.currentTarget.duration)}
