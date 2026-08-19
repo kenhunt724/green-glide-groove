@@ -64,7 +64,7 @@ function Index() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40" />
           <div className="relative mx-auto max-w-7xl px-5 py-28 md:py-40">
-            <p className="label-mono">Est. Block 12 / Sovereign Charter</p>
+            <p className="label-mono">Est. Block 12 / Sovereign Charter · Coming Soon</p>
             <h1 className="mt-6 max-w-4xl text-5xl leading-[0.95] font-bold md:text-7xl">
               We keep the sound, the steel and the electrons
               <span className="text-signal"> inside the neighbourhood.</span>
