@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
-import { scoreLead } from "@/lib/lead-model";
+import { scoreLead, COEFFICIENTS } from "@/lib/lead-model";
 import type { CapacitySettings, JobProfile, PipelineJob } from "@/lib/capacity";
 
 export type OpsLead = {
@@ -135,7 +135,7 @@ export const getOpsSnapshot = createServerFn({ method: "GET" })
         lost: leads.filter((l) => l.outcome === "lost").length,
         pending: leads.filter((l) => l.outcome === "pending").length,
       },
-      modelVersion: (await import("@/lib/lead-model")).COEFFICIENTS.version,
+      modelVersion: COEFFICIENTS.version,
     };
   });
 
@@ -159,19 +159,17 @@ export const saveJobProfile = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input: unknown) => profileSchema.parse(input))
   .handler(async ({ data, context }) => {
-    const { id, ...fields } = data;
-    const { error } = await supabase_update(context.supabase, id, fields);
+    const { error } = await context.supabase
+      .from("job_profiles")
+      .update({
+        technician_days: data.technician_days,
+        build_hours: data.build_hours,
+        parts_lead_time_days: data.parts_lead_time_days,
+      })
+      .eq("id", data.id);
     if (error) throw new Error("Could not save the job profile.");
     return { ok: true };
   });
-
-function supabase_update(
-  client: { from: (t: "job_profiles") => any },
-  id: string,
-  fields: Record<string, number>,
-) {
-  return client.from("job_profiles").update(fields).eq("id", id);
-}
 
 export const setLeadOutcome = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
