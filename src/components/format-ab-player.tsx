@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Eye, EyeOff, Pause, Play, RotateCcw } from "lucide-react";
+import { Eye, EyeOff, Pause, Play, RotateCcw, Upload, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePlayerSettings } from "@/components/player-settings";
 import type { AudioSample } from "@/content/audio-samples";
@@ -38,7 +38,44 @@ export function FormatABPlayer({ sample, label }: FormatABPlayerProps) {
   const [guess, setGuess] = useState<"A" | "B" | null>(null);
   const [revealed, setRevealed] = useState(false);
 
+  /** Locally loaded files (object URLs) override the hosted excerpts. */
+  const [local, setLocal] = useState<{ mp3?: { url: string; name: string }; wav?: { url: string; name: string } }>(
+    {},
+  );
+
   const activeRef = format === "mp3" ? mp3Ref : wavRef;
+
+  const loadLocal = (slot: Format, file: File | undefined) => {
+    if (!file) return;
+    setLocal((prev) => {
+      if (prev[slot]) URL.revokeObjectURL(prev[slot]!.url);
+      return { ...prev, [slot]: { url: URL.createObjectURL(file), name: file.name } };
+    });
+    setPlaying(false);
+    setTime(0);
+    setDuration(0);
+    mp3Ref.current?.pause();
+    wavRef.current?.pause();
+  };
+
+  const clearLocal = () => {
+    setLocal((prev) => {
+      for (const v of Object.values(prev)) if (v) URL.revokeObjectURL(v.url);
+      return {};
+    });
+    setPlaying(false);
+    setTime(0);
+    setDuration(0);
+  };
+
+  // Release object URLs when the component goes away.
+  useEffect(
+    () => () => {
+      for (const v of Object.values(local)) if (v) URL.revokeObjectURL(v.url);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
 
   // Keep gains in sync with the global player volume.
   useEffect(() => {
@@ -106,12 +143,17 @@ export function FormatABPlayer({ sample, label }: FormatABPlayerProps) {
   const pickSlot = (slot: "A" | "B") => toggleFormat(slot === wavSlot ? "wav" : "mp3");
   const currentSlot: "A" | "B" = format === "wav" ? wavSlot : wavSlot === "A" ? "B" : "A";
   const progress = duration ? time / duration : 0;
+  const usingLocal = Boolean(local.mp3 || local.wav);
+  const mp3Src = local.mp3?.url ?? sample.mp3;
+  const wavSrc = local.wav?.url ?? sample.wav;
+  const mp3Label = local.mp3?.name ?? sample.mp3Label;
+  const wavLabel = local.wav?.name ?? sample.wavLabel;
 
   return (
     <div className="border border-border bg-surface p-4">
       <audio
         ref={mp3Ref}
-        src={sample.mp3}
+        src={mp3Src}
         preload="auto"
         onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
         onTimeUpdate={(e) => {
@@ -125,7 +167,7 @@ export function FormatABPlayer({ sample, label }: FormatABPlayerProps) {
       />
       <audio
         ref={wavRef}
-        src={sample.wav}
+        src={wavSrc}
         preload="auto"
         muted
         onLoadedMetadata={(e) => setDuration((d) => d || e.currentTarget.duration)}
@@ -212,7 +254,7 @@ export function FormatABPlayer({ sample, label }: FormatABPlayerProps) {
             >
               <span className="label-mono block">{f === "mp3" ? "Lossy" : "Uncompressed"}</span>
               <span className="mt-1 block text-sm">
-                {f === "mp3" ? sample.mp3Label : sample.wavLabel}
+                {f === "mp3" ? mp3Label : wavLabel}
               </span>
             </button>
           ))}
@@ -237,8 +279,8 @@ export function FormatABPlayer({ sample, label }: FormatABPlayerProps) {
                 <span className="mt-1 block text-sm">
                   {revealed
                     ? slot === wavSlot
-                      ? sample.wavLabel
-                      : sample.mp3Label
+                      ? wavLabel
+                      : mp3Label
                     : "Hidden encode"}
                 </span>
               </button>
@@ -274,17 +316,55 @@ export function FormatABPlayer({ sample, label }: FormatABPlayerProps) {
           <p aria-live="polite" className="text-sm text-muted-foreground">
             {revealed
               ? guess === wavSlot
-                ? `Correct — Source ${wavSlot} was the ${sample.wavLabel} master.`
-                : `Not this time — Source ${wavSlot} was the ${sample.wavLabel} master.`
+                ? `Correct — Source ${wavSlot} was the ${wavLabel} master.`
+                : `Not this time — Source ${wavSlot} was the ${wavLabel} master.`
               : "Switch between sources while it plays, then commit to an answer."}
           </p>
         </div>
       )}
 
-      <p className="mt-3 text-xs text-muted-foreground">
-        Placeholder excerpts for demonstration. Use wired headphones or monitors — Bluetooth
-        re-encodes both sources and erases the difference.
-      </p>
+      <div className="mt-4 border-t border-border pt-3">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="label-mono">Load from this computer</span>
+          <label className="label-mono flex min-h-9 cursor-pointer items-center gap-2 border border-border px-3 text-muted-foreground transition-colors hover:border-signal hover:text-signal">
+            <Upload className="size-3.5" aria-hidden="true" />
+            Lossy file
+            <input
+              type="file"
+              accept="audio/*"
+              className="sr-only"
+              onChange={(e) => loadLocal("mp3", e.target.files?.[0])}
+            />
+          </label>
+          <label className="label-mono flex min-h-9 cursor-pointer items-center gap-2 border border-border px-3 text-muted-foreground transition-colors hover:border-signal hover:text-signal">
+            <Upload className="size-3.5" aria-hidden="true" />
+            Uncompressed file
+            <input
+              type="file"
+              accept="audio/*,.wav,.flac,.aiff,.aif"
+              className="sr-only"
+              onChange={(e) => loadLocal("wav", e.target.files?.[0])}
+            />
+          </label>
+          {usingLocal && (
+            <button
+              type="button"
+              onClick={clearLocal}
+              className="label-mono flex min-h-9 items-center gap-2 border border-border px-3 text-muted-foreground transition-colors hover:border-signal hover:text-signal focus-visible:ring-2 focus-visible:ring-signal focus-visible:outline-none"
+            >
+              <X className="size-3.5" aria-hidden="true" />
+              Reset to demo clips
+            </button>
+          )}
+        </div>
+        <p className="mt-2 text-xs text-muted-foreground">
+          {usingLocal
+            ? "Playing your local files — they stay on this computer and are never uploaded."
+            : "Placeholder excerpts for demonstration. Drop in your own WAV/FLAC master and a lossy encode to compare them here."}{" "}
+          Use wired headphones or monitors — Bluetooth re-encodes both sources and erases the
+          difference.
+        </p>
+      </div>
     </div>
   );
 }
