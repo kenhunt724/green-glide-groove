@@ -18,6 +18,7 @@ type FormState = {
   monthly_bill_range: string;
   roof_condition: string;
   preferred_time: string;
+  slot_id: string;
   notes: string;
 };
 
