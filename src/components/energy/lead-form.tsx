@@ -245,11 +245,15 @@ export function LeadForm() {
           <>
             <div className="space-y-3">
               <p className="label-mono">Preferred consultation time</p>
-              <OptionGrid
-                name="Preferred consultation time"
-                options={consultationTimes}
-                value={form.preferred_time}
-                onChange={set("preferred_time")}
+              <SlotPicker
+                value={form.slot_id}
+                onChange={(slot) =>
+                  setForm((f) => ({
+                    ...f,
+                    slot_id: slot.id,
+                    preferred_time: formatSlotLabel(slot.slot_at),
+                  }))
+                }
               />
             </div>
             <div className="space-y-2">
