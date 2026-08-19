@@ -42,6 +42,8 @@
   --color-signal-foreground: var(--signal-foreground);
   --color-verdant: var(--verdant);
   --color-amber: var(--amber);
+  --color-energy: var(--energy);
+  --color-obsidian: var(--obsidian);
   --color-surface: var(--surface);
   --color-surface-raised: var(--surface-raised);
   --color-chart-1: var(--chart-1);
@@ -89,6 +91,8 @@
   --signal-foreground: oklch(0.16 0.02 55);
   --verdant: oklch(0.75 0.19 145);
   --amber: oklch(0.82 0.16 85);
+  --energy: oklch(0.86 0.19 98);
+  --obsidian: oklch(0.11 0.006 260);
   --chart-1: oklch(0.72 0.15 55);
   --chart-2: oklch(0.75 0.19 145);
   --chart-3: oklch(0.82 0.16 85);

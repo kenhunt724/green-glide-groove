@@ -1,0 +1,237 @@
+import { useState } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowDown, BatteryCharging, ShieldCheck, Sun, Wrench } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { EnergyNav } from "@/components/energy/energy-nav";
+import { SavingsCalculator } from "@/components/energy/savings-calculator";
+import { HardwareTiers } from "@/components/energy/hardware-tiers";
+import { LeadForm } from "@/components/energy/lead-form";
+import { services, steps, trustBadges } from "@/content/energy";
+
+const TITLE = "Cut Peak Power Rates 90% | EPS Energy Division";
+const DESC =
+  "Smart off-peak LiFePO4 battery vaults and zero-export solar engineered for Georgia Power tariffs. Charge at ~2.3¢/kWh overnight and never pay peak rates again.";
+
+export const Route = createFileRoute("/energy")({
+  head: () => ({
+    meta: [
+      { title: TITLE },
+      { name: "description", content: DESC },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESC },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: EnergyPage,
+});
+
+const stepIcons = [BatteryCharging, ShieldCheck, Sun];
+
+function EnergyPage() {
+  const [quoteOpen, setQuoteOpen] = useState(false);
+
+  return (
+    <div className="min-h-screen bg-obsidian text-foreground">
+      <EnergyNav onQuote={() => setQuoteOpen(true)} />
+
+      <main id="main">
+        {/* Hero */}
+        <section className="rule-grid relative overflow-hidden border-b border-border">
+          <div
+            aria-hidden="true"
+            className="absolute -top-40 left-1/2 size-[46rem] -translate-x-1/2 rounded-full bg-energy/10 blur-3xl"
+          />
+          <div className="relative mx-auto max-w-7xl px-5 py-24 md:py-32">
+            <p className="label-mono text-energy">
+              Residential &amp; Commercial Energy Division
+            </p>
+            <h1 className="mt-6 max-w-5xl text-4xl leading-[1.02] font-bold md:text-6xl lg:text-7xl">
+              Slash Your Peak Power Rates by Up to 90%
+              <span className="text-energy"> Without Changing Your Lifestyle.</span>
+            </h1>
+            <p className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+              Engineered for Georgia Power &amp; Southeast utility tariffs. We deploy smart off-peak
+              LiFePO4 battery vaults and closed-loop solar systems that charge at ~2.3¢/kWh
+              overnight so you never pay peak rates again.
+            </p>
+
+            <div className="mt-10 flex flex-wrap gap-3">
+              <button
+                type="button"
+                onClick={() => setQuoteOpen(true)}
+                className="inline-flex min-h-12 items-center gap-2 bg-energy px-7 font-display text-sm font-semibold text-background transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-energy focus-visible:outline-none"
+              >
+                Book a Free Site Assessment
+              </button>
+              <a
+                href="#calculator"
+                className="inline-flex min-h-12 items-center gap-2 border border-border bg-surface px-7 font-display text-sm font-semibold transition-colors hover:border-energy hover:text-energy"
+              >
+                Calculate Your Savings <ArrowDown className="size-4" aria-hidden="true" />
+              </a>
+            </div>
+
+            <ul className="mt-14 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+              {trustBadges.map((b) => (
+                <li key={b} className="flex items-center gap-3 bg-background p-5">
+                  <ShieldCheck className="size-5 shrink-0 text-energy" aria-hidden="true" />
+                  <span className="text-sm font-medium">{b}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* Calculator */}
+        <section id="calculator" className="scroll-mt-20 border-b border-border bg-background">
+          <div className="mx-auto max-w-7xl px-5 py-20 md:py-24">
+            <p className="label-mono text-energy">Rate arbitrage model</p>
+            <h2 className="mt-3 max-w-3xl text-3xl font-bold md:text-5xl">
+              Interactive savings calculator
+            </h2>
+            <p className="mt-5 max-w-2xl text-muted-foreground">
+              Move the sliders to see your tiered utility bill against a super-off-peak battery
+              arbitrage plus zero-export solar pairing.
+            </p>
+            <div className="mt-12">
+              <SavingsCalculator />
+            </div>
+          </div>
+        </section>
+
+        {/* How it works */}
+        <section id="why-off-peak" className="scroll-mt-20 border-b border-border">
+          <div className="mx-auto max-w-7xl px-5 py-20 md:py-24">
+            <p className="label-mono text-energy">The closed-loop system</p>
+            <h2 className="mt-3 max-w-3xl text-3xl font-bold md:text-5xl">
+              Why off-peak wins, in three moves
+            </h2>
+            <div className="mt-12 grid gap-px bg-border lg:grid-cols-3">
+              {steps.map((s, i) => {
+                const Icon = stepIcons[i] ?? BatteryCharging;
+                return (
+                  <article key={s.id} className="bg-background p-7">
+                    <div className="flex items-center justify-between">
+                      <Icon className="size-6 text-energy" aria-hidden="true" />
+                      <span className="font-display text-4xl font-bold text-border">{s.step}</span>
+                    </div>
+                    <p className="label-mono mt-6 text-energy">{s.window}</p>
+                    <h3 className="mt-2 font-display text-xl font-semibold">{s.title}</h3>
+                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Hardware */}
+        <section id="hardware" className="scroll-mt-20 border-b border-border bg-background">
+          <div className="mx-auto max-w-7xl px-5 py-20 md:py-24">
+            <p className="label-mono text-energy">Modular hardware</p>
+            <h2 className="mt-3 max-w-3xl text-3xl font-bold md:text-5xl">
+              Pick the control surface your building deserves
+            </h2>
+            <div className="mt-10">
+              <HardwareTiers />
+            </div>
+          </div>
+        </section>
+
+        {/* Services */}
+        <section id="maintenance" className="scroll-mt-20 border-b border-border">
+          <div className="mx-auto max-w-7xl px-5 py-20 md:py-24">
+            <p className="label-mono text-energy">Turnkey services</p>
+            <h2 className="mt-3 max-w-3xl text-3xl font-bold md:text-5xl">
+              Engineered, installed and maintained by the block
+            </h2>
+            <div className="mt-12 grid gap-px bg-border lg:grid-cols-3">
+              {services.map((s) => (
+                <article key={s.id} className="bg-background p-7">
+                  <Wrench className="size-6 text-energy" aria-hidden="true" />
+                  <h3 className="mt-6 font-display text-xl font-semibold">{s.title}</h3>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+                  <ul className="mt-6 space-y-2">
+                    {s.points.map((p) => (
+                      <li key={p} className="flex gap-2 text-sm text-muted-foreground">
+                        <span
+                          aria-hidden="true"
+                          className="mt-[7px] size-1 shrink-0 rounded-full bg-energy"
+                        />
+                        {p}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Booking */}
+        <section id="book" className="scroll-mt-20 border-b border-border bg-background">
+          <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:py-24 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
+            <div>
+              <p className="label-mono text-energy">Free site assessment</p>
+              <h2 className="mt-3 text-3xl font-bold md:text-5xl">
+                Book your engineered savings review
+              </h2>
+              <p className="mt-6 text-muted-foreground">
+                Four short steps. A local certified technician pulls twelve months of your interval
+                data, models your tariff, and returns a binding vault design — no obligation, no
+                sales theatre.
+              </p>
+            </div>
+            <LeadForm />
+          </div>
+        </section>
+      </main>
+
+      <footer className="border-t border-border bg-surface">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-12 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="font-display text-lg font-bold">
+              EARTH PROTECTION SOCIETY · ENERGY DIVISION
+            </p>
+            <p className="label-mono mt-2">
+              Block 12 · Sovereign charter · Victron authorized architecture
+            </p>
+          </div>
+          <nav className="flex flex-wrap gap-6" aria-label="Footer">
+            <Link to="/" className="label-mono hover:text-energy">
+              Home
+            </Link>
+            <Link to="/store" className="label-mono hover:text-energy">
+              Master Vaults
+            </Link>
+            <Link to="/mobility" className="label-mono hover:text-energy">
+              Hybrid Fleet
+            </Link>
+            <Link to="/about" className="label-mono hover:text-energy">
+              Community Hub
+            </Link>
+          </nav>
+        </div>
+      </footer>
+
+      <Dialog open={quoteOpen} onOpenChange={setQuoteOpen}>
+        <DialogContent className="max-h-[90vh] overflow-y-auto border-border bg-background sm:max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="font-display text-2xl">Book a free site assessment</DialogTitle>
+            <DialogDescription>
+              Four steps, about ninety seconds. We come back with an engineered savings figure.
+            </DialogDescription>
+          </DialogHeader>
+          <LeadForm />
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
