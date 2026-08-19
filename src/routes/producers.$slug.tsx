@@ -2,12 +2,22 @@ import { useMemo, useState } from "react";
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { Minus, Plus, ShoppingBag } from "lucide-react";
+import { Minus, Plus, ShoppingBag, Sparkles } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { FormatABPlayer } from "@/components/format-ab-player";
+import { PlayerSettingsProvider } from "@/components/player-settings";
+import { audioSamples } from "@/content/audio-samples";
+import cover1 from "@/assets/cover-1.jpg";
+import cover2 from "@/assets/cover-2.jpg";
+import cover3 from "@/assets/cover-3.jpg";
+import cover4 from "@/assets/cover-4.jpg";
+
+const covers = [cover1, cover2, cover3, cover4];
+const sampleKeys = Object.keys(audioSamples);
 import {
   createProducerOrder,
   getProducerStore,
@@ -122,10 +132,26 @@ function ProducerStorePage() {
     }
   }
 
+  const shareBps = store.platform_share_bps ?? 1500;
+  const platformFee = Math.round((total * shareBps) / 10000);
+  const payout = total - platformFee;
+
   return (
+    <PlayerSettingsProvider>
     <div className="min-h-screen bg-background">
       <SiteHeader />
       <main id="main">
+        <div className="border-b border-signal/30 bg-signal/10">
+          <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-3 px-5 py-3">
+            <Sparkles className="size-4 text-signal" aria-hidden="true" />
+            <p className="text-sm text-signal">
+              <strong className="font-semibold">Demo storefront.</strong> Layout, pricing and
+              checkout are live; audio previews and titles are placeholders until the producer
+              supplies masters. No payment is taken.
+            </p>
+          </div>
+        </div>
+
         <section className="border-b border-border">
           <div className="mx-auto max-w-7xl px-5 py-20">
             <p className="label-mono">Producer storefront · {store.city}</p>
@@ -141,10 +167,12 @@ function ProducerStorePage() {
             <p className="label-mono mt-2">Uncompressed delivery · 432Hz masters · artist-first split</p>
 
             <div className="mt-8 flex flex-col gap-px bg-border">
-              {store.products.map((p) => (
+              {store.products.map((p, i) => (
                 <ProductRow
                   key={p.id}
                   product={p}
+                  artwork={covers[i % covers.length]!}
+                  sampleKey={sampleKeys[i % sampleKeys.length]!}
                   inCart={cart.includes(p.id)}
                   onToggle={() => toggle(p.id)}
                 />
@@ -177,6 +205,21 @@ function ProducerStorePage() {
               <span className="label-mono">Total</span>
               <span className="font-display text-xl font-bold">{money(total)}</span>
             </div>
+
+            <dl className="mt-3 space-y-1 border border-border bg-background p-3 text-xs">
+              <div className="flex justify-between">
+                <dt className="text-muted-foreground">
+                  Producer payout ({(100 - shareBps / 100).toFixed(0)}%)
+                </dt>
+                <dd className="label-mono text-signal">{money(payout)}</dd>
+              </div>
+              <div className="flex justify-between">
+                <dt className="text-muted-foreground">
+                  Platform &amp; processing ({(shareBps / 100).toFixed(0)}%)
+                </dt>
+                <dd className="label-mono">{money(platformFee)}</dd>
+              </div>
+            </dl>
 
             <form onSubmit={checkout} className="mt-6 space-y-4">
               <div>
@@ -223,20 +266,33 @@ function ProducerStorePage() {
       </main>
       <SiteFooter />
     </div>
+    </PlayerSettingsProvider>
   );
 }
 
 function ProductRow({
   product,
+  artwork,
+  sampleKey,
   inCart,
   onToggle,
 }: {
   product: ProducerProduct;
+  artwork: string;
+  sampleKey: string;
   inCart: boolean;
   onToggle: () => void;
 }) {
+  const sample = audioSamples[sampleKey];
   return (
-    <article className="grid gap-4 bg-background p-6 transition-colors hover:bg-surface md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+    <article className="bg-background p-6 transition-colors hover:bg-surface">
+    <div className="grid gap-4 md:grid-cols-[96px_minmax(0,1fr)_auto] md:items-center">
+      <img
+        src={product.artwork_url ?? artwork}
+        alt={`Cover art for ${product.title}`}
+        loading="lazy"
+        className="hidden size-24 border border-border object-cover md:block"
+      />
       <div className="min-w-0">
         <div className="flex flex-wrap items-baseline gap-x-3">
           <h3 className="text-xl font-semibold">{product.title}</h3>
@@ -279,6 +335,12 @@ function ProductRow({
           {inCart ? "Remove" : "Add license"}
         </button>
       </div>
+    </div>
+    {sample && (
+      <div className="mt-5">
+        <FormatABPlayer sample={sample} label={product.title} />
+      </div>
+    )}
     </article>
   );
 }

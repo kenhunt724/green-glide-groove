@@ -22,6 +22,7 @@ export type ProducerStore = {
   city: string;
   tagline: string;
   bio: string;
+  platform_share_bps: number;
   products: ProducerProduct[];
 };
 
@@ -55,7 +56,7 @@ export const getProducerStore = createServerFn({ method: "GET" })
 
     const { data: producer, error } = await supabase
       .from("producers")
-      .select("id, slug, display_name, city, tagline, bio")
+      .select("id, slug, display_name, city, tagline, bio, platform_share_bps")
       .eq("slug", data.slug)
       .eq("published", true)
       .maybeSingle();
