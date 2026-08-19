@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation } from "@tanstack/react-query";
 import { CheckCircle2, Loader2 } from "lucide-react";
@@ -68,6 +68,8 @@ function OptionGrid({
 }
 
 export function LeadForm() {
+  const uid = useId();
+  const fid = (n: string) => `${uid}-${n}`;
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<FormState>(empty);
   const [error, setError] = useState<string | null>(null);
@@ -158,9 +160,9 @@ export function LeadForm() {
         {step === 0 && (
           <>
             <div className="space-y-2">
-              <Label htmlFor="full_name">Full name</Label>
+              <Label htmlFor={fid("full_name")}>Full name</Label>
               <Input
-                id="full_name"
+                id={fid("full_name")}
                 value={form.full_name}
                 autoComplete="name"
                 onChange={(e) => set("full_name")(e.target.value)}
@@ -168,9 +170,9 @@ export function LeadForm() {
             </div>
             <div className="grid gap-5 sm:grid-cols-2">
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor={fid("email")}>Email</Label>
                 <Input
-                  id="email"
+                  id={fid("email")}
                   type="email"
                   autoComplete="email"
                   value={form.email}
@@ -178,9 +180,9 @@ export function LeadForm() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="phone">Phone</Label>
+                <Label htmlFor={fid("phone")}>Phone</Label>
                 <Input
-                  id="phone"
+                  id={fid("phone")}
                   type="tel"
                   autoComplete="tel"
                   value={form.phone}
@@ -189,9 +191,9 @@ export function LeadForm() {
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="zip_code">Atlanta / regional ZIP code</Label>
+              <Label htmlFor={fid("zip_code")}>Atlanta / regional ZIP code</Label>
               <Input
-                id="zip_code"
+                id={fid("zip_code")}
                 inputMode="numeric"
                 autoComplete="postal-code"
                 value={form.zip_code}
@@ -248,9 +250,9 @@ export function LeadForm() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="notes">Anything we should know? (optional)</Label>
+              <Label htmlFor={fid("notes")}>Anything we should know? (optional)</Label>
               <Textarea
-                id="notes"
+                id={fid("notes")}
                 rows={3}
                 value={form.notes}
                 onChange={(e) => set("notes")(e.target.value)}
