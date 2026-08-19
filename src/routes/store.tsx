@@ -163,13 +163,80 @@ function StorePage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-16">
-        <div className="flex items-baseline justify-between">
+        <div className="flex flex-wrap items-baseline justify-between gap-4">
           <h2 className="text-2xl font-semibold">Now streaming</h2>
           <p className="label-mono">Bit-perfect · No transcode</p>
         </div>
 
-        <div className="mt-8 flex flex-col gap-px bg-border">
-          {releases.map((r) => (
+        <div className="mt-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <search className="relative w-full lg:max-w-md">
+            <label htmlFor="catalog-search" className="sr-only">
+              Search the catalog by title, artist, tag or format
+            </label>
+            <Search
+              className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground"
+              aria-hidden="true"
+            />
+            <Input
+              id="catalog-search"
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search titles, artists, formats…"
+              className="h-11 pr-10 pl-9"
+            />
+            {query && (
+              <button
+                type="button"
+                onClick={() => setQuery("")}
+                aria-label="Clear search"
+                className="absolute top-1/2 right-2 flex size-8 -translate-y-1/2 items-center justify-center text-muted-foreground transition-colors hover:text-signal focus-visible:ring-2 focus-visible:ring-signal focus-visible:outline-none"
+              >
+                <X className="size-4" aria-hidden="true" />
+              </button>
+            )}
+          </search>
+          <PlayerSettingsPanel />
+        </div>
+
+        <div className="mt-6">
+          <h3 className="label-mono">Curated playlists</h3>
+          <div role="group" aria-label="Curated playlists" className="mt-3 flex flex-wrap gap-2">
+            {playlists.map((p) => {
+              const active = p.id === activePlaylist.id;
+              return (
+                <button
+                  key={p.id}
+                  type="button"
+                  aria-pressed={active}
+                  onClick={() => setPlaylistId(p.id)}
+                  className={`label-mono min-h-11 border px-4 transition-colors focus-visible:ring-2 focus-visible:ring-signal focus-visible:outline-none ${
+                    active
+                      ? "border-signal bg-signal/10 text-signal"
+                      : "border-border bg-surface text-muted-foreground hover:border-signal hover:text-signal"
+                  }`}
+                >
+                  {p.name}
+                </button>
+              );
+            })}
+          </div>
+          <p className="mt-3 text-sm text-muted-foreground">{activePlaylist.blurb}</p>
+        </div>
+
+        <p aria-live="polite" className="label-mono mt-6">
+          {filtered.length} {filtered.length === 1 ? "master" : "masters"} in {activePlaylist.name}
+          {query ? ` matching “${query}”` : ""}
+        </p>
+
+        {filtered.length === 0 && (
+          <p className="mt-6 border border-border bg-surface p-6 text-muted-foreground">
+            No masters match that search in this playlist. Try the full catalog.
+          </p>
+        )}
+
+        <div className="mt-8 flex flex-col gap-px bg-border empty:hidden">
+          {filtered.map((r) => (
             <article
               key={r.title}
               className="grid gap-6 bg-background p-6 transition-colors hover:bg-surface md:grid-cols-[112px_minmax(0,1fr)_auto] md:items-center"
