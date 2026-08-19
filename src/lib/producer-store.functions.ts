@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { z } from "zod";
 
 export type ProducerProduct = {
@@ -91,7 +91,7 @@ export const createProducerOrder = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => orderSchema.parse(data))
   .handler(async ({ data }) => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const admin = supabaseAdmin as unknown as ReturnType<typeof createClient>;
+    const admin = supabaseAdmin as unknown as SupabaseClient;
 
     const { data: producer, error: prodErr } = await admin
       .from("producers")
