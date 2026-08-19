@@ -146,8 +146,8 @@ export function FormatABPlayer({ sample, label }: FormatABPlayerProps) {
   const usingLocal = Boolean(local.mp3 || local.wav);
   const mp3Src = local.mp3?.url ?? sample.mp3;
   const wavSrc = local.wav?.url ?? sample.wav;
-  const mp3Label = local.mp3?.name ?? sample.mp3Label;
-  const wavLabel = local.wav?.name ?? sample.wavLabel;
+  const mp3Label = local.mp3?.name ?? mp3Label;
+  const wavLabel = local.wav?.name ?? wavLabel;
 
   return (
     <div className="border border-border bg-surface p-4">
@@ -254,7 +254,7 @@ export function FormatABPlayer({ sample, label }: FormatABPlayerProps) {
             >
               <span className="label-mono block">{f === "mp3" ? "Lossy" : "Uncompressed"}</span>
               <span className="mt-1 block text-sm">
-                {f === "mp3" ? sample.mp3Label : sample.wavLabel}
+                {f === "mp3" ? mp3Label : wavLabel}
               </span>
             </button>
           ))}
@@ -279,8 +279,8 @@ export function FormatABPlayer({ sample, label }: FormatABPlayerProps) {
                 <span className="mt-1 block text-sm">
                   {revealed
                     ? slot === wavSlot
-                      ? sample.wavLabel
-                      : sample.mp3Label
+                      ? wavLabel
+                      : mp3Label
                     : "Hidden encode"}
                 </span>
               </button>
@@ -316,8 +316,8 @@ export function FormatABPlayer({ sample, label }: FormatABPlayerProps) {
           <p aria-live="polite" className="text-sm text-muted-foreground">
             {revealed
               ? guess === wavSlot
-                ? `Correct — Source ${wavSlot} was the ${sample.wavLabel} master.`
-                : `Not this time — Source ${wavSlot} was the ${sample.wavLabel} master.`
+                ? `Correct — Source ${wavSlot} was the ${wavLabel} master.`
+                : `Not this time — Source ${wavSlot} was the ${wavLabel} master.`
               : "Switch between sources while it plays, then commit to an answer."}
           </p>
         </div>
