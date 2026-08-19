@@ -14,7 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      energy_leads: {
+        Row: {
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          monthly_bill_range: string
+          notes: string | null
+          phone: string
+          preferred_time: string
+          property_type: string
+          roof_condition: string
+          zip_code: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          monthly_bill_range: string
+          notes?: string | null
+          phone: string
+          preferred_time: string
+          property_type: string
+          roof_condition: string
+          zip_code: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          monthly_bill_range?: string
+          notes?: string | null
+          phone?: string
+          preferred_time?: string
+          property_type?: string
+          roof_condition?: string
+          zip_code?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
