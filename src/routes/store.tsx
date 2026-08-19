@@ -269,7 +269,11 @@ function StorePage() {
                   </Badge>
                 </div>
                 <div className="mt-4">
-                  <WaveformPlayer seed={r.seed} duration={r.duration} />
+                  <WaveformPlayer
+                    seed={r.seed}
+                    duration={r.duration}
+                    label={`${r.title} by ${r.artist}`}
+                  />
                 </div>
               </div>
               <div className="flex items-center gap-3 md:flex-col md:items-end">
