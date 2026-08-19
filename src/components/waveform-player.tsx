@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Pause, Play } from "lucide-react";
+import { Pause, Play, Volume1, Volume2, VolumeX } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { bufferAhead, usePlayerSettings } from "@/components/player-settings";
 
 const BAR_COUNT = 96;
 
@@ -27,10 +28,12 @@ interface WaveformPlayerProps {
   seed: number;
   duration: number;
   compact?: boolean;
+  label?: string;
 }
 
-export function WaveformPlayer({ seed, duration, compact }: WaveformPlayerProps) {
+export function WaveformPlayer({ seed, duration, compact, label }: WaveformPlayerProps) {
   const bars = waveform(seed);
+  const { volume, zoom, buffer } = usePlayerSettings();
   const [playing, setPlaying] = useState(false);
   const [position, setPosition] = useState(0);
   const raf = useRef<number | null>(null);
@@ -58,63 +61,92 @@ export function WaveformPlayer({ seed, duration, compact }: WaveformPlayerProps)
   }, [playing, duration]);
 
   const progress = position / duration;
+  const buffered = Math.min(1, progress + bufferAhead[buffer]);
+
+  // Zoom: show a window of the waveform that follows the playhead.
+  const windowSize = Math.max(8, Math.round(BAR_COUNT / zoom));
+  const maxStart = BAR_COUNT - windowSize;
+  const start = Math.max(0, Math.min(maxStart, Math.round(progress * BAR_COUNT - windowSize / 2)));
+  const visible = bars.slice(start, start + windowSize);
+  const windowStartRatio = start / BAR_COUNT;
+  const windowEndRatio = (start + windowSize) / BAR_COUNT;
+
+  const VolumeIcon = volume === 0 ? VolumeX : volume < 0.5 ? Volume1 : Volume2;
+  const trackLabel = label ? `${label} — ` : "";
 
   return (
     <div className="flex items-center gap-4">
       <button
         type="button"
         onClick={() => setPlaying((p) => !p)}
-        aria-label={playing ? "Pause preview" : "Play preview"}
+        aria-label={`${playing ? "Pause" : "Play"} preview${label ? ` of ${label}` : ""}`}
         className={cn(
-          "flex shrink-0 items-center justify-center rounded-full border border-signal/50 bg-signal/10 text-signal transition-colors hover:bg-signal/20",
-          compact ? "size-9" : "size-12",
+          "flex shrink-0 items-center justify-center rounded-full border border-signal/50 bg-signal/10 text-signal transition-colors hover:bg-signal/20 focus-visible:ring-2 focus-visible:ring-signal focus-visible:outline-none",
+          compact ? "size-11" : "size-12",
         )}
       >
         {playing ? (
-          <Pause className={compact ? "size-4" : "size-5"} />
+          <Pause className={compact ? "size-4" : "size-5"} aria-hidden="true" />
         ) : (
-          <Play className={cn(compact ? "size-4" : "size-5", "translate-x-[1px]")} />
+          <Play
+            className={cn(compact ? "size-4" : "size-5", "translate-x-[1px]")}
+            aria-hidden="true"
+          />
         )}
       </button>
 
       <div
         role="slider"
         tabIndex={0}
-        aria-label="Seek"
+        aria-label={`${trackLabel}Seek`}
         aria-valuemin={0}
         aria-valuemax={duration}
         aria-valuenow={Math.round(position)}
+        aria-valuetext={`${fmt(position)} of ${fmt(duration)}`}
         onKeyDown={(e) => {
           if (e.key === "ArrowRight") setPosition((p) => Math.min(duration, p + 5));
           if (e.key === "ArrowLeft") setPosition((p) => Math.max(0, p - 5));
+          if (e.key === "Home") setPosition(0);
+          if (e.key === "End") setPosition(duration);
         }}
         onClick={(e) => {
           const rect = e.currentTarget.getBoundingClientRect();
-          setPosition(((e.clientX - rect.left) / rect.width) * duration);
+          const ratio = (e.clientX - rect.left) / rect.width;
+          const windowed = windowStartRatio + ratio * (windowEndRatio - windowStartRatio);
+          setPosition(Math.max(0, Math.min(1, windowed)) * duration);
         }}
         className={cn(
-          "group flex flex-1 cursor-pointer items-end gap-[2px] outline-none",
-          compact ? "h-9" : "h-14",
+          "group flex flex-1 cursor-pointer items-end gap-[2px] outline-none focus-visible:ring-2 focus-visible:ring-signal",
+          compact ? "h-11" : "h-14",
         )}
       >
-        {bars.map((h, i) => {
-          const played = i / BAR_COUNT <= progress;
+        {visible.map((h, i) => {
+          const ratio = (start + i) / BAR_COUNT;
+          const played = ratio <= progress;
+          const isBuffered = !played && ratio <= buffered;
           return (
             <span
-              key={i}
-              style={{ height: `${h * 100}%` }}
+              key={start + i}
+              style={{ height: `${(h * (0.35 + volume * 0.65) * 100).toFixed(2)}%` }}
               className={cn(
-                "flex-1 rounded-full transition-colors duration-150",
-                played ? "bg-signal" : "bg-muted-foreground/25 group-hover:bg-muted-foreground/40",
+                "flex-1 rounded-full transition-[background-color,height] duration-150",
+                played
+                  ? "bg-signal"
+                  : isBuffered
+                    ? "bg-signal/35"
+                    : "bg-muted-foreground/25 group-hover:bg-muted-foreground/40",
               )}
             />
           );
         })}
       </div>
 
-      <span className="label-mono w-20 shrink-0 text-right tabular-nums">
-        {fmt(position)} / {fmt(duration)}
-      </span>
+      <div className="flex shrink-0 items-center gap-2">
+        <VolumeIcon className="size-4 text-muted-foreground" aria-hidden="true" />
+        <span className="label-mono w-20 text-right tabular-nums">
+          {fmt(position)} / {fmt(duration)}
+        </span>
+      </div>
     </div>
   );
 }
