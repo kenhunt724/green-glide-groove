@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import {
   Sheet,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -27,8 +28,17 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/80 bg-background/85 backdrop-blur-xl">
+      <a
+        href="#main"
+        className="label-mono sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:border focus:border-signal focus:bg-background focus:px-3 focus:py-2 focus:text-signal"
+      >
+        Skip to content
+      </a>
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5">
-        <Link to="/" className="flex items-baseline gap-3">
+        <Link
+          to="/"
+          className="flex items-baseline gap-3 focus-visible:ring-2 focus-visible:ring-signal focus-visible:outline-none"
+        >
           <span className="font-display text-base font-bold tracking-tight">
             EARTH PROTECTION SOCIETY
           </span>
@@ -36,13 +46,13 @@ export function SiteHeader() {
         </Link>
 
         <div className="flex items-center gap-6">
-          <nav className="hidden items-center gap-6 md:flex">
+          <nav aria-label="Primary" className="hidden items-center gap-6 md:flex">
             {wings.map((w) => (
               <Link
                 key={w.to}
                 to={w.to}
-                className="label-mono transition-colors hover:text-signal"
-                activeProps={{ className: "text-signal" }}
+                className="label-mono transition-colors hover:text-signal focus-visible:ring-2 focus-visible:ring-signal focus-visible:outline-none"
+                activeProps={{ className: "text-signal", "aria-current": "page" }}
               >
                 {w.label}
               </Link>
@@ -51,27 +61,39 @@ export function SiteHeader() {
 
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger
-              aria-label="Open deep-dive menu"
-              className="flex size-10 items-center justify-center border border-border bg-surface text-foreground transition-colors hover:border-signal hover:text-signal"
+              aria-label={open ? "Close deep-dive menu" : "Open deep-dive menu"}
+              aria-expanded={open}
+              aria-controls="deep-dive-panel"
+              className="flex size-11 items-center justify-center border border-border bg-surface text-foreground transition-colors hover:border-signal hover:text-signal focus-visible:ring-2 focus-visible:ring-signal focus-visible:outline-none"
             >
-              {open ? <X className="size-5" /> : <Menu className="size-5" />}
+              {open ? (
+                <X className="size-5" aria-hidden="true" />
+              ) : (
+                <Menu className="size-5" aria-hidden="true" />
+              )}
             </SheetTrigger>
             <SheetContent
+              id="deep-dive-panel"
               side="right"
+              aria-label="Deep dive systems index"
               className="w-full overflow-y-auto border-l border-border bg-background p-0 sm:max-w-lg"
             >
               <SheetHeader className="border-b border-border px-6 py-5">
                 <SheetTitle className="font-display text-lg">Deep Dive</SheetTitle>
-                <p className="label-mono">Systems index / rev 2026.08</p>
+                <SheetDescription className="label-mono">
+                  Systems index / rev 2026.08. Use Tab to move, Enter or Space to expand a brief,
+                  Escape to close.
+                </SheetDescription>
               </SheetHeader>
 
-              <nav className="flex flex-col border-b border-border">
+              <nav aria-label="Wings" className="flex flex-col border-b border-border">
                 {wings.map((w) => (
                   <Link
                     key={w.to}
                     to={w.to}
                     onClick={() => setOpen(false)}
-                    className="border-b border-border/60 px-6 py-4 font-display text-xl transition-colors last:border-0 hover:bg-surface hover:text-signal"
+                    activeProps={{ "aria-current": "page" }}
+                    className="border-b border-border/60 px-6 py-4 font-display text-xl transition-colors last:border-0 hover:bg-surface hover:text-signal focus-visible:ring-2 focus-visible:ring-signal focus-visible:outline-none"
                   >
                     {w.label}
                   </Link>
@@ -81,7 +103,7 @@ export function SiteHeader() {
               <Accordion type="single" collapsible className="px-6 py-2">
                 {deepDive.map((section) => (
                   <AccordionItem key={section.id} value={section.id}>
-                    <AccordionTrigger className="text-left font-display text-base hover:text-signal hover:no-underline">
+                    <AccordionTrigger className="min-h-11 text-left font-display text-base hover:text-signal hover:no-underline focus-visible:ring-2 focus-visible:ring-signal focus-visible:outline-none">
                       {section.title}
                     </AccordionTrigger>
                     <AccordionContent className="space-y-3 text-sm leading-relaxed text-muted-foreground">
@@ -89,7 +111,10 @@ export function SiteHeader() {
                       <ul className="space-y-1.5">
                         {section.points.map((p) => (
                           <li key={p} className="flex gap-2">
-                            <span className="mt-[7px] size-1 shrink-0 rounded-full bg-signal" />
+                            <span
+                              aria-hidden="true"
+                              className="mt-[7px] size-1 shrink-0 rounded-full bg-signal"
+                            />
                             <span>{p}</span>
                           </li>
                         ))}
@@ -98,9 +123,10 @@ export function SiteHeader() {
                         to="/about"
                         hash={section.id}
                         onClick={() => setOpen(false)}
-                        className="label-mono inline-block text-signal"
+                        className="label-mono inline-flex min-h-11 items-center text-signal focus-visible:ring-2 focus-visible:ring-signal focus-visible:outline-none"
                       >
-                        Read full brief →
+                        Read full brief on {section.title}
+                        <span aria-hidden="true"> →</span>
                       </Link>
                     </AccordionContent>
                   </AccordionItem>
