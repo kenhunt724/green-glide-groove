@@ -1,0 +1,120 @@
+export const trustBadges = [
+  "LEED Platinum Standards",
+  "Victron Energy Authorized Architecture",
+  "Community Trained Technicians",
+  "Complete Grid Independence Ready",
+] as const;
+
+export const steps = [
+  {
+    id: "off-peak",
+    step: "01",
+    window: "11 PM – 7 AM",
+    title: "Super Off-Peak Overnight Charging",
+    body: "The system pulls power automatically between 11 PM and 7 AM at rock-bottom super off-peak utility rates — roughly 2.3¢/kWh on Georgia Power's time-of-use tariffs — and fills the LiFePO4 vault while the grid is quiet.",
+  },
+  {
+    id: "defection",
+    step: "02",
+    window: "2 PM – 7 PM",
+    title: "Peak-Hour Load Defection",
+    body: "During the utility's peak pricing window the house automatically disconnects from expensive grid energy and runs 100% on stored LiFePO4 power plus live rooftop solar. No behaviour change, no load shedding, no dimming the lights.",
+  },
+  {
+    id: "zero-export",
+    step: "03",
+    window: "Daylight",
+    title: "Zero-Export Solar Capture",
+    body: "Every watt your roof makes goes straight into the batteries as DC instead of being exported back to the utility for a fraction of its retail value. Self-consumption beats buyback credits on every Southeast tariff we have modelled.",
+  },
+] as const;
+
+export const tiers = [
+  {
+    id: "stealth",
+    name: "Tier 1 — Stealth Industrial Node",
+    tagline: "Cerbo GX headless core",
+    body: "The full Victron brain with no display, hidden inside a server rack or utility closet. Monitoring lives entirely in the mobile app and browser dashboard.",
+    specs: {
+      Interface: "Headless — mobile app & browser",
+      Placement: "Server rack / utility closet",
+      Processing: "Cerbo GX controller, 1 GB RAM",
+      "Local clock control": "Air-gapped RTC scheduling, no cloud dependency",
+      "Offline reliability": "Full autonomous operation without internet",
+    },
+  },
+  {
+    id: "console",
+    name: "Tier 2 — Modular Living-Space Console",
+    tagline: "Cerbo GX + GX Touch 50/70",
+    body: "The same Cerbo GX brain paired with a flush wall-mounted 5\" or 7\" GX Touch display in the living space, so the household can read state of charge at a glance.",
+    specs: {
+      Interface: 'Flush 5" or 7" GX Touch panel',
+      Placement: "Wall-mounted, living space",
+      Processing: "Cerbo GX controller + dedicated display bus",
+      "Local clock control": "Air-gapped RTC scheduling, editable on-panel",
+      "Offline reliability": "Panel keeps full read/write control offline",
+    },
+  },
+  {
+    id: "executive",
+    name: "Tier 3 — Executive Touch Command Hub",
+    tagline: "Ekrano GX all-in-one",
+    body: 'The Ekrano GX: an integrated 7" high-performance colour touchscreen and controller in one unit, mounted directly into your wall or console.',
+    specs: {
+      Interface: 'Integrated 7" high-performance colour touchscreen',
+      Placement: "In-wall or console flush mount",
+      Processing: "Ekrano GX quad-core, 2 GB RAM, faster refresh",
+      "Local clock control": "Air-gapped RTC with multi-schedule profiles",
+      "Offline reliability": "Full local UI and control with zero connectivity",
+    },
+  },
+] as const;
+
+export const services = [
+  {
+    id: "engineering",
+    title: "Custom Engineering & Permitting",
+    body: "Full system sizing against twelve months of your interval data, sub-panel and critical-load configuration, stamped drawings, and utility interconnection filed on your behalf.",
+    points: ["Load study & vault sizing", "Sub-panel design", "Utility interconnection filing"],
+  },
+  {
+    id: "solar",
+    title: "Certified Rooftop Solar Integration",
+    body: "We partner with certified local solar installers for complete roof-to-vault DC coupling, so the array and the battery are engineered as one system instead of two bolted together.",
+    points: ["DC-coupled array design", "Certified installer partners", "Roof-to-vault commissioning"],
+  },
+  {
+    id: "maintenance",
+    title: "Lifetime Monitoring & Community Maintenance",
+    body: "Tiered ongoing maintenance contracts staffed by local certified technicians: firmware audits, cell-level battery health checks, and rapid on-site component replacement.",
+    points: [
+      "Essential — annual firmware & health audit",
+      "Standard — quarterly audits, 48h on-site response",
+      "Sovereign — monthly telemetry review, 12h response, loaner hardware",
+    ],
+  },
+] as const;
+
+export const propertyTypes = ["Single Family", "Multi-Family", "Commercial Warehouse"] as const;
+export const billRanges = [
+  "Under $150",
+  "$150 – $300",
+  "$300 – $500",
+  "$500 – $800",
+  "Over $800",
+] as const;
+export const roofConditions = [
+  "New (0–5 years)",
+  "Good (5–15 years)",
+  "Aging (15+ years)",
+  "Replacement planned",
+  "No roof / ground mount",
+] as const;
+export const consultationTimes = [
+  "Weekday morning",
+  "Weekday afternoon",
+  "Weekday evening",
+  "Saturday morning",
+  "Flexible — call me",
+] as const;
