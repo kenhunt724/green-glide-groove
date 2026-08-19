@@ -45,10 +45,18 @@ export function PlayerSettingsProvider({ children }: { children: ReactNode }) {
   );
 }
 
+const fallbackSettings: PlayerSettings = {
+  volume: 0.8,
+  zoom: 1,
+  buffer: "balanced",
+  setVolume: () => {},
+  setZoom: () => {},
+  setBuffer: () => {},
+};
+
+/** Returns provider values, or sane defaults when rendered outside a provider. */
 export function usePlayerSettings(): PlayerSettings {
-  const ctx = useContext(PlayerSettingsContext);
-  if (!ctx) throw new Error("usePlayerSettings must be used inside PlayerSettingsProvider");
-  return ctx;
+  return useContext(PlayerSettingsContext) ?? fallbackSettings;
 }
 
 export function PlayerSettingsPanel() {
