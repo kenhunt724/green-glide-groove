@@ -75,8 +75,8 @@ function MobilityPage() {
               </p>
             </div>
             <img
-              src={gliderTruck}
-              alt="Community-built aerodynamic series-hybrid glider truck in a dark studio"
+              src={freightlinerGlider}
+              alt="Community-built Freightliner series-hybrid flex-fuel glider truck in a dark studio"
               width={1600}
               height={1008}
               className="w-full border border-border object-cover"
