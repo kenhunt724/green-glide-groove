@@ -281,6 +281,11 @@ function StorePage() {
                         label={`${r.title} by ${r.artist}`}
                       />
                     </div>
+                    {audioSamples[r.title] && (
+                      <div className="mt-4">
+                        <FormatABPlayer sample={audioSamples[r.title]!} label={r.title} />
+                      </div>
+                    )}
                   </div>
                   <div className="flex items-center gap-3 md:flex-col md:items-end">
                     <span className="font-display text-2xl font-bold">{r.price}</span>
