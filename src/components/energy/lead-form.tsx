@@ -95,7 +95,7 @@ export function LeadForm() {
     }
     if (step === 1) return form.property_type !== "";
     if (step === 2) return form.monthly_bill_range !== "" && form.roof_condition !== "";
-    return form.preferred_time !== "";
+    return form.slot_id !== "" && form.preferred_time !== "";
   })();
 
   if (mutation.isSuccess) {
