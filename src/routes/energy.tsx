@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowDown, BatteryCharging, ShieldCheck, Sun, Wrench } from "lucide-react";
+import { DetachedVault } from "@/components/energy/detached-vault";
+import { MobileGenerators } from "@/components/energy/mobile-generators";
 import {
   Dialog,
   DialogContent,
