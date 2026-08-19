@@ -98,10 +98,55 @@ const shelves = [
   },
 ];
 
+const playlists = [
+  {
+    id: "all",
+    name: "Full catalog",
+    blurb: "Every master currently served bit-perfect.",
+    titles: releases.map((r) => r.title),
+  },
+  {
+    id: "night-shift",
+    name: "Night Shift",
+    blurb: "Off-peak listening for the battery hours.",
+    titles: ["Off-Peak Hymns", "Slate Water"],
+  },
+  {
+    id: "room-tone",
+    name: "Room Tone",
+    blurb: "Live-to-two-track and room-mic captures.",
+    titles: ["Moss Telemetry", "Off-Peak Hymns"],
+  },
+  {
+    id: "high-rate",
+    name: "High Rate",
+    blurb: "192 kHz and DSD transfers for full-range rigs.",
+    titles: ["Resonant Ground", "Slate Water"],
+  },
+];
+
 function StorePage() {
+  const [query, setQuery] = useState("");
+  const [playlistId, setPlaylistId] = useState("all");
+
+  const activePlaylist = playlists.find((p) => p.id === playlistId) ?? playlists[0];
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return releases
+      .filter((r) => activePlaylist.titles.includes(r.title))
+      .filter((r) =>
+        q
+          ? [r.title, r.artist, r.format, ...r.tags].some((f) => f.toLowerCase().includes(q))
+          : true,
+      );
+  }, [query, activePlaylist]);
+
   return (
+    <PlayerSettingsProvider>
     <div className="min-h-screen bg-background">
       <SiteHeader />
+
 
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-5 py-20">
