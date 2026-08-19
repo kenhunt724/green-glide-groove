@@ -10,27 +10,27 @@ import {
 } from "@/components/ui/sheet";
 
 const anchors = [
-  { href: "#why-off-peak", label: "Why Off-Peak?" },
-  { href: "#hardware", label: "Hardware" },
-  { href: "#calculator", label: "Calculator" },
-  { href: "#maintenance", label: "Maintenance" },
+  { href: "#vaults", label: "Detached Outbuilding Vaults" },
+  { href: "#mobile", label: "Mobile Generators" },
+  { href: "#calculator", label: "Off-Peak Math" },
+  { href: "#hardware", label: "Hardware Tiers" },
 ];
 
 const ecosystem = [
   {
     to: "/store" as const,
-    title: "Ultra-Streaming Master Vaults",
+    title: "432Hz Ultra-Streaming Storefronts",
     body: "Uncompressed 432Hz masters and artist consignment shelves.",
   },
   {
     to: "/mobility" as const,
-    title: "Flex-Fuel Hybrid Fleet",
-    body: "Community-built series-hybrid glider trucks on Brogen e-axles.",
+    title: "Brogen E-Axle Glider Fleets",
+    body: "Community-built series-hybrid flex-fuel glider trucks.",
   },
   {
     to: "/about" as const,
-    title: "Closed-Loop Community Hub",
-    body: "Urban metabolism, load defection, LEED Platinum, local jobs.",
+    title: "Community Technician Apprenticeships",
+    body: "Closed-loop urban metabolism, LEED Platinum, local jobs.",
   },
 ];
 

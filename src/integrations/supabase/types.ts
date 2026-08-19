@@ -63,8 +63,10 @@ export type Database = {
           phone: string
           preferred_time: string
           property_type: string
-          roof_condition: string
+          roof_condition: string | null
           slot_id: string | null
+          solution_interest: string | null
+          vehicle_type: string | null
           zip_code: string
         }
         Insert: {
@@ -77,8 +79,10 @@ export type Database = {
           phone: string
           preferred_time: string
           property_type: string
-          roof_condition: string
+          roof_condition?: string | null
           slot_id?: string | null
+          solution_interest?: string | null
+          vehicle_type?: string | null
           zip_code: string
         }
         Update: {
@@ -91,8 +95,10 @@ export type Database = {
           phone?: string
           preferred_time?: string
           property_type?: string
-          roof_condition?: string
+          roof_condition?: string | null
           slot_id?: string | null
+          solution_interest?: string | null
+          vehicle_type?: string | null
           zip_code?: string
         }
         Relationships: [

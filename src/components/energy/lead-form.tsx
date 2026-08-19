@@ -7,35 +7,35 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { submitEnergyLead } from "@/lib/energy-leads.functions";
 import { SlotPicker, formatSlotLabel } from "@/components/energy/slot-picker";
-import { billRanges, propertyTypes, roofConditions } from "@/content/energy";
+import { billRanges, siteTypes, solutionInterests } from "@/content/energy";
 
 type FormState = {
+  solution_interest: string;
+  property_type: string;
   full_name: string;
   email: string;
   phone: string;
   zip_code: string;
-  property_type: string;
   monthly_bill_range: string;
-  roof_condition: string;
   preferred_time: string;
   slot_id: string;
   notes: string;
 };
 
 const empty: FormState = {
+  solution_interest: "",
+  property_type: "",
   full_name: "",
   email: "",
   phone: "",
   zip_code: "",
-  property_type: "",
   monthly_bill_range: "",
-  roof_condition: "",
   preferred_time: "",
   slot_id: "",
   notes: "",
 };
 
-const stepLabels = ["Contact", "Property", "Energy profile", "Schedule"];
+const stepLabels = ["Solution", "Property / vehicle", "Location & spend", "Schedule"];
 
 function OptionGrid({
   name,
@@ -87,29 +87,30 @@ export function LeadForm() {
   const set = (k: keyof FormState) => (v: string) => setForm((f) => ({ ...f, [k]: v }));
 
   const stepValid = (() => {
-    if (step === 0) {
+    if (step === 0) return form.solution_interest !== "";
+    if (step === 1) return form.property_type !== "";
+    if (step === 2) {
       return (
         form.full_name.trim().length > 1 &&
         /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim()) &&
         form.phone.trim().length >= 7 &&
-        form.zip_code.trim().length >= 3
+        form.zip_code.trim().length >= 3 &&
+        form.monthly_bill_range !== ""
       );
     }
-    if (step === 1) return form.property_type !== "";
-    if (step === 2) return form.monthly_bill_range !== "" && form.roof_condition !== "";
     return form.slot_id !== "" && form.preferred_time !== "";
   })();
 
   if (mutation.isSuccess) {
     return (
       <div className="surface-panel flex flex-col items-start gap-4 p-8">
-        <CheckCircle2 className="size-8 text-energy" aria-hidden="true" />
+        <CheckCircle2 className="size-8 text-emerald" aria-hidden="true" />
         <h3 className="font-display text-2xl font-semibold">Assessment request received</h3>
         <p className="text-sm leading-relaxed text-muted-foreground">
           Your slot is locked in for{" "}
           <span className="text-foreground">{form.preferred_time}</span>. A community-trained
-          technician will confirm at <span className="text-foreground">{form.email}</span> and pull
-          your utility interval data.
+          technician will confirm at <span className="text-foreground">{form.email}</span> and
+          prepare your <span className="text-foreground">{form.solution_interest}</span> scope.
         </p>
         <button
           type="button"
@@ -164,6 +165,30 @@ export function LeadForm() {
 
       <div className="mt-8 space-y-5">
         {step === 0 && (
+          <div className="space-y-3">
+            <p className="label-mono">What are you interested in?</p>
+            <OptionGrid
+              name="Solution interest"
+              options={solutionInterests}
+              value={form.solution_interest}
+              onChange={set("solution_interest")}
+            />
+          </div>
+        )}
+
+        {step === 1 && (
+          <div className="space-y-3">
+            <p className="label-mono">Property or vehicle type</p>
+            <OptionGrid
+              name="Property or vehicle type"
+              options={siteTypes}
+              value={form.property_type}
+              onChange={set("property_type")}
+            />
+          </div>
+        )}
+
+        {step === 2 && (
           <>
             <div className="space-y-2">
               <Label htmlFor={fid("full_name")}>Full name</Label>
@@ -197,7 +222,7 @@ export function LeadForm() {
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor={fid("zip_code")}>Atlanta / regional ZIP code</Label>
+              <Label htmlFor={fid("zip_code")}>Atlanta / Southeast ZIP code</Label>
               <Input
                 id={fid("zip_code")}
                 inputMode="numeric"
@@ -206,39 +231,13 @@ export function LeadForm() {
                 onChange={(e) => set("zip_code")(e.target.value)}
               />
             </div>
-          </>
-        )}
-
-        {step === 1 && (
-          <div className="space-y-3">
-            <p className="label-mono">Property type</p>
-            <OptionGrid
-              name="Property type"
-              options={propertyTypes}
-              value={form.property_type}
-              onChange={set("property_type")}
-            />
-          </div>
-        )}
-
-        {step === 2 && (
-          <>
             <div className="space-y-3">
-              <p className="label-mono">Current monthly power bill</p>
+              <p className="label-mono">Monthly utility spend</p>
               <OptionGrid
-                name="Monthly power bill range"
+                name="Monthly utility spend"
                 options={billRanges}
                 value={form.monthly_bill_range}
                 onChange={set("monthly_bill_range")}
-              />
-            </div>
-            <div className="space-y-3">
-              <p className="label-mono">Roof condition</p>
-              <OptionGrid
-                name="Roof condition"
-                options={roofConditions}
-                value={form.roof_condition}
-                onChange={set("roof_condition")}
               />
             </div>
           </>
@@ -247,7 +246,11 @@ export function LeadForm() {
         {step === 3 && (
           <>
             <div className="space-y-3">
-              <p className="label-mono">Preferred consultation time</p>
+              <p className="label-mono">
+                {form.solution_interest === "Mobile Silent Generator"
+                  ? "Generator demo time"
+                  : "On-site assessment time"}
+              </p>
               <SlotPicker
                 value={form.slot_id}
                 onChange={(slot) =>
@@ -294,7 +297,7 @@ export function LeadForm() {
           className="label-mono inline-flex min-h-11 items-center gap-2 bg-energy px-6 font-semibold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
         >
           {mutation.isPending && <Loader2 className="size-4 animate-spin" aria-hidden="true" />}
-          {step < 3 ? "Continue" : "Book my site assessment"}
+          {step < 3 ? "Continue" : "Lock in my assessment"}
         </button>
         <span className="label-mono">Step {step + 1} of 4</span>
       </div>

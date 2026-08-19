@@ -118,3 +118,69 @@ export const consultationTimes = [
   "Saturday morning",
   "Flexible — call me",
 ] as const;
+
+export const vaultAdvantages = [
+  {
+    id: "permitting",
+    title: "Frictionless Permitting & Fast Inspection",
+    body: "A detached pod sidesteps the complex indoor residential living-space electrical restrictions that stall interior installs. Inspectors sign off faster because the energy storage never enters a habitable room.",
+  },
+  {
+    id: "intrusion",
+    title: "Zero Living Space Intrusion",
+    body: "High-voltage battery storage, inverters and active cooling stay completely outside the main home or commercial building — no closet sacrificed, no fan noise, no thermal load added indoors.",
+  },
+  {
+    id: "service",
+    title: "Rapid Serviceability",
+    body: "Technicians service, upgrade or hot-swap battery modules inside an isolated exterior vault without entering the building or disrupting occupants, tenants or trading hours.",
+  },
+  {
+    id: "leed",
+    title: "LEED & Safety Optimized",
+    body: "Thermal isolation, dedicated fire separation, and non-chemical magnetic scale water conditioning are integrated into the pod footprint from the first drawing.",
+  },
+] as const;
+
+export const mobileCharging = [
+  {
+    id: "off-peak",
+    step: "01",
+    title: "Home / Business Super Off-Peak",
+    body: "Plug into any standard 120V or 240V outlet overnight and fill the pack on ~2.3¢/kWh super off-peak power. A full charge costs less than a coffee.",
+  },
+  {
+    id: "alternator",
+    step: "02",
+    title: "In-Transit DC-to-DC Alternator Charging",
+    body: "A heavy-duty isolated DC-DC charger taps your van, truck or fleet vehicle's alternator so the unit refills while you drive between jobs — no idling, no downtime.",
+  },
+  {
+    id: "solar",
+    step: "03",
+    title: "Rapid Solar DC Coupling",
+    body: "Direct MC4 inputs accept folding briefcase arrays or roof-mounted panels for silent top-ups on site, on the trail, or during multi-day outages.",
+  },
+] as const;
+
+export const mobileUseCases = [
+  "Jobsite tool & compressor power",
+  "Emergency home backup",
+  "Food trucks & vendor carts",
+  "Outdoor events and night shoots",
+  "Fleet & service van workstations",
+  "Disaster response staging",
+] as const;
+
+export const solutionInterests = [
+  "Stationary Outbuilding Power Vault",
+  "Mobile Silent Generator",
+  "Turnkey Combo",
+] as const;
+
+export const siteTypes = [
+  "Single Family",
+  "Commercial Facility",
+  "Service Van / Fleet",
+  "Multi-Family",
+] as const;

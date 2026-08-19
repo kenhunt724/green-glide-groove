@@ -8,9 +8,10 @@ const leadSchema = z.object({
   email: z.string().trim().email().max(200),
   phone: z.string().trim().min(7).max(40),
   zip_code: z.string().trim().min(3).max(12),
+  solution_interest: z.string().trim().min(2).max(80),
   property_type: z.string().trim().min(2).max(80),
   monthly_bill_range: z.string().trim().min(1).max(80),
-  roof_condition: z.string().trim().min(1).max(80),
+  roof_condition: z.string().trim().min(1).max(80).optional().or(z.literal("")),
   preferred_time: z.string().trim().min(1).max(120),
   slot_id: z.string().uuid(),
   notes: z.string().trim().max(1000).optional().or(z.literal("")),
@@ -85,10 +86,15 @@ export const submitEnergyLead = createServerFn({ method: "POST" })
       throw new Error("That slot was just taken. Please pick another time.");
     }
 
-    const { slot_id, notes, ...lead } = data;
+    const { slot_id, notes, roof_condition, ...lead } = data;
     const { data: inserted, error } = await supabaseAdmin
       .from("energy_leads")
-      .insert({ ...lead, notes: notes ? notes : null, slot_id })
+      .insert({
+        ...lead,
+        roof_condition: roof_condition ? roof_condition : null,
+        notes: notes ? notes : null,
+        slot_id,
+      })
       .select("id")
       .single();
 
