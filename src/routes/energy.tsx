@@ -51,33 +51,38 @@ function EnergyPage() {
             className="absolute -top-40 left-1/2 size-[46rem] -translate-x-1/2 rounded-full bg-energy/10 blur-3xl"
           />
           <div className="relative mx-auto max-w-7xl px-5 py-24 md:py-32">
-            <p className="label-mono text-energy">
-              Residential &amp; Commercial Energy Division
-            </p>
+            <p className="label-mono text-energy">Clean Energy &amp; Mobile Power Division</p>
             <h1 className="mt-6 max-w-5xl text-4xl leading-[1.02] font-bold md:text-6xl lg:text-7xl">
-              Slash Your Peak Power Rates by Up to 90%
-              <span className="text-energy"> Without Changing Your Lifestyle.</span>
+              Sovereign Power for Your Property &amp; On the Move —
+              <span className="text-energy"> Zero Fumes, Zero Noise, Zero Peak Rates.</span>
             </h1>
             <p className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-              Engineered for Georgia Power &amp; Southeast utility tariffs. We deploy smart off-peak
-              LiFePO4 battery vaults and closed-loop solar systems that charge at ~2.3¢/kWh
-              overnight so you never pay peak rates again.
+              We engineer detached outbuilding battery vaults that slash peak utility rates by up to
+              90%, plus silent mobile LiFePO4 generators that replace dangerous gas engines. Charge
+              overnight at ~2.3¢/kWh, from rooftop solar, or directly from your vehicle&apos;s
+              alternator while you drive.
             </p>
 
             <div className="mt-10 flex flex-wrap gap-3">
+              <a
+                href="#vaults"
+                className="inline-flex min-h-12 items-center gap-2 bg-energy px-7 font-display text-sm font-semibold text-background transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-energy focus-visible:outline-none"
+              >
+                Explore Stationary Energy Vaults <ArrowDown className="size-4" aria-hidden="true" />
+              </a>
+              <a
+                href="#mobile"
+                className="inline-flex min-h-12 items-center gap-2 border border-emerald/60 bg-surface px-7 font-display text-sm font-semibold text-emerald transition-colors hover:bg-emerald/10"
+              >
+                View Mobile Silent Generators
+              </a>
               <button
                 type="button"
                 onClick={() => setQuoteOpen(true)}
-                className="inline-flex min-h-12 items-center gap-2 bg-energy px-7 font-display text-sm font-semibold text-background transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-energy focus-visible:outline-none"
+                className="inline-flex min-h-12 items-center gap-2 border border-border bg-surface px-7 font-display text-sm font-semibold transition-colors hover:border-energy hover:text-energy"
               >
                 Book a Free Site Assessment
               </button>
-              <a
-                href="#calculator"
-                className="inline-flex min-h-12 items-center gap-2 border border-border bg-surface px-7 font-display text-sm font-semibold transition-colors hover:border-energy hover:text-energy"
-              >
-                Calculate Your Savings <ArrowDown className="size-4" aria-hidden="true" />
-              </a>
             </div>
 
             <ul className="mt-14 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
