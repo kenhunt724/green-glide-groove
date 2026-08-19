@@ -317,5 +317,6 @@ function StorePage() {
 
       <SiteFooter />
     </div>
+    </PlayerSettingsProvider>
   );
 }
