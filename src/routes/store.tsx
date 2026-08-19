@@ -129,7 +129,7 @@ function StorePage() {
   const [query, setQuery] = useState("");
   const [playlistId, setPlaylistId] = useState("all");
 
-  const activePlaylist = playlists.find((p) => p.id === playlistId) ?? playlists[0];
+  const activePlaylist = playlists.find((p) => p.id === playlistId) ?? playlists[0]!;
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
