@@ -6,7 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { submitEnergyLead } from "@/lib/energy-leads.functions";
-import { billRanges, consultationTimes, propertyTypes, roofConditions } from "@/content/energy";
+import { SlotPicker, formatSlotLabel } from "@/components/energy/slot-picker";
+import { billRanges, propertyTypes, roofConditions } from "@/content/energy";
 
 type FormState = {
   full_name: string;
