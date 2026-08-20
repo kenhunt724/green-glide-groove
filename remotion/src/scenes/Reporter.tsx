@@ -23,6 +23,15 @@ export const Reporter: React.FC<{
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
         />
       </AbsoluteFill>
+      {/* mask the source studio's own baked-in lower-third graphics */}
+      <AbsoluteFill
+        style={{
+          top: "auto",
+          bottom: 0,
+          height: 320,
+          background: `linear-gradient(to bottom, rgba(9,10,10,0) 0%, ${COLORS.ink} 34%, ${COLORS.ink} 100%)`,
+        }}
+      />
       <Vignette />
       <LowerThird kicker={kicker} title={title} />
     </AbsoluteFill>
