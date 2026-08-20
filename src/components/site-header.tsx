@@ -21,7 +21,9 @@ const wings = [
   { to: "/store", label: "Ultra-Streaming" },
   { to: "/mobility", label: "Mobility" },
   { to: "/energy", label: "Energy" },
+  { to: "/community", label: "Trade Pipeline" },
   { to: "/about", label: "About" },
+
 ] as const;
 
 export function SiteHeader() {
