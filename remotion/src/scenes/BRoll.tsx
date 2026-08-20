@@ -11,8 +11,8 @@ export const BRoll: React.FC<{
   pan?: "left" | "right";
 }> = ({ image, kicker, title, chips = [], pan = "right" }) => {
   const frame = useCurrentFrame();
-  const scale = interpolate(frame, [0, 300], [1.12, 1.24], { extrapolateRight: "clamp" });
-  const x = interpolate(frame, [0, 300], pan === "right" ? [-40, 40] : [40, -40], {
+  const scale = interpolate(frame, [0, 300], [1.02, 1.12], { extrapolateRight: "clamp" });
+  const x = interpolate(frame, [0, 300], pan === "right" ? [-24, 24] : [24, -24], {
     extrapolateRight: "clamp",
   });
   const fade = interpolate(frame, [0, 12], [0, 1], { extrapolateRight: "clamp" });

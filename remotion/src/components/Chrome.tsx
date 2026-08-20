@@ -116,7 +116,7 @@ export const LowerThird: React.FC<{ kicker: string; title: string }> = ({ kicker
       style={{
         position: "absolute",
         left: 72,
-        bottom: 210,
+        bottom: 320,
         transform: `translateY(${y}px)`,
         clipPath: `inset(0 ${100 - w}% 0 0)`,
       }}
