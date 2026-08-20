@@ -1,7 +1,9 @@
 import React from "react";
-import { AbsoluteFill, OffthreadVideo, staticFile, useCurrentFrame, interpolate } from "remotion";
+import { AbsoluteFill, Img, staticFile, useCurrentFrame, interpolate } from "remotion";
 import { COLORS } from "../theme";
 import { LowerThird, Vignette } from "../components/Chrome";
+
+const REP_FRAMES = 304;
 
 export const Reporter: React.FC<{
   startFrom: number;
@@ -11,13 +13,13 @@ export const Reporter: React.FC<{
 }> = ({ startFrom, kicker, title, zoom = 1.06 }) => {
   const frame = useCurrentFrame();
   const scale = interpolate(frame, [0, 240], [1.0, zoom], { extrapolateRight: "clamp" });
+  const idx = ((startFrom + frame) % REP_FRAMES) + 1;
+  const name = `f${String(idx).padStart(4, "0")}.jpg`;
   return (
     <AbsoluteFill style={{ background: COLORS.ink }}>
       <AbsoluteFill style={{ transform: `scale(${scale})` }}>
-        <OffthreadVideo
-          src={staticFile("media/reporter.mp4")}
-          startFrom={startFrom}
-          muted
+        <Img
+          src={staticFile(`media/rep/${name}`)}
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
         />
       </AbsoluteFill>
