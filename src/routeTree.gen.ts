@@ -14,10 +14,13 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CommunityRouteImport } from './routes/community'
+import { Route as CreatorsRouteImport } from './routes/creators'
 import { Route as EnergyRouteImport } from './routes/energy'
 import { Route as MobilityRouteImport } from './routes/mobility'
 import { Route as StoreRouteImport } from './routes/store'
+import { Route as CHandleRouteImport } from './routes/c.$handle'
 import { Route as ProducersSlugRouteImport } from './routes/producers.$slug'
+import { Route as AuthenticatedCreatorDashboardRouteImport } from './routes/_authenticated/creator/dashboard'
 import { Route as AuthenticatedOpsCapacityRouteImport } from './routes/_authenticated/ops/capacity'
 
 const IndexRoute = IndexRouteImport.update({
@@ -44,6 +47,11 @@ const CommunityRoute = CommunityRouteImport.update({
   path: '/community',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CreatorsRoute = CreatorsRouteImport.update({
+  id: '/creators',
+  path: '/creators',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EnergyRoute = EnergyRouteImport.update({
   id: '/energy',
   path: '/energy',
@@ -59,11 +67,22 @@ const StoreRoute = StoreRouteImport.update({
   path: '/store',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CHandleRoute = CHandleRouteImport.update({
+  id: '/c/$handle',
+  path: '/c/$handle',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProducersSlugRoute = ProducersSlugRouteImport.update({
   id: '/producers/$slug',
   path: '/producers/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedCreatorDashboardRoute =
+  AuthenticatedCreatorDashboardRouteImport.update({
+    id: '/creator/dashboard',
+    path: '/creator/dashboard',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedOpsCapacityRoute =
   AuthenticatedOpsCapacityRouteImport.update({
     id: '/ops/capacity',
@@ -76,10 +95,13 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/community': typeof CommunityRoute
+  '/creators': typeof CreatorsRoute
   '/energy': typeof EnergyRoute
   '/mobility': typeof MobilityRoute
   '/store': typeof StoreRoute
+  '/c/$handle': typeof CHandleRoute
   '/producers/$slug': typeof ProducersSlugRoute
+  '/creator/dashboard': typeof AuthenticatedCreatorDashboardRoute
   '/ops/capacity': typeof AuthenticatedOpsCapacityRoute
 }
 export interface FileRoutesByTo {
@@ -87,10 +109,13 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/community': typeof CommunityRoute
+  '/creators': typeof CreatorsRoute
   '/energy': typeof EnergyRoute
   '/mobility': typeof MobilityRoute
   '/store': typeof StoreRoute
+  '/c/$handle': typeof CHandleRoute
   '/producers/$slug': typeof ProducersSlugRoute
+  '/creator/dashboard': typeof AuthenticatedCreatorDashboardRoute
   '/ops/capacity': typeof AuthenticatedOpsCapacityRoute
 }
 export interface FileRoutesById {
@@ -100,10 +125,13 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/community': typeof CommunityRoute
+  '/creators': typeof CreatorsRoute
   '/energy': typeof EnergyRoute
   '/mobility': typeof MobilityRoute
   '/store': typeof StoreRoute
+  '/c/$handle': typeof CHandleRoute
   '/producers/$slug': typeof ProducersSlugRoute
+  '/_authenticated/creator/dashboard': typeof AuthenticatedCreatorDashboardRoute
   '/_authenticated/ops/capacity': typeof AuthenticatedOpsCapacityRoute
 }
 export interface FileRouteTypes {
@@ -113,10 +141,13 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/community'
+    | '/creators'
     | '/energy'
     | '/mobility'
     | '/store'
+    | '/c/$handle'
     | '/producers/$slug'
+    | '/creator/dashboard'
     | '/ops/capacity'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -124,10 +155,13 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/community'
+    | '/creators'
     | '/energy'
     | '/mobility'
     | '/store'
+    | '/c/$handle'
     | '/producers/$slug'
+    | '/creator/dashboard'
     | '/ops/capacity'
   id:
     | '__root__'
@@ -136,10 +170,13 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/community'
+    | '/creators'
     | '/energy'
     | '/mobility'
     | '/store'
+    | '/c/$handle'
     | '/producers/$slug'
+    | '/_authenticated/creator/dashboard'
     | '/_authenticated/ops/capacity'
   fileRoutesById: FileRoutesById
 }
@@ -149,9 +186,11 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
   CommunityRoute: typeof CommunityRoute
+  CreatorsRoute: typeof CreatorsRoute
   EnergyRoute: typeof EnergyRoute
   MobilityRoute: typeof MobilityRoute
   StoreRoute: typeof StoreRoute
+  CHandleRoute: typeof CHandleRoute
   ProducersSlugRoute: typeof ProducersSlugRoute
 }
 
@@ -192,6 +231,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommunityRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/creators': {
+      id: '/creators'
+      path: '/creators'
+      fullPath: '/creators'
+      preLoaderRoute: typeof CreatorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/energy': {
       id: '/energy'
       path: '/energy'
@@ -213,12 +259,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StoreRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/c/$handle': {
+      id: '/c/$handle'
+      path: '/c/$handle'
+      fullPath: '/c/$handle'
+      preLoaderRoute: typeof CHandleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/producers/$slug': {
       id: '/producers/$slug'
       path: '/producers/$slug'
       fullPath: '/producers/$slug'
       preLoaderRoute: typeof ProducersSlugRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/creator/dashboard': {
+      id: '/_authenticated/creator/dashboard'
+      path: '/creator/dashboard'
+      fullPath: '/creator/dashboard'
+      preLoaderRoute: typeof AuthenticatedCreatorDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/ops/capacity': {
       id: '/_authenticated/ops/capacity'
@@ -231,10 +291,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedCreatorDashboardRoute: typeof AuthenticatedCreatorDashboardRoute
   AuthenticatedOpsCapacityRoute: typeof AuthenticatedOpsCapacityRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedCreatorDashboardRoute: AuthenticatedCreatorDashboardRoute,
   AuthenticatedOpsCapacityRoute: AuthenticatedOpsCapacityRoute,
 }
 
@@ -247,9 +309,11 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
   CommunityRoute: CommunityRoute,
+  CreatorsRoute: CreatorsRoute,
   EnergyRoute: EnergyRoute,
   MobilityRoute: MobilityRoute,
   StoreRoute: StoreRoute,
+  CHandleRoute: CHandleRoute,
   ProducersSlugRoute: ProducersSlugRoute,
 }
 export const routeTree = rootRouteImport
