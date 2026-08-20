@@ -1,6 +1,7 @@
 import { BatteryCharging, Car, EarOff, Sun, Wind } from "lucide-react";
 import { mobileCharging, mobileUseCases } from "@/content/energy";
-import generatorImg from "@/assets/mobile-generator.jpg";
+import generatorPhoto from "@/assets/generator-photo.jpg";
+import generatorVideo from "@/assets/generator-animated.mp4.asset.json";
 
 const icons = [BatteryCharging, Car, Sun];
 
@@ -8,14 +9,17 @@ export function MobileGenerators() {
   return (
     <div className="space-y-12">
       <figure className="grid items-stretch gap-px bg-border lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
-        <img
-          src={generatorImg}
-          alt="Silent LiFePO4 mobile generator built in a classic gas-generator roll-cage frame with never-flat wheels, fold-down handle and 120V outlet panel"
-          width={1280}
-          height={960}
-          loading="lazy"
+        <video
+          src={generatorVideo.url}
+          poster={generatorPhoto}
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-label="The community-built LiFePO4 generator cart: steel diamond-plate frame, pure sine inverter panel and 12.8V LiFePO4 battery"
           className="h-full w-full object-cover"
         />
+
         <figcaption className="flex flex-col justify-center bg-background p-7">
           <p className="label-mono text-emerald">Same footprint, no engine</p>
           <h3 className="mt-3 font-display text-2xl font-semibold">
