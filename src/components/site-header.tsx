@@ -22,6 +22,7 @@ const wings = [
   { to: "/mobility", label: "Mobility" },
   { to: "/energy", label: "Energy" },
   { to: "/community", label: "Trade Pipeline" },
+  { to: "/creators", label: "Creator Vault" },
   { to: "/about", label: "About" },
 
 ] as const;

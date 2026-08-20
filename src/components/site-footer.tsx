@@ -21,6 +21,9 @@ export function SiteFooter() {
           <Link to="/community" className="label-mono hover:text-signal">
             Trade Pipeline
           </Link>
+          <Link to="/creators" className="label-mono hover:text-signal">
+            Creator Vault
+          </Link>
           <Link to="/about" className="label-mono hover:text-signal">
             About
           </Link>
