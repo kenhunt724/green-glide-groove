@@ -50,6 +50,57 @@ export type Database = {
         }
         Relationships: []
       }
+      community_signups: {
+        Row: {
+          availability: string | null
+          capabilities: string | null
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          kind: string
+          neighborhood: string
+          notes: string | null
+          phone: string
+          shop_name: string | null
+          status: string
+          trade_interest: string | null
+          updated_at: string
+        }
+        Insert: {
+          availability?: string | null
+          capabilities?: string | null
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          kind?: string
+          neighborhood: string
+          notes?: string | null
+          phone: string
+          shop_name?: string | null
+          status?: string
+          trade_interest?: string | null
+          updated_at?: string
+        }
+        Update: {
+          availability?: string | null
+          capabilities?: string | null
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          kind?: string
+          neighborhood?: string
+          notes?: string | null
+          phone?: string
+          shop_name?: string | null
+          status?: string
+          trade_interest?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       consultation_slots: {
         Row: {
           created_at: string
