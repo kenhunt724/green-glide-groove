@@ -147,11 +147,6 @@ CREATE TRIGGER update_creator_items_updated_at
   FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
 
 -- ---------------------------------------------------------------- storage
--- Buckets: creator-masters (private, uncompressed originals)
---          creator-previews (private, compressed previews + artwork; served
---          through short-lived signed URLs generated server-side)
--- Files live under <auth.uid()>/... so a creator can only touch their own folder.
-
 CREATE POLICY "Creators manage own master files" ON storage.objects
   FOR ALL TO authenticated
   USING (bucket_id = 'creator-masters' AND (storage.foldername(name))[1] = auth.uid()::text)
