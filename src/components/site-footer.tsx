@@ -18,9 +18,13 @@ export function SiteFooter() {
           <Link to="/energy" className="label-mono hover:text-signal">
             Energy
           </Link>
+          <Link to="/community" className="label-mono hover:text-signal">
+            Trade Pipeline
+          </Link>
           <Link to="/about" className="label-mono hover:text-signal">
             About
           </Link>
+
         </nav>
       </div>
     </footer>
