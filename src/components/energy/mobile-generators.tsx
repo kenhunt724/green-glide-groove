@@ -1,11 +1,36 @@
 import { BatteryCharging, Car, EarOff, Sun, Wind } from "lucide-react";
 import { mobileCharging, mobileUseCases } from "@/content/energy";
+import generatorImg from "@/assets/mobile-generator.jpg";
 
 const icons = [BatteryCharging, Car, Sun];
 
 export function MobileGenerators() {
   return (
     <div className="space-y-12">
+      <figure className="grid items-stretch gap-px bg-border lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+        <img
+          src={generatorImg}
+          alt="Silent LiFePO4 mobile generator built in a classic gas-generator roll-cage frame with never-flat wheels, fold-down handle and 120V outlet panel"
+          width={1280}
+          height={960}
+          loading="lazy"
+          className="h-full w-full object-cover"
+        />
+        <figcaption className="flex flex-col justify-center bg-background p-7">
+          <p className="label-mono text-emerald">Same footprint, no engine</p>
+          <h3 className="mt-3 font-display text-2xl font-semibold">
+            Built on gas-generator hardware
+          </h3>
+          <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+            We reuse the exact chassis language crews already trust — tubular roll cage, never-flat
+            wheels, fold-down tow handle, and a standard 120V/30A outlet panel. Everything behind
+            the panel is LiFePO4 and pure sine inverter instead of a combustion engine, so it drops
+            straight into the same jobsite workflow with none of the fumes, fuel cans, or pull-cord
+            starts.
+          </p>
+        </figcaption>
+      </figure>
+
       <div className="grid gap-px bg-border lg:grid-cols-3">
         {mobileCharging.map((c, i) => {
           const Icon = icons[i] ?? BatteryCharging;
