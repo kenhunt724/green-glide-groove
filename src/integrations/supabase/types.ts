@@ -139,6 +139,211 @@ export type Database = {
           },
         ]
       }
+      creator_invites: {
+        Row: {
+          code: string
+          created_at: string
+          created_by: string | null
+          expires_at: string | null
+          id: string
+          invited_email: string | null
+          invited_name: string | null
+          max_uses: number
+          note: string | null
+          revoked: boolean
+          used_count: number
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          created_by?: string | null
+          expires_at?: string | null
+          id?: string
+          invited_email?: string | null
+          invited_name?: string | null
+          max_uses?: number
+          note?: string | null
+          revoked?: boolean
+          used_count?: number
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          created_by?: string | null
+          expires_at?: string | null
+          id?: string
+          invited_email?: string | null
+          invited_name?: string | null
+          max_uses?: number
+          note?: string | null
+          revoked?: boolean
+          used_count?: number
+        }
+        Relationships: []
+      }
+      creator_items: {
+        Row: {
+          artwork_path: string | null
+          created_at: string
+          description: string
+          duration_seconds: number | null
+          id: string
+          kind: string
+          license_terms: string
+          master_bytes: number | null
+          master_format: string | null
+          master_path: string | null
+          owner_user_id: string
+          page_id: string
+          preview_path: string | null
+          price_cents: number | null
+          published: boolean
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          artwork_path?: string | null
+          created_at?: string
+          description?: string
+          duration_seconds?: number | null
+          id?: string
+          kind?: string
+          license_terms?: string
+          master_bytes?: number | null
+          master_format?: string | null
+          master_path?: string | null
+          owner_user_id: string
+          page_id: string
+          preview_path?: string | null
+          price_cents?: number | null
+          published?: boolean
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          artwork_path?: string | null
+          created_at?: string
+          description?: string
+          duration_seconds?: number | null
+          id?: string
+          kind?: string
+          license_terms?: string
+          master_bytes?: number | null
+          master_format?: string | null
+          master_path?: string | null
+          owner_user_id?: string
+          page_id?: string
+          preview_path?: string | null
+          price_cents?: number | null
+          published?: boolean
+          sort_order?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "creator_items_page_id_fkey"
+            columns: ["page_id"]
+            isOneToOne: false
+            referencedRelation: "creator_pages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      creator_pages: {
+        Row: {
+          accent: string
+          bio: string
+          city: string
+          contact_email: string | null
+          created_at: string
+          display_name: string
+          handle: string
+          id: string
+          invite_id: string | null
+          links: Json
+          owner_user_id: string
+          platform_share_bps: number
+          published: boolean
+          rights_statement: string
+          tagline: string
+          updated_at: string
+        }
+        Insert: {
+          accent?: string
+          bio?: string
+          city?: string
+          contact_email?: string | null
+          created_at?: string
+          display_name: string
+          handle: string
+          id?: string
+          invite_id?: string | null
+          links?: Json
+          owner_user_id: string
+          platform_share_bps?: number
+          published?: boolean
+          rights_statement?: string
+          tagline?: string
+          updated_at?: string
+        }
+        Update: {
+          accent?: string
+          bio?: string
+          city?: string
+          contact_email?: string | null
+          created_at?: string
+          display_name?: string
+          handle?: string
+          id?: string
+          invite_id?: string | null
+          links?: Json
+          owner_user_id?: string
+          platform_share_bps?: number
+          published?: boolean
+          rights_statement?: string
+          tagline?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "creator_pages_invite_id_fkey"
+            columns: ["invite_id"]
+            isOneToOne: false
+            referencedRelation: "creator_invites"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      creator_program_settings: {
+        Row: {
+          created_at: string
+          id: string
+          invite_only: boolean
+          max_creator_slots: number
+          max_master_bytes: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          invite_only?: boolean
+          max_creator_slots?: number
+          max_master_bytes?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          invite_only?: boolean
+          max_creator_slots?: number
+          max_master_bytes?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       energy_leads: {
         Row: {
           created_at: string
