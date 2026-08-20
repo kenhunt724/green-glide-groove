@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, Audio, Sequence, staticFile } from "remotion";
-import { COLORS } from "../src/theme";
+import { COLORS } from "./theme";
 import { Reporter } from "./scenes/Reporter";
 import { BRoll } from "./scenes/BRoll";
 import { Captions, Grain, NewsBar, QrCard } from "./components/Chrome";
