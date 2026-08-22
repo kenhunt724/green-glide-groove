@@ -77,7 +77,7 @@ def format_block(out: dict) -> str:
     return (
         f"{START_MARKER}\n"
         f"export const COEFFICIENTS: ModelCoefficients = {{\n"
-        f'  version: {json.dumps(out["version"])},\n'
+        f'  version: {json.dumps(out["version"], ensure_ascii=False)},\n'
         f'  trained_on: {out["trained_on"]},\n'
         f"  intercept: {fmt_num(out['intercept'])},\n"
         f"  bill_range: {{\n{group(out['bill_range'], '')}\n  }},\n"
@@ -148,7 +148,7 @@ def main(csv_path: str) -> None:
         }
 
     out = {
-        "version": f"trained-{pd.Timestamp.utcnow():%Y-%m-%d}-auc{auc:.2f}",
+        "version": f"trained-{pd.Timestamp.now('UTC'):%Y-%m-%d}-auc{auc:.2f}",
         "trained_on": n,
         "intercept": round(float(model.intercept_[0]), 4),
         "bill_range": group("bill_range"),
