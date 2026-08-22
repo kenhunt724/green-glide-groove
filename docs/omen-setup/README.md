@@ -6,6 +6,22 @@ Follow the steps in order. Total time: roughly 45–90 minutes, mostly downloads
 
 ---
 
+## 0. The one-command path
+
+If you just want it running, clone the repo and run:
+
+```bash
+bash docs/omen-setup/start.sh
+```
+
+That installs the whole toolchain (skipping anything already present), prompts once for the three backend values, writes `.env`, installs dependencies, and starts the dev server on http://localhost:8080.
+
+Useful flags: `--skip-bootstrap`, `--reconfigure`, `--port 3000`.
+
+The sections below explain what it does, and what to do if a step fails.
+
+---
+
 ## 1. Base OS layer — Windows 11 + WSL2
 
 Keep Windows (you need it for NVIDIA drivers and the Remotion/ffmpeg GPU path) and add a real Linux shell on top.
