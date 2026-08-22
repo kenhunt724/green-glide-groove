@@ -230,13 +230,13 @@ export const platforms = [
     step: "04",
     scale: "Industrial · 100–500+ kWh",
     title: "Container Energy Plant",
-    body: "A 20- or 40-foot container built out as a commercial storage plant — racked battery modules, industrial inverters, fire separation and active thermal management, delivered and set on a pad.",
+    body: "A 20- or 40-foot container built out as a commercial storage plant — racked battery modules, industrial inverters, fire separation and active thermal management, delivered and set on a pad to absorb data-center and neighborhood peak loads.",
     specs: [
       "Demand-charge shaving and peak-window load defection",
-      "Modular racks scale as the facility grows",
+      "Grid-stabilizing discharge during transformer overload events",
       "Remote telemetry with local certified technician service",
     ],
-    who: "For warehouses, fleets and commercial campuses",
+    who: "For warehouses, data centers, fleets and commercial campuses",
   },
 ] as const;
 
