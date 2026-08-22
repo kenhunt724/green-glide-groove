@@ -71,7 +71,7 @@ def fmt_num(v: float) -> str:
 def format_block(out: dict) -> str:
     """Render the COEFFICIENTS object as TypeScript source."""
     def group(d: dict, indent: str) -> str:
-        items = [f'{indent}    {json.dumps(k)}: {fmt_num(v)},' for k, v in d.items()]
+        items = [f'{indent}    {json.dumps(k, ensure_ascii=False)}: {fmt_num(v)},' for k, v in d.items()]
         return "\n".join(items)
 
     return (
