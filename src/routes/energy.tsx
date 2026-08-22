@@ -55,14 +55,15 @@ function EnergyPage() {
           <div className="relative mx-auto max-w-7xl px-5 py-24 md:py-32">
             <p className="label-mono text-energy">Clean Energy &amp; Mobile Power Division</p>
             <h1 className="mt-6 max-w-5xl text-4xl leading-[1.02] font-bold md:text-6xl lg:text-7xl">
-              Sovereign Power for Your Property &amp; On the Move —
+              Sovereign Power that Stops Brownouts, Flickers &amp; Outages —
               <span className="text-energy"> Zero Fumes, Zero Noise, Zero Peak Rates.</span>
             </h1>
             <p className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-              We engineer detached outbuilding battery vaults that slash peak utility rates by up to
-              90%, plus silent mobile LiFePO4 generators that replace dangerous gas engines. Charge
-              overnight at ~2.3¢/kWh, from rooftop solar, or directly from your vehicle&apos;s
-              alternator while you drive.
+              Data centers and AI compute are pulling more power than ever through aging neighborhood
+              transformers. We engineer detached LiFePO4 battery vaults that absorb that peak demand
+              locally, slash utility rates by up to 90%, and replace dangerous gas generators with silent
+              mobile power. Charge overnight at ~2.3¢/kWh, from rooftop solar, or directly from your
+              vehicle&apos;s alternator while you drive.
             </p>
 
             <div className="mt-10 flex flex-wrap gap-3">

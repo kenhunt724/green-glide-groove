@@ -2,7 +2,7 @@ export const trustBadges = [
   "LEED Platinum Standards",
   "Victron Energy Authorized Architecture",
   "Community Trained Technicians",
-  "Complete Grid Independence Ready",
+  "Grid Brownout & Outage Protection",
 ] as const;
 
 export const steps = [
