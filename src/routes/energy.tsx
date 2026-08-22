@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowDown, BatteryCharging, ShieldCheck, Sun, Wrench } from "lucide-react";
 import { DetachedVault } from "@/components/energy/detached-vault";
+import { GridResilience } from "@/components/energy/grid-resilience";
 import { MobileGenerators } from "@/components/energy/mobile-generators";
 import {
   Dialog,
@@ -19,7 +20,7 @@ import { services, steps, trustBadges } from "@/content/energy";
 
 const TITLE = "Battery Vaults & Silent Mobile Generators | EPS Clean Energy";
 const DESC =
-  "Detached outbuilding LiFePO4 battery vaults that cut peak utility rates up to 90%, plus silent mobile generators that replace gas engines. Charge at ~2.3¢/kWh, from solar, or off your alternator.";
+  "Detached outbuilding LiFePO4 battery vaults that cut peak utility rates up to 90%, stop brownouts and replace noisy gas generators. Charge at ~2.3¢/kWh, from solar, or off your alternator.";
 
 export const Route = createFileRoute("/energy")({
   head: () => ({
@@ -111,6 +112,13 @@ function EnergyPage() {
             <div className="mt-12">
               <PlatformLadder />
             </div>
+          </div>
+        </section>
+
+        {/* Grid resilience */}
+        <section id="resilience" className="scroll-mt-20 border-b border-border">
+          <div className="mx-auto max-w-7xl px-5 py-20 md:py-24">
+            <GridResilience />
           </div>
         </section>
 
