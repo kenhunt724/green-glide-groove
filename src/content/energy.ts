@@ -184,3 +184,58 @@ export const siteTypes = [
   "Service Van / Fleet",
   "Multi-Family",
 ] as const;
+
+export const platforms = [
+  {
+    id: "cart",
+    step: "01",
+    scale: "Portable · 2–5 kWh",
+    title: "Silent Generator Cart",
+    body: "The gas-generator form factor crews already trust — tubular roll cage, never-flat wheels, fold-down handle — with LiFePO4 cells and a pure sine inverter behind the outlet panel instead of an engine.",
+    specs: [
+      "120V/30A outlet panel, pure sine output",
+      "Charges overnight at ~2.3¢/kWh, from solar, or off an alternator",
+      "Zero fumes, zero engine noise — safe indoors",
+    ],
+    who: "For tradespeople, vendors and home backup",
+  },
+  {
+    id: "trailer",
+    step: "02",
+    scale: "Towable · 20–60 kWh",
+    title: "Towable Power Trailer",
+    body: "The pod architecture on a single-axle chassis: a full LiFePO4 bank, inverter/charger stack and GX controller in a lockable enclosure you hitch up and pull onto any site that needs remote power.",
+    specs: [
+      "120/240V split-phase output with jobsite distribution panel",
+      "Shore-power, generator or DC solar recharge inputs",
+      "Same Victron brain and monitoring as the fixed vaults",
+    ],
+    who: "For contractors, events and disaster response",
+  },
+  {
+    id: "pod",
+    step: "03",
+    scale: "Residential · 30–80 kWh",
+    title: "Home Power Pod",
+    body: "A detached outbuilding vault beside the house. Storage, inverters and cooling stay outside the living space, so permitting moves faster and service never disrupts the household.",
+    specs: [
+      "Peak-hour load defection with off-peak overnight charging",
+      "Zero-export DC-coupled rooftop solar capture",
+      "Whole-home or critical-load sub-panel backup",
+    ],
+    who: "For single-family and multi-family properties",
+  },
+  {
+    id: "container",
+    step: "04",
+    scale: "Industrial · 100–500+ kWh",
+    title: "Container Energy Plant",
+    body: "A 20- or 40-foot container built out as a commercial storage plant — racked battery modules, industrial inverters, fire separation and active thermal management, delivered and set on a pad.",
+    specs: [
+      "Demand-charge shaving and peak-window load defection",
+      "Modular racks scale as the facility grows",
+      "Remote telemetry with local certified technician service",
+    ],
+    who: "For warehouses, fleets and commercial campuses",
+  },
+] as const;

@@ -13,6 +13,7 @@ import {
 import { EnergyNav } from "@/components/energy/energy-nav";
 import { SavingsCalculator } from "@/components/energy/savings-calculator";
 import { HardwareTiers } from "@/components/energy/hardware-tiers";
+import { PlatformLadder } from "@/components/energy/platform-ladder";
 import { LeadForm } from "@/components/energy/lead-form";
 import { services, steps, trustBadges } from "@/content/energy";
 
@@ -96,8 +97,26 @@ function EnergyPage() {
           </div>
         </section>
 
+        {/* Product ladder */}
+        <section id="platforms" className="scroll-mt-20 border-b border-border bg-background">
+          <div className="mx-auto max-w-7xl px-5 py-20 md:py-24">
+            <p className="label-mono text-energy">One architecture, four scales</p>
+            <h2 className="mt-3 max-w-3xl text-3xl font-bold md:text-5xl">
+              Cart, trailer, home pod, container
+            </h2>
+            <p className="mt-5 max-w-2xl text-muted-foreground">
+              The same LiFePO4 bank, inverter stack and Victron GX brain, packaged four ways — from
+              a one-person cart to a container-scale plant.
+            </p>
+            <div className="mt-12">
+              <PlatformLadder />
+            </div>
+          </div>
+        </section>
+
         {/* Detached outbuilding vaults */}
-        <section id="vaults" className="scroll-mt-20 border-b border-border bg-background">
+        <section id="vaults" className="scroll-mt-20 border-b border-border">
+
           <div className="mx-auto max-w-7xl px-5 py-20 md:py-24">
             <p className="label-mono text-energy">Standard installation model</p>
             <h2 className="mt-3 max-w-3xl text-3xl font-bold md:text-5xl">
