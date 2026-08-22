@@ -149,14 +149,30 @@ ffmpeg (installed by the bootstrap script) handles the audio mux. Rendering is C
 
 ## 7. Lead-scoring model training
 
-The capacity engine's scorer is small tabular ML — it trains in seconds on CPU, no GPU needed:
+The capacity engine's scorer is small tabular ML — it trains in seconds on CPU, no GPU needed. The trainer ships in the repo at `scripts/train_lead_scorer.py`. Your customer data never leaves the Omen.
+
+The full loop:
+
+1. In the running app, open **Operations → Lead readiness queue → Export training data**. Save the CSV in your project folder.
+2. Train and apply the model in one step:
 
 ```bash
-uv venv && source .venv/bin/activate
-uv pip install scikit-learn pandas numpy
+python scripts/train_lead_scorer.py eps-lead-training.csv
 ```
 
-Export your leads to CSV, train, and paste the resulting coefficients back into the app. Your customer data never leaves the Omen.
+   This prints a cross-validated AUC (0.5 = coin flip, 0.7+ = useful), writes a `coefficients.json` record, and **rewrites the `COEFFICIENTS` block in `src/lib/lead-model.ts` directly** — no hand-pasting.
+3. Ship it back to the site and re-start the app:
+
+```bash
+git add src/lib/lead-model.ts
+git commit -m "retrain lead scorer"
+git push
+bash docs/omen-setup/start.sh
+```
+
+   The new scores are live in the app once the site republishes.
+
+**When:** the trainer needs at least ~60 labelled won/lost leads to run, and warns below ~150. Until then the transparent starter model in the app is the more honest ranking. So: keep marking leads won/lost in the console, and re-run the loop every time you have more outcomes.
 
 ---
 

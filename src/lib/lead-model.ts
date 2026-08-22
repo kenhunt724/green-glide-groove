@@ -4,10 +4,10 @@
  * Stage A (current): transparent weighted coefficients, hand-set from domain
  * knowledge so the ranking is useful before any conversion history exists.
  *
- * Stage B: `scripts/train_lead_scorer.py` (see /mnt/documents/eps-ml/) trains a
- * logistic model on real won/lost outcomes and rewrites the COEFFICIENTS block
- * below. The interface — `scoreLead` in, 0-100 + reasons out — never changes,
- * so nothing else in the app has to be touched when the real model lands.
+ * Stage B: `scripts/train_lead_scorer.py` trains a logistic model on real
+ * won/lost outcomes and rewrites the COEFFICIENTS block below in place. The
+ * interface — `scoreLead` in, 0-100 + reasons out — never changes, so nothing
+ * else in the app has to be touched when the real model lands.
  */
 
 export type ModelCoefficients = {
