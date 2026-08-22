@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowDown, BatteryCharging, ShieldCheck, Sun, Wrench } from "lucide-react";
 import { DetachedVault } from "@/components/energy/detached-vault";
+import { GridResilience } from "@/components/energy/grid-resilience";
 import { MobileGenerators } from "@/components/energy/mobile-generators";
 import {
   Dialog,
@@ -111,6 +112,13 @@ function EnergyPage() {
             <div className="mt-12">
               <PlatformLadder />
             </div>
+          </div>
+        </section>
+
+        {/* Grid resilience */}
+        <section id="resilience" className="scroll-mt-20 border-b border-border">
+          <div className="mx-auto max-w-7xl px-5 py-20 md:py-24">
+            <GridResilience />
           </div>
         </section>
 
