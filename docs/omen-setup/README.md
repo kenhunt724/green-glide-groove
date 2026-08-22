@@ -18,7 +18,18 @@ That installs the whole toolchain (skipping anything already present), prompts o
 
 Useful flags: `--skip-bootstrap`, `--reconfigure`, `--port 3000`.
 
-The sections below explain what it does, and what to do if a step fails.
+### Even simpler: a desktop shortcut
+
+If you want a true one-click experience from Windows:
+
+1. In File Explorer, go to `docs/omen-setup\` inside your project folder.
+2. Right-click `launch-eps.bat` → **Send to → Desktop (create shortcut)**.
+3. Optional: right-click the new desktop shortcut → **Rename** it to "Start Earth Resonance Hub".
+4. Double-click it.
+
+The first time it runs it will ask you to pick your project folder. After that it remembers the path, opens Windows Terminal running WSL, starts the dev server, and opens `http://localhost:8080` in your browser automatically.
+
+The sections below explain what the scripts do, and what to do if a step fails.
 
 ---
 
