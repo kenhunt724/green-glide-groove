@@ -15,9 +15,69 @@
 
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+die() {
+  printf '\n\033[1;31mX %s\033[0m\n' "$1" >&2
+  shift
+  for line in "$@"; do printf '  %s\n' "$line" >&2; done
+  printf '\n'
+  exit 1
+}
+
+# ------------------------------------------------------------- preflight -----
+# 0. Are we standing in a folder that still exists? (common after deleting or
+#    renaming the project folder from Windows while the terminal stayed open)
+if ! pwd >/dev/null 2>&1; then
+  die "Your terminal is sitting in a folder that no longer exists." \
+      "Fix it with these two lines, one at a time:" \
+      "" \
+      "  cd ~" \
+      "  cd green-glide-groove" \
+      "" \
+      "Then run: bash docs/omen-setup/start.sh"
+fi
+
+# 1. Can we locate the script itself?
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || SCRIPT_DIR=""
+if [ -z "$SCRIPT_DIR" ] || [ ! -f "$SCRIPT_DIR/start.sh" ]; then
+  die "Could not find the setup folder (docs/omen-setup)." \
+      "You are probably not inside the project folder." \
+      "" \
+      "  cd ~" \
+      "  ls" \
+      "" \
+      "If you see green-glide-groove listed, run:" \
+      "  cd green-glide-groove && bash docs/omen-setup/start.sh" \
+      "" \
+      "If you do NOT see it, clone it first:" \
+      "  git clone https://github.com/kenhunt724/green-glide-groove.git"
+fi
+
+REPO_ROOT="$(cd "$SCRIPT_DIR/../.." 2>/dev/null && pwd)" || REPO_ROOT=""
+[ -n "$REPO_ROOT" ] || die "Could not resolve the project root folder from $SCRIPT_DIR."
+
+# 2. Is this really the project? package.json is the giveaway.
+if [ ! -f "$REPO_ROOT/package.json" ]; then
+  die "This folder is not the project ($REPO_ROOT has no package.json)." \
+      "Go home and re-clone a clean copy:" \
+      "" \
+      "  cd ~" \
+      "  git clone https://github.com/kenhunt724/green-glide-groove.git" \
+      "  cd green-glide-groove" \
+      "  bash docs/omen-setup/start.sh"
+fi
+
+# 3. Warn (don't block) if the project lives on the Windows drive — that path
+#    causes permission errors and very slow installs under WSL.
+case "$REPO_ROOT" in
+  /mnt/[a-z]/*)
+    printf '\n\033[1;33m! Heads up:\033[0m the project is on your Windows drive (%s).\n' "$REPO_ROOT" >&2
+    printf '  This is slow and can cause "Operation not permitted" errors.\n' >&2
+    printf '  Recommended: cd ~ && git clone https://github.com/kenhunt724/green-glide-groove.git\n\n' >&2
+    ;;
+esac
+
 cd "$REPO_ROOT"
+
 
 PORT=8080
 SKIP_BOOTSTRAP=0
