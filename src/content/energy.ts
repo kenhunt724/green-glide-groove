@@ -239,3 +239,31 @@ export const platforms = [
     who: "For warehouses, fleets and commercial campuses",
   },
 ] as const;
+
+export const gridResilience = {
+  eyebrow: "Grid resilience",
+  headline: "Stop brownouts, flickers & outages at the source",
+  lede: "Data centers and AI compute are pulling record power through aging neighborhood transformers. Our distributed LiFePO4 vaults absorb that peak demand locally — so the lights stay on and the voltage stays steady.",
+  points: [
+    {
+      id: "peak-shave",
+      title: "Neighborhood peak shaving",
+      body: "Container and pod-scale banks discharge during evening and summer peaks, trimming the top off transformer and feeder load before utilities fire up dirty peaker plants.",
+    },
+    {
+      id: "voltage-ride-through",
+      title: "Flicker & sag correction",
+      body: "Sub-second inverter response irons out voltage sags from compressor starts, EV charging clusters and data-center ramp events — no more dimming lights or tripped equipment.",
+    },
+    {
+      id: "outage-backup",
+      title: "Seamless outage ride-through",
+      body: "When the grid goes down, the vault instantly islands critical loads. No fumes, no fuel deliveries, no generator maintenance — just clean silent power until utility service returns.",
+    },
+    {
+      id: "local-ownership",
+      title: "Community-owned resilience",
+      body: "Every vault is built, commissioned and serviced by certified local technicians. Resilience becomes a neighborhood asset and a local paycheck, not a remote utility program.",
+    },
+  ],
+} as const;
