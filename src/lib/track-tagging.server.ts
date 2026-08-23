@@ -16,7 +16,7 @@ type TagInput = {
   description?: string | null;
   license_terms?: string | null;
   master_format?: string | null;
-  filename?: string | null;
+  filename?: string | null | undefined;
 };
 
 const MODEL = "google/gemini-3.7-flash";
