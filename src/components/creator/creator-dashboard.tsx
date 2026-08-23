@@ -213,6 +213,14 @@ type ItemRow = {
   master_format: string | null;
   master_bytes: number | null;
   published: boolean;
+  ai_tags?: string[] | null;
+  ai_genre?: string | null;
+  ai_mood?: string | null;
+  ai_instruments?: string[] | null;
+  ai_bpm?: number | null;
+  ai_key?: string | null;
+  ai_summary?: string | null;
+  ai_tagged_at?: string | null;
 };
 
 function WorksEditor({
