@@ -24,6 +24,14 @@ export type CreatorItem = {
   artwork_path: string | null;
   sort_order: number;
   published: boolean;
+  ai_tags?: string[] | null;
+  ai_genre?: string | null;
+  ai_mood?: string | null;
+  ai_instruments?: string[] | null;
+  ai_bpm?: number | null;
+  ai_key?: string | null;
+  ai_summary?: string | null;
+  ai_tagged_at?: string | null;
   preview_url?: string | null;
   artwork_url?: string | null;
 };
