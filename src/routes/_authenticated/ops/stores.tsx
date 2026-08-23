@@ -64,7 +64,10 @@ function ClientStoresConsole() {
   const create = useMutation({
     mutationFn: () => createFn({ data: form }),
     onSuccess: (res) => {
-      if (!res.ok) return toast.error(res.error ?? "Could not open that store.");
+      if (!res.ok) {
+        toast.error(res.error ?? "Could not open that store.");
+        return;
+      }
       toast.success(
         res.accountCreated
           ? `Store opened at /c/${res.handle} and an account was created for the client.`
@@ -79,7 +82,10 @@ function ClientStoresConsole() {
   const remove = useMutation({
     mutationFn: (id: string) => deleteFn({ data: { id } }),
     onSuccess: (res) => {
-      if (!res.ok) return toast.error(res.error ?? "Could not remove that store.");
+      if (!res.ok) {
+        toast.error(res.error ?? "Could not remove that store.");
+        return;
+      }
       toast.success("Store removed.");
       invalidate();
     },
@@ -89,7 +95,10 @@ function ClientStoresConsole() {
     mutationFn: (email: string) =>
       linkFn({ data: { email, redirect_to: `${window.location.origin}/creator/dashboard` } }),
     onSuccess: async (res) => {
-      if (!res.ok || !res.link) return toast.error(res.error ?? "Could not generate a link.");
+      if (!res.ok || !res.link) {
+        toast.error(res.error ?? "Could not generate a link.");
+        return;
+      }
       await navigator.clipboard.writeText(res.link).catch(() => undefined);
       toast.success("Sign-in link copied — paste it to your client.");
     },
