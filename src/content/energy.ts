@@ -215,15 +215,15 @@ export const platforms = [
   {
     id: "pod",
     step: "03",
-    scale: "Residential · 30–80 kWh",
-    title: "Home Power Pod",
-    body: "A detached outbuilding vault beside the house. Storage, inverters and cooling stay outside the living space, so permitting moves faster and service never disrupts the household.",
+    scale: "Residential & Commercial · 30–80 kWh",
+    title: "Residential & Commercial Power Pod",
+    body: "A detached outbuilding vault beside the house or business. Storage, inverters and cooling stay outside the living or working space, so permitting moves faster and service never disrupts the household or trading hours.",
     specs: [
-      "Peak-hour load defection with off-peak overnight charging",
+      "Harvest electricity when it's cheapest",
+      "Runs on batteries, not the grid — power never flickers or goes out",
       "Zero-export DC-coupled rooftop solar capture",
-      "Whole-home or critical-load sub-panel backup",
     ],
-    who: "For single-family and multi-family properties",
+    who: "For single-family, multi-family and commercial properties",
   },
   {
     id: "container",
