@@ -170,7 +170,10 @@ export function FormatABPlayer({ sample, label }: FormatABPlayerProps) {
         src={wavSrc}
         preload="auto"
         muted
-        onLoadedMetadata={(e) => setDuration((d) => d || e.currentTarget.duration)}
+        onLoadedMetadata={(e) => {
+          const next = e.currentTarget.duration;
+          setDuration((d) => d || next);
+        }}
         onTimeUpdate={(e) => {
           if (format === "wav") setTime(e.currentTarget.currentTime);
         }}
