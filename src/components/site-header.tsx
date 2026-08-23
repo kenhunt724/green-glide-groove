@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
 import { Menu, X } from "lucide-react";
 import {
   Sheet,
@@ -15,6 +16,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
 import { deepDive } from "@/content/deep-dive";
 
 const wings = [
@@ -29,6 +32,31 @@ const wings = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [signedIn, setSignedIn] = useState<boolean | null>(null);
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    let active = true;
+    supabase.auth.getSession().then(({ data }) => {
+      if (active) setSignedIn(!!data.session);
+    });
+    const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
+      if (active) setSignedIn(!!session);
+    });
+    return () => {
+      active = false;
+      sub.subscription.unsubscribe();
+    };
+  }, []);
+
+  const signOut = async () => {
+    await queryClient.cancelQueries();
+    queryClient.clear();
+    await supabase.auth.signOut();
+    navigate({ to: "/auth", replace: true });
+  };
+
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/80 bg-background/85 backdrop-blur-xl">
@@ -62,6 +90,25 @@ export function SiteHeader() {
               </Link>
             ))}
           </nav>
+
+          <div className="hidden items-center gap-3 sm:flex">
+            {signedIn === false && (
+              <Button asChild size="sm" variant="outline">
+                <Link to="/auth">Sign in</Link>
+              </Button>
+            )}
+            {signedIn === true && (
+              <>
+                <Button asChild size="sm" variant="outline">
+                  <Link to="/creator/dashboard">My dashboard</Link>
+                </Button>
+                <Button size="sm" variant="ghost" onClick={signOut}>
+                  Sign out
+                </Button>
+              </>
+            )}
+          </div>
+
 
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger
@@ -102,7 +149,38 @@ export function SiteHeader() {
                     {w.label}
                   </Link>
                 ))}
+                {signedIn === false && (
+                  <Link
+                    to="/auth"
+                    onClick={() => setOpen(false)}
+                    className="border-b border-border/60 px-6 py-4 font-display text-xl text-signal transition-colors hover:bg-surface"
+                  >
+                    Sign in
+                  </Link>
+                )}
+                {signedIn === true && (
+                  <>
+                    <Link
+                      to="/creator/dashboard"
+                      onClick={() => setOpen(false)}
+                      className="border-b border-border/60 px-6 py-4 font-display text-xl text-signal transition-colors hover:bg-surface"
+                    >
+                      My dashboard
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setOpen(false);
+                        void signOut();
+                      }}
+                      className="border-b border-border/60 px-6 py-4 text-left font-display text-xl transition-colors hover:bg-surface"
+                    >
+                      Sign out
+                    </button>
+                  </>
+                )}
               </nav>
+
 
               <Accordion type="single" collapsible className="px-6 py-2">
                 {deepDive.map((section) => (
