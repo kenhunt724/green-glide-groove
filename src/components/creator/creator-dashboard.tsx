@@ -235,12 +235,59 @@ function WorksEditor({
 }) {
   const save = useServerFn(saveCreatorItem);
   const remove = useServerFn(deleteCreatorItem);
+  const tagOne = useServerFn(tagCreatorItem);
+  const tagAll = useServerFn(tagAllUntaggedItems);
   const [kind, setKind] = useState<CreatorKind>("audio");
   const [title, setTitle] = useState("");
   const [license, setLicense] = useState("");
   const [master, setMaster] = useState<File | null>(null);
   const [preview, setPreview] = useState<File | null>(null);
   const [busy, setBusy] = useState(false);
+  const [query, setQuery] = useState("");
+  const [activeTag, setActiveTag] = useState<string | null>(null);
+  const [taggingId, setTaggingId] = useState<string | null>(null);
+  const [taggingAll, setTaggingAll] = useState(false);
+
+  const allTags = Array.from(
+    new Set(items.flatMap((i) => [...(i.ai_tags ?? []), ...(i.ai_instruments ?? [])])),
+  ).sort();
+  const untaggedCount = items.filter((i) => !i.ai_tagged_at).length;
+
+  const q = query.trim().toLowerCase();
+  const visible = items.filter((item) => {
+    if (activeTag && ![...(item.ai_tags ?? []), ...(item.ai_instruments ?? [])].includes(activeTag))
+      return false;
+    if (!q) return true;
+    const haystack = [
+      item.title,
+      item.kind,
+      item.master_format ?? "",
+      item.ai_genre ?? "",
+      item.ai_mood ?? "",
+      item.ai_key ?? "",
+      item.ai_summary ?? "",
+      ...(item.ai_tags ?? []),
+      ...(item.ai_instruments ?? []),
+    ]
+      .join(" ")
+      .toLowerCase();
+    return haystack.includes(q);
+  });
+
+  async function runTag(id: string) {
+    setTaggingId(id);
+    try {
+      const res = await tagOne({ data: { id } });
+      if (!res.ok) toast.error(res.error ?? "Tagging failed.");
+      else {
+        toast.success("Track tagged and filed.");
+        onDone();
+      }
+    } finally {
+      setTaggingId(null);
+    }
+  }
+
 
   async function upload(bucket: string, file: File) {
     const { data: userData } = await supabase.auth.getUser();
