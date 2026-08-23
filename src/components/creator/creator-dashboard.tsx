@@ -400,18 +400,137 @@ function WorksEditor({
         </button>
       </form>
 
+      {items.length > 0 && (
+        <div className="space-y-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="relative w-full sm:max-w-md">
+              <label htmlFor="catalog-filter" className="sr-only">
+                Search your catalogue by title, tag, genre, mood or format
+              </label>
+              <Search
+                className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground"
+                aria-hidden="true"
+              />
+              <Input
+                id="catalog-filter"
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search titles, tags, genre, mood…"
+                className="h-11 pl-9"
+              />
+            </div>
+            <button
+              type="button"
+              disabled={taggingAll || untaggedCount === 0}
+              className={ghostBtn}
+              onClick={async () => {
+                setTaggingAll(true);
+                try {
+                  const res = await tagAll({ data: undefined });
+                  if (res.stopped) toast.error(res.stopped);
+                  toast.success(`Tagged ${res.tagged} ${res.tagged === 1 ? "work" : "works"}.`);
+                  onDone();
+                } finally {
+                  setTaggingAll(false);
+                }
+              }}
+            >
+              {taggingAll ? (
+                <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+              ) : (
+                <Sparkles className="size-4" aria-hidden="true" />
+              )}
+              Auto-tag {untaggedCount > 0 ? `${untaggedCount} untagged` : "all done"}
+            </button>
+          </div>
+
+          {allTags.length > 0 && (
+            <div role="group" aria-label="Filter by tag" className="flex flex-wrap gap-2">
+              {allTags.map((tag) => {
+                const active = tag === activeTag;
+                return (
+                  <button
+                    key={tag}
+                    type="button"
+                    aria-pressed={active}
+                    onClick={() => setActiveTag(active ? null : tag)}
+                    className={`label-mono min-h-9 border px-3 text-xs transition-colors ${
+                      active
+                        ? "border-energy bg-energy/10 text-energy"
+                        : "border-border text-muted-foreground hover:border-energy hover:text-energy"
+                    }`}
+                  >
+                    {tag}
+                    {active && <X className="ml-1 inline size-3" aria-hidden="true" />}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+
+          <p aria-live="polite" className="label-mono text-xs">
+            {visible.length} of {items.length} {items.length === 1 ? "work" : "works"}
+            {activeTag ? ` tagged “${activeTag}”` : ""}
+            {q ? ` matching “${query}”` : ""}
+          </p>
+        </div>
+      )}
+
       <ul className="space-y-3">
-        {items.map((item) => (
-          <li key={item.id} className="surface-panel flex flex-wrap items-center justify-between gap-4 p-4">
-            <div>
+        {visible.map((item) => (
+          <li key={item.id} className="surface-panel flex flex-wrap items-start justify-between gap-4 p-4">
+            <div className="min-w-0">
               <p className="font-semibold">{item.title}</p>
               <p className="label-mono text-xs text-muted-foreground">
                 {item.kind} · {item.master_format ?? "—"} ·{" "}
                 {item.master_bytes ? formatBytes(Number(item.master_bytes)) : "—"} ·{" "}
                 {item.published ? "published" : "draft"}
               </p>
+              {item.ai_summary && (
+                <p className="mt-2 max-w-xl text-sm text-muted-foreground">{item.ai_summary}</p>
+              )}
+              {(item.ai_genre || item.ai_mood || item.ai_bpm || item.ai_key) && (
+                <p className="label-mono mt-2 text-xs text-energy">
+                  {[
+                    item.ai_genre,
+                    item.ai_mood,
+                    item.ai_bpm ? `${item.ai_bpm} bpm` : null,
+                    item.ai_key,
+                  ]
+                    .filter(Boolean)
+                    .join(" · ")}
+                </p>
+              )}
+              {(item.ai_tags?.length || item.ai_instruments?.length) && (
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {[...(item.ai_tags ?? []), ...(item.ai_instruments ?? [])].map((tag) => (
+                    <button
+                      key={tag}
+                      type="button"
+                      onClick={() => setActiveTag(tag)}
+                      className="label-mono border border-border px-2 py-0.5 text-[10px] text-muted-foreground transition-colors hover:border-energy hover:text-energy"
+                    >
+                      {tag}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
             <div className="flex gap-2">
+              <button
+                type="button"
+                disabled={taggingId === item.id}
+                className={ghostBtn}
+                onClick={() => runTag(item.id)}
+              >
+                {taggingId === item.id ? (
+                  <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+                ) : (
+                  <Sparkles className="size-4" aria-hidden="true" />
+                )}
+                {item.ai_tagged_at ? "Re-tag" : "Auto-tag"}
+              </button>
               <button
                 type="button"
                 className={ghostBtn}
@@ -448,6 +567,10 @@ function WorksEditor({
           </li>
         ))}
         {items.length === 0 && <li className="text-sm text-muted-foreground">No works uploaded yet.</li>}
+        {items.length > 0 && visible.length === 0 && (
+          <li className="text-sm text-muted-foreground">Nothing matches that search.</li>
+        )}
+
       </ul>
     </section>
   );
