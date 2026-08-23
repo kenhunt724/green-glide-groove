@@ -4,6 +4,7 @@ import { ArrowDown, BatteryCharging, ShieldCheck, Sun, Wrench } from "lucide-rea
 import { DetachedVault } from "@/components/energy/detached-vault";
 import { GridResilience } from "@/components/energy/grid-resilience";
 import { MobileGenerators } from "@/components/energy/mobile-generators";
+import podImg from "@/assets/home-power-pod.jpg";
 import {
   Dialog,
   DialogContent,
