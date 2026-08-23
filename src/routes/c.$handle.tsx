@@ -49,8 +49,32 @@ export const Route = createFileRoute("/c/$handle")({
 function CreatorPublicPage() {
   const { handle } = Route.useParams();
   const { data } = useSuspenseQuery(pageQuery(handle));
+  const [query, setQuery] = useState("");
+  const [activeTag, setActiveTag] = useState<string | null>(null);
+
+  const items = data?.items ?? [];
+  const allTags = useMemo(
+    () =>
+      Array.from(
+        new Set(items.flatMap((i) => [...(i.ai_tags ?? []), ...(i.ai_instruments ?? [])])),
+      ).sort(),
+    [items],
+  );
+  const visible = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return items.filter((item) => {
+      const tags = [...(item.ai_tags ?? []), ...(item.ai_instruments ?? [])];
+      if (activeTag && !tags.includes(activeTag)) return false;
+      if (!q) return true;
+      return [item.title, item.kind, item.description, item.ai_genre ?? "", item.ai_mood ?? "", ...tags]
+        .join(" ")
+        .toLowerCase()
+        .includes(q);
+    });
+  }, [items, query, activeTag]);
+
   if (!data) return null;
-  const { page, items } = data;
+  const { page } = data;
 
   return (
     <>
@@ -66,8 +90,56 @@ function CreatorPublicPage() {
         <section className="border-t border-border">
           <div className="mx-auto w-full max-w-5xl px-6 py-16">
             <h2 className="font-display text-2xl font-semibold">Works</h2>
+
+            {items.length > 0 && (
+              <div className="mt-6 space-y-4">
+                <div className="relative w-full max-w-md">
+                  <label htmlFor="works-search" className="sr-only">
+                    Search these works by title, tag, genre or mood
+                  </label>
+                  <Search
+                    className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground"
+                    aria-hidden="true"
+                  />
+                  <Input
+                    id="works-search"
+                    type="search"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="Search titles, tags, genre, mood…"
+                    className="h-11 pl-9"
+                  />
+                </div>
+                {allTags.length > 0 && (
+                  <div role="group" aria-label="Filter by tag" className="flex flex-wrap gap-2">
+                    {allTags.map((tag) => {
+                      const active = tag === activeTag;
+                      return (
+                        <button
+                          key={tag}
+                          type="button"
+                          aria-pressed={active}
+                          onClick={() => setActiveTag(active ? null : tag)}
+                          className={`label-mono min-h-9 border px-3 text-xs transition-colors ${
+                            active
+                              ? "border-energy bg-energy/10 text-energy"
+                              : "border-border text-muted-foreground hover:border-energy hover:text-energy"
+                          }`}
+                        >
+                          {tag}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+                <p aria-live="polite" className="label-mono text-xs">
+                  {visible.length} of {items.length} {items.length === 1 ? "work" : "works"}
+                </p>
+              </div>
+            )}
+
             <ul className="mt-8 grid gap-6 md:grid-cols-2">
-              {items.map((item) => (
+              {visible.map((item) => (
                 <li key={item.id} className="surface-panel space-y-4 p-6">
                   <div>
                     <p className="label-mono text-xs text-energy">{item.kind}</p>
@@ -96,6 +168,28 @@ function CreatorPublicPage() {
                     />
                   )}
 
+                  {(item.ai_genre || item.ai_mood || item.ai_bpm || item.ai_key) && (
+                    <p className="label-mono text-xs text-energy">
+                      {[item.ai_genre, item.ai_mood, item.ai_bpm ? `${item.ai_bpm} bpm` : null, item.ai_key]
+                        .filter(Boolean)
+                        .join(" · ")}
+                    </p>
+                  )}
+                  {(item.ai_tags?.length || item.ai_instruments?.length) && (
+                    <div className="flex flex-wrap gap-1.5">
+                      {[...(item.ai_tags ?? []), ...(item.ai_instruments ?? [])].map((tag) => (
+                        <button
+                          key={tag}
+                          type="button"
+                          onClick={() => setActiveTag(tag)}
+                          className="label-mono border border-border px-2 py-0.5 text-[10px] text-muted-foreground transition-colors hover:border-energy hover:text-energy"
+                        >
+                          {tag}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
                   <p className="label-mono text-xs text-muted-foreground">
                     Master: {item.master_format?.toUpperCase() ?? "uncompressed"} · owned by {page.display_name}
                   </p>
@@ -107,7 +201,11 @@ function CreatorPublicPage() {
               {items.length === 0 && (
                 <li className="text-sm text-muted-foreground">No published works yet.</li>
               )}
+              {items.length > 0 && visible.length === 0 && (
+                <li className="text-sm text-muted-foreground">Nothing matches that search.</li>
+              )}
             </ul>
+
           </div>
         </section>
 
