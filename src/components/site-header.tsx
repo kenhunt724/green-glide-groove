@@ -149,7 +149,38 @@ export function SiteHeader() {
                     {w.label}
                   </Link>
                 ))}
+                {signedIn === false && (
+                  <Link
+                    to="/auth"
+                    onClick={() => setOpen(false)}
+                    className="border-b border-border/60 px-6 py-4 font-display text-xl text-signal transition-colors hover:bg-surface"
+                  >
+                    Sign in
+                  </Link>
+                )}
+                {signedIn === true && (
+                  <>
+                    <Link
+                      to="/creator/dashboard"
+                      onClick={() => setOpen(false)}
+                      className="border-b border-border/60 px-6 py-4 font-display text-xl text-signal transition-colors hover:bg-surface"
+                    >
+                      My dashboard
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setOpen(false);
+                        void signOut();
+                      }}
+                      className="border-b border-border/60 px-6 py-4 text-left font-display text-xl transition-colors hover:bg-surface"
+                    >
+                      Sign out
+                    </button>
+                  </>
+                )}
               </nav>
+
 
               <Accordion type="single" collapsible className="px-6 py-2">
                 {deepDive.map((section) => (
