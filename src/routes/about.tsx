@@ -37,7 +37,7 @@ function AboutPage() {
             <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
               Earth Protection Society is not a brand laid over other people&apos;s supply chains.
               It is a charter: what the block consumes, the block accounts for — materials,
-              electrons, buildings and work. Use the menu for the full systems index.
+              electricity, buildings and work. Use the menu for the full systems index.
             </p>
           </div>
         </section>
