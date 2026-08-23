@@ -91,6 +91,25 @@ export function SiteHeader() {
             ))}
           </nav>
 
+          <div className="hidden items-center gap-3 sm:flex">
+            {signedIn === false && (
+              <Button asChild size="sm" variant="outline">
+                <Link to="/auth">Sign in</Link>
+              </Button>
+            )}
+            {signedIn === true && (
+              <>
+                <Button asChild size="sm" variant="outline">
+                  <Link to="/creator/dashboard">My dashboard</Link>
+                </Button>
+                <Button size="sm" variant="ghost" onClick={signOut}>
+                  Sign out
+                </Button>
+              </>
+            )}
+          </div>
+
+
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger
               aria-label={open ? "Close deep-dive menu" : "Open deep-dive menu"}
