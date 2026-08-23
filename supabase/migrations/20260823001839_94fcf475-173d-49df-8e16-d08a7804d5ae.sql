@@ -1,0 +1,1 @@
+revoke execute on function public.grant_owner_admin_role() from public, anon, authenticated;
