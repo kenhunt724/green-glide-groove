@@ -26,6 +26,7 @@ import {
   saveCreatorPage,
   takedownCreatorPage,
 } from "@/lib/creator.functions";
+import { tagAllUntaggedItems, tagCreatorItem } from "@/lib/creator-tags.functions";
 
 const btn =
   "label-mono inline-flex min-h-11 items-center justify-center gap-2 bg-energy px-5 font-semibold text-background transition-opacity hover:opacity-90 disabled:opacity-40";
