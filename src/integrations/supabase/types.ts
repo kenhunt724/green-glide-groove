@@ -183,6 +183,14 @@ export type Database = {
       }
       creator_items: {
         Row: {
+          ai_bpm: number | null
+          ai_genre: string | null
+          ai_instruments: string[]
+          ai_key: string | null
+          ai_mood: string | null
+          ai_summary: string | null
+          ai_tagged_at: string | null
+          ai_tags: string[]
           artwork_path: string | null
           created_at: string
           description: string
@@ -203,6 +211,14 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          ai_bpm?: number | null
+          ai_genre?: string | null
+          ai_instruments?: string[]
+          ai_key?: string | null
+          ai_mood?: string | null
+          ai_summary?: string | null
+          ai_tagged_at?: string | null
+          ai_tags?: string[]
           artwork_path?: string | null
           created_at?: string
           description?: string
@@ -223,6 +239,14 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          ai_bpm?: number | null
+          ai_genre?: string | null
+          ai_instruments?: string[]
+          ai_key?: string | null
+          ai_mood?: string | null
+          ai_summary?: string | null
+          ai_tagged_at?: string | null
+          ai_tags?: string[]
           artwork_path?: string | null
           created_at?: string
           description?: string
