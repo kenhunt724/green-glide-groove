@@ -116,6 +116,51 @@ function EnergyPage() {
           </div>
         </section>
 
+        {/* Featured Power Pod hero */}
+        <section className="rule-grid relative overflow-hidden border-b border-border bg-surface">
+          <div
+            aria-hidden="true"
+            className="absolute -bottom-32 right-0 size-[36rem] rounded-full bg-energy/10 blur-3xl"
+          />
+          <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 py-20 md:py-28 lg:grid-cols-2 lg:gap-16">
+            <div className="order-2 lg:order-1">
+              <p className="label-mono text-energy">Residential &amp; Commercial Power Pod</p>
+              <h2 className="mt-6 text-4xl leading-[1.05] font-bold md:text-5xl lg:text-6xl">
+                Harvest electricity when it&apos;s cheapest.
+              </h2>
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+                Your power never flickers or goes out, because your house or business always runs on
+                batteries, not the grid.
+              </p>
+              <div className="mt-9 flex flex-wrap gap-3">
+                <a
+                  href="#platforms"
+                  className="inline-flex min-h-12 items-center gap-2 bg-energy px-7 font-display text-sm font-semibold text-background transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-energy focus-visible:outline-none"
+                >
+                  See the full platform <ArrowDown className="size-4" aria-hidden="true" />
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setQuoteOpen(true)}
+                  className="inline-flex min-h-12 items-center gap-2 border border-emerald/60 bg-surface px-7 font-display text-sm font-semibold text-emerald transition-colors hover:bg-emerald/10"
+                >
+                  Book a free site assessment
+                </button>
+              </div>
+            </div>
+            <div className="order-1 lg:order-2">
+              <img
+                src={podImg}
+                alt="Detached home power pod with battery vault, inverters and rooftop solar"
+                width={1536}
+                height={1024}
+                loading="lazy"
+                className="aspect-[3/2] w-full border border-border object-cover"
+              />
+            </div>
+          </div>
+        </section>
+
         {/* Grid resilience */}
         <section id="resilience" className="scroll-mt-20 border-b border-border">
           <div className="mx-auto max-w-7xl px-5 py-20 md:py-24">
