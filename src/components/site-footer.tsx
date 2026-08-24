@@ -6,7 +6,7 @@ export function SiteFooter() {
       <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-12 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="font-display text-lg font-bold">EARTH PROTECTION SOCIETY</p>
-          <p className="label-mono mt-2">Block 12 · Coming Soon · Sovereign charter · No investors · Customer-funded</p>
+          <p className="label-mono mt-2">Block 12 · Coming Soon · Sovereign charter · Customer-funded · Locally owned</p>
         </div>
         <nav className="flex gap-6">
           <Link to="/store" className="label-mono hover:text-signal">

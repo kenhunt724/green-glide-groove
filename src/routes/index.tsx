@@ -72,8 +72,8 @@ function Index() {
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               Earth Protection Society is a worker-and-artist umbrella running three wings out of
               one closed-loop block: an ultra-streaming record store, an industrial mobility shop,
-              and the metabolic infrastructure that feeds both. The client pays for everything —
-              so there is no investor to answer to.
+              and the metabolic infrastructure that feeds both. The client pays for everything,
+              so what the block builds stays owned by the neighbourhood that built it.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Link
