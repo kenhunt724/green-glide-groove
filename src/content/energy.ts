@@ -236,6 +236,7 @@ export const platforms = [
       "Demand-charge shaving and peak-window load defection",
       "Instant silent islanding for outage ride-through — no generator, no fuel",
       "Grid-stabilizing discharge during transformer overload events",
+      "Frees compute from the feeder — stand up racks at the load and turn a data center into an edge compute center",
       "Remote telemetry with local certified technician service",
     ],
     who: "For data centers, warehouses, fleets and commercial campuses",
