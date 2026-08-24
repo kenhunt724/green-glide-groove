@@ -64,9 +64,11 @@ function EnergyPage() {
               transformers. We engineer detached LiFePO4 battery vaults that absorb that peak demand
               locally, slash utility rates by up to 90%, and replace dangerous gas generators with silent
               mobile power. Charge overnight at ~2.3¢/kWh, from rooftop solar, or directly from your
-              vehicle&apos;s alternator while you drive — and free compute from the grid feeder, so a
-              data center becomes an edge compute center serving the load where it lives.
+              vehicle&apos;s alternator while you drive. And we bring the same playbook to compute: a
+              retrofit path that frees racks from the grid feeder and turns existing buildings into
+              locally owned edge compute centers, serving the load where it lives.
             </p>
+
 
             <div className="mt-10 flex flex-wrap gap-3">
               <a
