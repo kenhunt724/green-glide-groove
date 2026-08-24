@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowDown, BatteryCharging, ShieldCheck, Sun, Wrench } from "lucide-react";
+import { ArrowDown, BatteryCharging, Clock, ShieldCheck, Sun, Wrench } from "lucide-react";
 import { DetachedVault } from "@/components/energy/detached-vault";
 import { GridResilience } from "@/components/energy/grid-resilience";
 import { MobileGenerators } from "@/components/energy/mobile-generators";
@@ -161,6 +161,29 @@ function EnergyPage() {
             </div>
           </div>
         </section>
+
+        {/* Local clock control */}
+        <section className="border-b border-border bg-background">
+          <div className="mx-auto grid max-w-7xl gap-px bg-border md:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)]">
+            <div className="bg-background p-7 md:p-10">
+              <Clock className="size-6 text-energy" aria-hidden="true" />
+              <p className="label-mono mt-6 text-energy">Local clock control</p>
+              <h2 className="mt-3 font-display text-2xl font-semibold md:text-3xl">
+                Set your own charging hours right on the unit.
+              </h2>
+            </div>
+            <div className="bg-surface p-7 md:p-10">
+              <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
+                No app, no account, no one else touching your schedule. An air-gapped real-time
+                clock lives inside the vault and schedules your charging locally — there is no
+                cloud dependency, no utility access, and nothing a remote party can change, read or
+                switch off. The decision of when you charge stays yours, even when the Wi-Fi goes
+                down.
+              </p>
+            </div>
+          </div>
+        </section>
+
 
         {/* Grid resilience */}
         <section id="resilience" className="scroll-mt-20 border-b border-border">
