@@ -195,17 +195,20 @@ function EnergyPage() {
             className="absolute -top-32 left-1/2 size-[38rem] -translate-x-1/2 rounded-full bg-energy/10 blur-3xl"
           />
           <div className="relative mx-auto max-w-7xl px-5 py-20 md:py-24">
-            <p className="label-mono text-energy">Container Energy Plant · for data centers</p>
+            <p className="label-mono text-energy">Container Energy Plant · retrofit &amp; new-build playbook</p>
             <h2 className="mt-4 max-w-4xl text-3xl leading-[1.05] font-bold md:text-5xl">
-              Run your racks on batteries you charged at 2.3¢/kWh — and take the peak off the
-              neighborhood transformer at the same time.
+              The retrofit playbook for turning buildings you already have into locally owned
+              compute — powered at 2.3¢/kWh.
             </h2>
             <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-              AI compute is pulling record power through aging neighborhood transformers. A
-              container-scale LiFePO4 plant buys its energy when the grid is quiet, discharges
-              through peak windows to dodge demand charges, and rides through outages silently — no
-              diesel, no fuel deliveries, no generator maintenance.
+              Batteries in a data center are not new. What nobody is selling is the playbook: a
+              repeatable retrofit and new-build method that drops a container-scale LiFePO4 plant
+              onto an existing hall, warehouse, campus or brownfield, buys energy when the grid is
+              quiet, discharges through peak windows to dodge demand charges, and rides through
+              outages silently — no diesel, no fuel deliveries, no substation queue. Owned and
+              serviced locally, not leased back from a hyperscaler.
             </p>
+
             <div className="mt-9 flex flex-wrap gap-3">
               <a
                 href="#platforms"
