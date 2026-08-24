@@ -282,6 +282,51 @@ function EnergyPage() {
           </div>
         </section>
 
+        {/* Locally owned ownership model */}
+        <section className="rule-grid border-b border-border bg-surface">
+          <div className="mx-auto max-w-7xl px-5 py-20 md:py-24">
+            <p className="label-mono text-energy">The ownership model</p>
+            <h2 className="mt-4 max-w-3xl text-3xl leading-[1.05] font-bold md:text-5xl">
+              The client funds the build. The block owns what gets built.
+            </h2>
+            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+              A vault on your site is not something you rent or lease back. Your money pays for
+              the plant once — the batteries, the inverters, the land it sits on — and what is
+              built stays owned by the neighbourhood that built it.
+            </p>
+            <div className="mt-12 grid gap-px border border-border bg-border md:grid-cols-3">
+              <div className="bg-background p-7">
+                <p className="label-mono text-energy">01 · Paid for once</p>
+                <h3 className="mt-3 font-display text-xl font-semibold">
+                  Customer-funded capacity
+                </h3>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  The build is paid for upfront by the site it serves. In return the site holds
+                  its own power and compute capacity — an asset it owns, not a service contract.
+                </p>
+              </div>
+              <div className="bg-background p-7">
+                <p className="label-mono text-energy">02 · Kept close</p>
+                <h3 className="mt-3 font-display text-xl font-semibold">Owned by the block</h3>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  Land and equipment sit in a community-held entity. The people where it is
+                  installed own the plant and its earnings, and no outside interest holds a stake.
+                </p>
+              </div>
+              <div className="bg-background p-7">
+                <p className="label-mono text-energy">03 · Maintained locally</p>
+                <h3 className="mt-3 font-display text-xl font-semibold">
+                  Serviced by local technicians
+                </h3>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  Certified technicians from the block build, commission and service every plant.
+                  The jobs and the money stay in the neighbourhood.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Grid resilience */}
         <section id="resilience" className="scroll-mt-20 border-b border-border">
           <div className="mx-auto max-w-7xl px-5 py-20 md:py-24">
