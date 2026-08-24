@@ -64,9 +64,11 @@ function EnergyPage() {
               transformers. We engineer detached LiFePO4 battery vaults that absorb that peak demand
               locally, slash utility rates by up to 90%, and replace dangerous gas generators with silent
               mobile power. Charge overnight at ~2.3¢/kWh, from rooftop solar, or directly from your
-              vehicle&apos;s alternator while you drive — and free compute from the grid feeder, so a
-              data center becomes an edge compute center serving the load where it lives.
+              vehicle&apos;s alternator while you drive. And we bring the same playbook to compute: a
+              retrofit path that frees racks from the grid feeder and turns existing buildings into
+              locally owned edge compute centers, serving the load where it lives.
             </p>
+
 
             <div className="mt-10 flex flex-wrap gap-3">
               <a
@@ -193,17 +195,20 @@ function EnergyPage() {
             className="absolute -top-32 left-1/2 size-[38rem] -translate-x-1/2 rounded-full bg-energy/10 blur-3xl"
           />
           <div className="relative mx-auto max-w-7xl px-5 py-20 md:py-24">
-            <p className="label-mono text-energy">Container Energy Plant · for data centers</p>
+            <p className="label-mono text-energy">Container Energy Plant · retrofit &amp; new-build playbook</p>
             <h2 className="mt-4 max-w-4xl text-3xl leading-[1.05] font-bold md:text-5xl">
-              Run your racks on batteries you charged at 2.3¢/kWh — and take the peak off the
-              neighborhood transformer at the same time.
+              The retrofit playbook for turning buildings you already have into locally owned
+              compute — powered at 2.3¢/kWh.
             </h2>
             <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-              AI compute is pulling record power through aging neighborhood transformers. A
-              container-scale LiFePO4 plant buys its energy when the grid is quiet, discharges
-              through peak windows to dodge demand charges, and rides through outages silently — no
-              diesel, no fuel deliveries, no generator maintenance.
+              Batteries in a data center are not new. What nobody is selling is the playbook: a
+              repeatable retrofit and new-build method that drops a container-scale LiFePO4 plant
+              onto an existing hall, warehouse, campus or brownfield, buys energy when the grid is
+              quiet, discharges through peak windows to dodge demand charges, and rides through
+              outages silently — no diesel, no fuel deliveries, no substation queue. Owned and
+              serviced locally, not leased back from a hyperscaler.
             </p>
+
             <div className="mt-9 flex flex-wrap gap-3">
               <a
                 href="#platforms"
@@ -229,7 +234,7 @@ function EnergyPage() {
               <div className="bg-background p-7 md:p-10">
                 <p className="label-mono text-energy">Edge compute deployment</p>
                 <h2 className="mt-3 max-w-md text-3xl leading-[1.05] font-bold md:text-4xl">
-                  Turn large data centers into edge compute centers.
+                  Retrofit first. Own it locally. Serve the load where it lives.
                 </h2>
               </div>
               <div className="bg-surface p-7 md:p-10">
@@ -243,18 +248,23 @@ function EnergyPage() {
                 <ul className="mt-8 space-y-4">
                   {[
                     {
-                      t: "Local power, local compute",
-                      b: "A container plant frees you from the feeder. Stand up capacity at the demand instead of shipping electrons across the region.",
+                      t: "A repeatable retrofit method",
+                      b: "Same container plant, same commissioning steps, dropped onto buildings that already exist. No new substation, no megawatt feeder, no multi-year interconnection queue.",
                     },
                     {
                       t: "Edge economics",
                       b: "Off-peak energy bought at ~2.3¢/kWh plus no transmission build-out, no demand charges, no new substation wait.",
                     },
                     {
+                      t: "Locally owned, locally serviced",
+                      b: "The plant is owned by the site and maintained by certified technicians from the block — compute capacity that keeps its money in the neighborhood.",
+                    },
+                    {
                       t: "Sovereign isolation",
                       b: "Each edge site carries its own clean silent ride-through. One outage at the core no longer takes down the network.",
                     },
                   ].map((p) => (
+
                     <li key={p.t} className="flex gap-3">
                       <span
                         aria-hidden="true"
