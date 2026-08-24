@@ -230,13 +230,15 @@ export const platforms = [
     step: "04",
     scale: "Industrial · 100–500+ kWh",
     title: "Container Energy Plant",
-    body: "A 20- or 40-foot container built out as a commercial storage plant — racked battery modules, industrial inverters, fire separation and active thermal management, delivered and set on a pad to absorb data-center and neighborhood peak loads.",
+    body: "A 20- or 40-foot container built out as a commercial battery plant — racked LiFePO4 modules, industrial inverters, fire separation and active thermal management, delivered and set on a pad. It powers your racks off stored electricity you bought at ~2.3¢/kWh, and shaves the peak off the neighborhood transformer at the same time — no diesel, no fumes, no fuel deliveries.",
     specs: [
+      "Power racks off off-peak electricity bought at ~2.3¢/kWh instead of peak demand charges",
       "Demand-charge shaving and peak-window load defection",
+      "Instant silent islanding for outage ride-through — no generator, no fuel",
       "Grid-stabilizing discharge during transformer overload events",
       "Remote telemetry with local certified technician service",
     ],
-    who: "For warehouses, data centers, fleets and commercial campuses",
+    who: "For data centers, warehouses, fleets and commercial campuses",
   },
 ] as const;
 

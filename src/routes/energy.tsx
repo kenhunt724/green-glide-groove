@@ -185,6 +185,42 @@ function EnergyPage() {
         </section>
 
 
+        {/* Data-center battery plant */}
+        <section id="datacenter" className="rule-grid relative overflow-hidden border-b border-border bg-surface">
+          <div
+            aria-hidden="true"
+            className="absolute -top-32 left-1/2 size-[38rem] -translate-x-1/2 rounded-full bg-energy/10 blur-3xl"
+          />
+          <div className="relative mx-auto max-w-7xl px-5 py-20 md:py-24">
+            <p className="label-mono text-energy">Container Energy Plant · for data centers</p>
+            <h2 className="mt-4 max-w-4xl text-3xl leading-[1.05] font-bold md:text-5xl">
+              Run your racks on batteries you charged at 2.3¢/kWh — and take the peak off the
+              neighborhood transformer at the same time.
+            </h2>
+            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+              AI compute is pulling record power through aging neighborhood transformers. A
+              container-scale LiFePO4 plant buys its energy when the grid is quiet, discharges
+              through peak windows to dodge demand charges, and rides through outages silently — no
+              diesel, no fuel deliveries, no generator maintenance.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <a
+                href="#platforms"
+                className="inline-flex min-h-12 items-center gap-2 bg-energy px-7 font-display text-sm font-semibold text-background transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-energy focus-visible:outline-none"
+              >
+                View the Container Energy Plant <ArrowDown className="size-4" aria-hidden="true" />
+              </a>
+              <button
+                type="button"
+                onClick={() => setQuoteOpen(true)}
+                className="inline-flex min-h-12 items-center gap-2 border border-emerald/60 bg-surface px-7 font-display text-sm font-semibold text-emerald transition-colors hover:bg-emerald/10"
+              >
+                Plan a commercial site assessment
+              </button>
+            </div>
+          </div>
+        </section>
+
         {/* Grid resilience */}
         <section id="resilience" className="scroll-mt-20 border-b border-border">
           <div className="mx-auto max-w-7xl px-5 py-20 md:py-24">
