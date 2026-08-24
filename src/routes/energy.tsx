@@ -234,7 +234,7 @@ function EnergyPage() {
               <div className="bg-background p-7 md:p-10">
                 <p className="label-mono text-energy">Edge compute deployment</p>
                 <h2 className="mt-3 max-w-md text-3xl leading-[1.05] font-bold md:text-4xl">
-                  Turn large data centers into edge compute centers.
+                  Retrofit first. Own it locally. Serve the load where it lives.
                 </h2>
               </div>
               <div className="bg-surface p-7 md:p-10">
@@ -248,18 +248,23 @@ function EnergyPage() {
                 <ul className="mt-8 space-y-4">
                   {[
                     {
-                      t: "Local power, local compute",
-                      b: "A container plant frees you from the feeder. Stand up capacity at the demand instead of shipping electrons across the region.",
+                      t: "A repeatable retrofit method",
+                      b: "Same container plant, same commissioning steps, dropped onto buildings that already exist. No new substation, no megawatt feeder, no multi-year interconnection queue.",
                     },
                     {
                       t: "Edge economics",
                       b: "Off-peak energy bought at ~2.3¢/kWh plus no transmission build-out, no demand charges, no new substation wait.",
                     },
                     {
+                      t: "Locally owned, locally serviced",
+                      b: "The plant is owned by the site and maintained by certified technicians from the block — compute capacity that keeps its money in the neighborhood.",
+                    },
+                    {
                       t: "Sovereign isolation",
                       b: "Each edge site carries its own clean silent ride-through. One outage at the core no longer takes down the network.",
                     },
                   ].map((p) => (
+
                     <li key={p.t} className="flex gap-3">
                       <span
                         aria-hidden="true"
