@@ -221,6 +221,56 @@ function EnergyPage() {
           </div>
         </section>
 
+        {/* Edge compute: local power frees compute from the feeder */}
+        <section className="border-b border-border bg-background">
+          <div className="mx-auto max-w-7xl px-5 py-16 md:py-20">
+            <div className="grid gap-px bg-border md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+              <div className="bg-background p-7 md:p-10">
+                <p className="label-mono text-energy">Edge compute deployment</p>
+                <h2 className="mt-3 max-w-md text-3xl leading-[1.05] font-bold md:text-4xl">
+                  Turn large data centers into edge compute centers.
+                </h2>
+              </div>
+              <div className="bg-surface p-7 md:p-10">
+                <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
+                  The only thing tying compute to a giant centralized facility was the grid — and
+                  the megawatt feeder it demanded. Once power lives in a local battery plant, that
+                  constraint disappears. You can stand up racks wherever the load actually is — a
+                  neighborhood, a campus, a partner&apos;s floor, a brownfield site — and serve users
+                  from the edge of their own town instead of from a distant regional hub.
+                </p>
+                <ul className="mt-8 space-y-4">
+                  {[
+                    {
+                      t: "Local power, local compute",
+                      b: "A container plant frees you from the feeder. Stand up capacity at the demand instead of shipping electrons across the region.",
+                    },
+                    {
+                      t: "Edge economics",
+                      b: "Off-peak energy bought at ~2.3¢/kWh plus no transmission build-out, no demand charges, no new substation wait.",
+                    },
+                    {
+                      t: "Sovereign isolation",
+                      b: "Each edge site carries its own clean silent ride-through. One outage at the core no longer takes down the network.",
+                    },
+                  ].map((p) => (
+                    <li key={p.t} className="flex gap-3">
+                      <span
+                        aria-hidden="true"
+                        className="mt-[7px] size-1 shrink-0 rounded-full bg-energy"
+                      />
+                      <div>
+                        <h3 className="font-display text-sm font-semibold">{p.t}</h3>
+                        <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{p.b}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Grid resilience */}
         <section id="resilience" className="scroll-mt-20 border-b border-border">
           <div className="mx-auto max-w-7xl px-5 py-20 md:py-24">
