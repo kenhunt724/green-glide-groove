@@ -12,7 +12,7 @@ export function SiteFooter() {
             <ContactPhone />
           </div>
         </div>
-        <nav className="flex gap-6">
+        <nav className="flex flex-wrap gap-6">
           <Link to="/store" className="label-mono hover:text-signal">
             Store
           </Link>
@@ -31,7 +31,9 @@ export function SiteFooter() {
           <Link to="/about" className="label-mono hover:text-signal">
             About
           </Link>
-
+          <Link to="/contact" className="label-mono hover:text-signal">
+            Contact
+          </Link>
         </nav>
       </div>
     </footer>

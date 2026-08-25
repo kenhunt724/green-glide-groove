@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CommunityRouteImport } from './routes/community'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CreatorsRouteImport } from './routes/creators'
 import { Route as EnergyRouteImport } from './routes/energy'
 import { Route as MobilityRouteImport } from './routes/mobility'
@@ -47,6 +48,11 @@ const AuthRoute = AuthRouteImport.update({
 const CommunityRoute = CommunityRouteImport.update({
   id: '/community',
   path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CreatorsRoute = CreatorsRouteImport.update({
@@ -107,6 +113,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/community': typeof CommunityRoute
+  '/contact': typeof ContactRoute
   '/creators': typeof CreatorsRoute
   '/energy': typeof EnergyRoute
   '/mobility': typeof MobilityRoute
@@ -123,6 +130,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/community': typeof CommunityRoute
+  '/contact': typeof ContactRoute
   '/creators': typeof CreatorsRoute
   '/energy': typeof EnergyRoute
   '/mobility': typeof MobilityRoute
@@ -141,6 +149,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/community': typeof CommunityRoute
+  '/contact': typeof ContactRoute
   '/creators': typeof CreatorsRoute
   '/energy': typeof EnergyRoute
   '/mobility': typeof MobilityRoute
@@ -159,6 +168,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/community'
+    | '/contact'
     | '/creators'
     | '/energy'
     | '/mobility'
@@ -175,6 +185,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/community'
+    | '/contact'
     | '/creators'
     | '/energy'
     | '/mobility'
@@ -192,6 +203,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/community'
+    | '/contact'
     | '/creators'
     | '/energy'
     | '/mobility'
@@ -210,6 +222,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
   CommunityRoute: typeof CommunityRoute
+  ContactRoute: typeof ContactRoute
   CreatorsRoute: typeof CreatorsRoute
   EnergyRoute: typeof EnergyRoute
   MobilityRoute: typeof MobilityRoute
@@ -254,6 +267,13 @@ declare module '@tanstack/react-router' {
       path: '/community'
       fullPath: '/community'
       preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/creators': {
@@ -350,6 +370,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
   CommunityRoute: CommunityRoute,
+  ContactRoute: ContactRoute,
   CreatorsRoute: CreatorsRoute,
   EnergyRoute: EnergyRoute,
   MobilityRoute: MobilityRoute,
