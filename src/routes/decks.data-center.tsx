@@ -1,8 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { z } from "zod";
 import { DeckShell } from "@/components/deck/deck-shell";
 import { dataCenterSlides } from "@/components/deck/data-center-slides";
 
+const searchSchema = z.object({
+  slide: z.preprocess(
+    (v) => (v ? Number(v) : 1),
+    z.number().int().min(1).max(100).default(1)
+  ),
+  print: z.enum(["1", "true"]).optional(),
+});
+
 export const Route = createFileRoute("/decks/data-center")({
+  validateSearch: searchSchema,
   head: () => ({
     meta: [
       {
