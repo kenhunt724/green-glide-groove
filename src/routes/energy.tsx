@@ -71,15 +71,21 @@ function EnergyPage() {
 
 
             <div className="mt-10 flex flex-wrap gap-3">
+              <Link
+                to="/decks/data-center"
+                className="inline-flex min-h-12 items-center gap-2 bg-energy px-7 font-display text-sm font-semibold text-background transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-energy focus-visible:outline-none"
+              >
+                View the Data Center Pitch <Presentation className="size-4" aria-hidden="true" />
+              </Link>
               <a
                 href="#vaults"
-                className="inline-flex min-h-12 items-center gap-2 bg-energy px-7 font-display text-sm font-semibold text-background transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-energy focus-visible:outline-none"
+                className="inline-flex min-h-12 items-center gap-2 border border-emerald/60 bg-surface px-7 font-display text-sm font-semibold text-emerald transition-colors hover:bg-emerald/10"
               >
                 Explore Stationary Energy Vaults <ArrowDown className="size-4" aria-hidden="true" />
               </a>
               <a
                 href="#mobile"
-                className="inline-flex min-h-12 items-center gap-2 border border-emerald/60 bg-surface px-7 font-display text-sm font-semibold text-emerald transition-colors hover:bg-emerald/10"
+                className="inline-flex min-h-12 items-center gap-2 border border-border bg-surface px-7 font-display text-sm font-semibold transition-colors hover:border-energy hover:text-energy"
               >
                 View Mobile Silent Generators
               </a>
