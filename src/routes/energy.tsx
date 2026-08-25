@@ -216,16 +216,22 @@ function EnergyPage() {
             </p>
 
             <div className="mt-9 flex flex-wrap gap-3">
+              <Link
+                to="/decks/data-center"
+                className="inline-flex min-h-12 items-center gap-2 bg-energy px-7 font-display text-sm font-semibold text-background transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-energy focus-visible:outline-none"
+              >
+                Open the Pitch Deck <Presentation className="size-4" aria-hidden="true" />
+              </Link>
               <a
                 href="#platforms"
-                className="inline-flex min-h-12 items-center gap-2 bg-energy px-7 font-display text-sm font-semibold text-background transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-energy focus-visible:outline-none"
+                className="inline-flex min-h-12 items-center gap-2 border border-emerald/60 bg-surface px-7 font-display text-sm font-semibold text-emerald transition-colors hover:bg-emerald/10"
               >
                 View the Container Energy Plant <ArrowDown className="size-4" aria-hidden="true" />
               </a>
               <button
                 type="button"
                 onClick={() => setQuoteOpen(true)}
-                className="inline-flex min-h-12 items-center gap-2 border border-emerald/60 bg-surface px-7 font-display text-sm font-semibold text-emerald transition-colors hover:bg-emerald/10"
+                className="inline-flex min-h-12 items-center gap-2 border border-border bg-surface px-7 font-display text-sm font-semibold transition-colors hover:border-energy hover:text-energy"
               >
                 Plan a commercial site assessment
               </button>
