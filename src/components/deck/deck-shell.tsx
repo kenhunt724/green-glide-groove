@@ -65,6 +65,20 @@ export function DeckShell({ slides, title }: DeckShellProps) {
     document.title = `${slideIndex + 1}/${slides.length} — ${title}`;
   }, [slideIndex, slides.length, title]);
 
+  const touchStartX = useRef<number | null>(null);
+
+  function onTouchStart(e: React.TouchEvent) {
+    touchStartX.current = e.touches[0]?.clientX ?? null;
+  }
+
+  function onTouchEnd(e: React.TouchEvent) {
+    if (touchStartX.current === null) return;
+    const dx = (e.changedTouches[0]?.clientX ?? 0) - touchStartX.current;
+    touchStartX.current = null;
+    if (Math.abs(dx) < 50) return;
+    goTo(dx < 0 ? slideIndex + 1 : slideIndex - 1);
+  }
+
   function goTo(index: number) {
     const clamped = Math.max(0, Math.min(slides.length - 1, index));
     navigate({ search: { slide: clamped + 1 }, replace: true });
@@ -97,6 +111,8 @@ export function DeckShell({ slides, title }: DeckShellProps) {
     <div
       ref={stageRef}
       className="relative h-screen w-screen overflow-hidden bg-black"
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
     >
       <div className="slide-wrapper">{slides[slideIndex]}</div>
 
