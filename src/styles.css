@@ -177,7 +177,7 @@
   top: 50%;
   margin-left: -960px;
   margin-top: -540px;
-  transform: scale(var(--scale));
+  transform: scale(min(100vw / 1920, 100vh / 1080));
   transform-origin: center center;
 }
 
@@ -190,6 +190,10 @@
   @page {
     size: 1920px 1080px landscape;
     margin: 0;
+  }
+
+  .slide-wrapper {
+    transform: none;
   }
 }
 
