@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowDown, BatteryCharging, Clock, ShieldCheck, Sun, Wrench } from "lucide-react";
+import { ArrowDown, BatteryCharging, Clock, Presentation, ShieldCheck, Sun, Wrench } from "lucide-react";
 import { DetachedVault } from "@/components/energy/detached-vault";
 import { GridResilience } from "@/components/energy/grid-resilience";
 import { MobileGenerators } from "@/components/energy/mobile-generators";
