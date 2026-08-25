@@ -15,7 +15,27 @@ export function DeckShell({ slides, title }: DeckShellProps) {
     Math.min(slides.length - 1, (search.slide ?? 1) - 1)
   );
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const stageRef = useRef<HTMLDivElement>(null);
   const printMode = search.print === "1" || search.print === "true";
+
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage) return;
+    function fit() {
+      const el = stageRef.current;
+      if (!el) return;
+      const scale = Math.min(el.clientWidth / 1920, el.clientHeight / 1080);
+      el.style.setProperty("--slide-scale", String(scale || 1));
+    }
+    fit();
+    const ro = new ResizeObserver(fit);
+    ro.observe(stage);
+    window.addEventListener("resize", fit);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", fit);
+    };
+  }, [printMode]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
