@@ -171,7 +171,7 @@ function OwnershipSlide() {
       <div className="flex flex-col justify-center gap-8">
         <Pillar
           title="Funded by capex"
-          body="No investors. No recurring SaaS lock-in. The site owns the asset outright."
+          body="No outside capital. No recurring SaaS lock-in. The site owns the asset outright."
         />
         <Pillar
           title="Owned by the site"
