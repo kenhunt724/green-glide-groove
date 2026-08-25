@@ -111,6 +111,8 @@ export function DeckShell({ slides, title }: DeckShellProps) {
     <div
       ref={stageRef}
       className="relative h-screen w-screen overflow-hidden bg-black"
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
     >
       <div className="slide-wrapper">{slides[slideIndex]}</div>
 
