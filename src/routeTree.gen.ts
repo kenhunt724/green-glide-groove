@@ -18,6 +18,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CreatorsRouteImport } from './routes/creators'
 import { Route as EnergyRouteImport } from './routes/energy'
 import { Route as MobilityRouteImport } from './routes/mobility'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as StoreRouteImport } from './routes/store'
 import { Route as CHandleRouteImport } from './routes/c.$handle'
 import { Route as DecksDataCenterRouteImport } from './routes/decks.data-center'
@@ -70,6 +71,11 @@ const MobilityRoute = MobilityRouteImport.update({
   path: '/mobility',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StoreRoute = StoreRouteImport.update({
   id: '/store',
   path: '/store',
@@ -117,6 +123,7 @@ export interface FileRoutesByFullPath {
   '/creators': typeof CreatorsRoute
   '/energy': typeof EnergyRoute
   '/mobility': typeof MobilityRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/store': typeof StoreRoute
   '/c/$handle': typeof CHandleRoute
   '/decks/data-center': typeof DecksDataCenterRoute
@@ -134,6 +141,7 @@ export interface FileRoutesByTo {
   '/creators': typeof CreatorsRoute
   '/energy': typeof EnergyRoute
   '/mobility': typeof MobilityRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/store': typeof StoreRoute
   '/c/$handle': typeof CHandleRoute
   '/decks/data-center': typeof DecksDataCenterRoute
@@ -153,6 +161,7 @@ export interface FileRoutesById {
   '/creators': typeof CreatorsRoute
   '/energy': typeof EnergyRoute
   '/mobility': typeof MobilityRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/store': typeof StoreRoute
   '/c/$handle': typeof CHandleRoute
   '/decks/data-center': typeof DecksDataCenterRoute
@@ -172,6 +181,7 @@ export interface FileRouteTypes {
     | '/creators'
     | '/energy'
     | '/mobility'
+    | '/reset-password'
     | '/store'
     | '/c/$handle'
     | '/decks/data-center'
@@ -189,6 +199,7 @@ export interface FileRouteTypes {
     | '/creators'
     | '/energy'
     | '/mobility'
+    | '/reset-password'
     | '/store'
     | '/c/$handle'
     | '/decks/data-center'
@@ -207,6 +218,7 @@ export interface FileRouteTypes {
     | '/creators'
     | '/energy'
     | '/mobility'
+    | '/reset-password'
     | '/store'
     | '/c/$handle'
     | '/decks/data-center'
@@ -226,6 +238,7 @@ export interface RootRouteChildren {
   CreatorsRoute: typeof CreatorsRoute
   EnergyRoute: typeof EnergyRoute
   MobilityRoute: typeof MobilityRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   StoreRoute: typeof StoreRoute
   CHandleRoute: typeof CHandleRoute
   DecksDataCenterRoute: typeof DecksDataCenterRoute
@@ -295,6 +308,13 @@ declare module '@tanstack/react-router' {
       path: '/mobility'
       fullPath: '/mobility'
       preLoaderRoute: typeof MobilityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/store': {
@@ -374,6 +394,7 @@ const rootRouteChildren: RootRouteChildren = {
   CreatorsRoute: CreatorsRoute,
   EnergyRoute: EnergyRoute,
   MobilityRoute: MobilityRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   StoreRoute: StoreRoute,
   CHandleRoute: CHandleRoute,
   DecksDataCenterRoute: DecksDataCenterRoute,
