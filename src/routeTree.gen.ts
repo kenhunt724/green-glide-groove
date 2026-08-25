@@ -19,6 +19,7 @@ import { Route as EnergyRouteImport } from './routes/energy'
 import { Route as MobilityRouteImport } from './routes/mobility'
 import { Route as StoreRouteImport } from './routes/store'
 import { Route as CHandleRouteImport } from './routes/c.$handle'
+import { Route as DecksDataCenterRouteImport } from './routes/decks.data-center'
 import { Route as ProducersSlugRouteImport } from './routes/producers.$slug'
 import { Route as AuthenticatedCreatorDashboardRouteImport } from './routes/_authenticated/creator/dashboard'
 import { Route as AuthenticatedOpsCapacityRouteImport } from './routes/_authenticated/ops/capacity'
@@ -73,6 +74,11 @@ const CHandleRoute = CHandleRouteImport.update({
   path: '/c/$handle',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DecksDataCenterRoute = DecksDataCenterRouteImport.update({
+  id: '/decks/data-center',
+  path: '/decks/data-center',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProducersSlugRoute = ProducersSlugRouteImport.update({
   id: '/producers/$slug',
   path: '/producers/$slug',
@@ -106,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/mobility': typeof MobilityRoute
   '/store': typeof StoreRoute
   '/c/$handle': typeof CHandleRoute
+  '/decks/data-center': typeof DecksDataCenterRoute
   '/producers/$slug': typeof ProducersSlugRoute
   '/creator/dashboard': typeof AuthenticatedCreatorDashboardRoute
   '/ops/capacity': typeof AuthenticatedOpsCapacityRoute
@@ -121,6 +128,7 @@ export interface FileRoutesByTo {
   '/mobility': typeof MobilityRoute
   '/store': typeof StoreRoute
   '/c/$handle': typeof CHandleRoute
+  '/decks/data-center': typeof DecksDataCenterRoute
   '/producers/$slug': typeof ProducersSlugRoute
   '/creator/dashboard': typeof AuthenticatedCreatorDashboardRoute
   '/ops/capacity': typeof AuthenticatedOpsCapacityRoute
@@ -138,6 +146,7 @@ export interface FileRoutesById {
   '/mobility': typeof MobilityRoute
   '/store': typeof StoreRoute
   '/c/$handle': typeof CHandleRoute
+  '/decks/data-center': typeof DecksDataCenterRoute
   '/producers/$slug': typeof ProducersSlugRoute
   '/_authenticated/creator/dashboard': typeof AuthenticatedCreatorDashboardRoute
   '/_authenticated/ops/capacity': typeof AuthenticatedOpsCapacityRoute
@@ -155,6 +164,7 @@ export interface FileRouteTypes {
     | '/mobility'
     | '/store'
     | '/c/$handle'
+    | '/decks/data-center'
     | '/producers/$slug'
     | '/creator/dashboard'
     | '/ops/capacity'
@@ -170,6 +180,7 @@ export interface FileRouteTypes {
     | '/mobility'
     | '/store'
     | '/c/$handle'
+    | '/decks/data-center'
     | '/producers/$slug'
     | '/creator/dashboard'
     | '/ops/capacity'
@@ -186,6 +197,7 @@ export interface FileRouteTypes {
     | '/mobility'
     | '/store'
     | '/c/$handle'
+    | '/decks/data-center'
     | '/producers/$slug'
     | '/_authenticated/creator/dashboard'
     | '/_authenticated/ops/capacity'
@@ -203,6 +215,7 @@ export interface RootRouteChildren {
   MobilityRoute: typeof MobilityRoute
   StoreRoute: typeof StoreRoute
   CHandleRoute: typeof CHandleRoute
+  DecksDataCenterRoute: typeof DecksDataCenterRoute
   ProducersSlugRoute: typeof ProducersSlugRoute
 }
 
@@ -278,6 +291,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CHandleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/decks/data-center': {
+      id: '/decks/data-center'
+      path: '/decks/data-center'
+      fullPath: '/decks/data-center'
+      preLoaderRoute: typeof DecksDataCenterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/producers/$slug': {
       id: '/producers/$slug'
       path: '/producers/$slug'
@@ -335,6 +355,7 @@ const rootRouteChildren: RootRouteChildren = {
   MobilityRoute: MobilityRoute,
   StoreRoute: StoreRoute,
   CHandleRoute: CHandleRoute,
+  DecksDataCenterRoute: DecksDataCenterRoute,
   ProducersSlugRoute: ProducersSlugRoute,
 }
 export const routeTree = rootRouteImport
