@@ -12,7 +12,7 @@ export function DeckShell({ slides, title }: DeckShellProps) {
   const search = useSearch({ from: "/decks/data-center" });
   const slideIndex = Math.max(
     0,
-    Math.min(slides.length - 1, Number(search.slide ?? 1) - 1)
+    Math.min(slides.length - 1, (search.slide ?? 1) - 1)
   );
   const [isFullscreen, setIsFullscreen] = useState(false);
   const printMode = search.print === "1" || search.print === "true";
