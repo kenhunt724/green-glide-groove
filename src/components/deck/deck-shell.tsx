@@ -94,7 +94,10 @@ export function DeckShell({ slides, title }: DeckShellProps) {
   }
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden bg-black">
+    <div
+      ref={stageRef}
+      className="relative h-screen w-screen overflow-hidden bg-black"
+    >
       <div className="slide-wrapper">{slides[slideIndex]}</div>
 
       <div className="pointer-events-none absolute inset-0 flex flex-col justify-between p-6">
