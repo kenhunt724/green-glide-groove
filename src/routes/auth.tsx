@@ -93,18 +93,35 @@ function AuthPage() {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="ops-password">Password</Label>
-          <Input
-            id="ops-password"
-            type="password"
-            autoComplete={mode === "signup" ? "new-password" : "current-password"}
-            required
-            minLength={8}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+        {mode !== "forgot" && (
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <Label htmlFor="ops-password">Password</Label>
+              {mode === "signin" && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMode("forgot");
+                    setError(null);
+                    setMessage(null);
+                  }}
+                  className="label-mono text-xs text-muted-foreground hover:text-energy"
+                >
+                  Forgot password?
+                </button>
+              )}
+            </div>
+            <Input
+              id="ops-password"
+              type="password"
+              autoComplete={mode === "signup" ? "new-password" : "current-password"}
+              required
+              minLength={8}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+        )}
 
         {error && (
           <p role="alert" className="border border-destructive/60 bg-destructive/10 p-3 text-sm">
@@ -121,7 +138,7 @@ function AuthPage() {
           className="label-mono inline-flex min-h-11 w-full items-center justify-center gap-2 bg-energy px-6 font-semibold text-background transition-opacity hover:opacity-90 disabled:opacity-40"
         >
           {busy && <Loader2 className="size-4 animate-spin" aria-hidden="true" />}
-          {mode === "signin" ? "Sign in" : "Create staff account"}
+          {mode === "signin" ? "Sign in" : mode === "signup" ? "Create staff account" : "Send reset link"}
         </button>
 
         <button
