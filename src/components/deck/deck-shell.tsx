@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useNavigate, useSearch } from "@tanstack/react-router";
 import { Maximize, Minimize, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -14,24 +14,8 @@ export function DeckShell({ slides, title }: DeckShellProps) {
     0,
     Math.min(slides.length - 1, Number(search.slide ?? 1) - 1)
   );
-  const [scale, setScale] = useState(1);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
   const printMode = search.print === "1" || search.print === "true";
-
-  useEffect(() => {
-    function updateScale() {
-      const container = containerRef.current;
-      if (!container) return;
-      const rect = container.getBoundingClientRect();
-      const scaleX = rect.width / 1920;
-      const scaleY = rect.height / 1080;
-      setScale(Math.min(scaleX, scaleY));
-    }
-    updateScale();
-    window.addEventListener("resize", updateScale);
-    return () => window.removeEventListener("resize", updateScale);
-  }, []);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -90,16 +74,8 @@ export function DeckShell({ slides, title }: DeckShellProps) {
   }
 
   return (
-    <div
-      ref={containerRef}
-      className="relative h-screen w-screen overflow-hidden bg-black"
-    >
-      <div
-        className="slide-wrapper"
-        style={{ "--scale": scale } as React.CSSProperties}
-      >
-        {slides[slideIndex]}
-      </div>
+    <div className="relative h-screen w-screen overflow-hidden bg-black">
+      <div className="slide-wrapper">{slides[slideIndex]}</div>
 
       <div className="pointer-events-none absolute inset-0 flex flex-col justify-between p-6">
         <div className="flex items-center justify-between">
