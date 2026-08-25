@@ -7,12 +7,13 @@ export function ContactPhone({
   variant = "dark",
 }: {
   className?: string;
-  variant?: "dark" | "light" | "signal";
+  variant?: "dark" | "light" | "signal" | "energy";
 }) {
   const variantClasses = {
     dark: "text-muted-foreground hover:text-foreground",
     light: "text-background/70 hover:text-background",
     signal: "text-signal hover:text-signal/80",
+    energy: "text-energy hover:text-energy/80",
   };
 
   return (
