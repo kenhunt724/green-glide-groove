@@ -266,10 +266,9 @@ function CtaSlide() {
       >
         Book the assessment
       </a>
-      <p className="slide-caption mt-6 text-sm text-muted-foreground">
-        eps724@outlook.com
-      </p>
-      <p className="slide-caption mt-2 text-sm text-muted-foreground">
+      <p className="slide-caption mt-6 flex items-center justify-center gap-3 text-sm text-muted-foreground">
+        <span>eps724@outlook.com</span>
+        <span>·</span>
         <ContactPhone variant="light" />
       </p>
     </div>
