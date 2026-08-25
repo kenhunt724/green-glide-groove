@@ -27,7 +27,7 @@ const wings = [
   { to: "/community", label: "Trade Pipeline" },
   { to: "/creators", label: "Creator Vault" },
   { to: "/about", label: "About" },
-
+  { to: "/contact", label: "Contact" },
 ] as const;
 
 export function SiteHeader() {
