@@ -266,11 +266,10 @@ function CtaSlide() {
       >
         Book the assessment
       </a>
-      <p className="slide-caption mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
-        <span>earthresonancehub.com/energy</span>
-        <span>·</span>
-        <span>eps724@outlook.com</span>
-        <span>·</span>
+      <p className="slide-caption mt-6 text-sm text-muted-foreground">
+        eps724@outlook.com
+      </p>
+      <p className="slide-caption mt-2 text-sm text-muted-foreground">
         <ContactPhone variant="light" />
       </p>
     </div>
