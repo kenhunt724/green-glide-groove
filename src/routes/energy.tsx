@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowDown, BatteryCharging, Clock, Presentation, ShieldCheck, Sun, Wrench } from "lucide-react";
+import { ContactPhone } from "@/components/contact-phone";
 import { DetachedVault } from "@/components/energy/detached-vault";
 import { GridResilience } from "@/components/energy/grid-resilience";
 import { MobileGenerators } from "@/components/energy/mobile-generators";
@@ -97,6 +98,9 @@ function EnergyPage() {
                 Book a Free Site Assessment
               </button>
             </div>
+            <div className="mt-5">
+              <ContactPhone variant="energy" />
+            </div>
 
             <ul className="mt-14 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
               {trustBadges.map((b) => (
@@ -156,6 +160,9 @@ function EnergyPage() {
                 >
                   Book a free site assessment
                 </button>
+              </div>
+              <div className="mt-5">
+                <ContactPhone variant="energy" />
               </div>
             </div>
             <div className="order-1 lg:order-2">
@@ -235,6 +242,9 @@ function EnergyPage() {
               >
                 Plan a commercial site assessment
               </button>
+            </div>
+            <div className="mt-5">
+              <ContactPhone variant="energy" />
             </div>
           </div>
         </section>

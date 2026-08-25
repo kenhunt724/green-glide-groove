@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ContactPhone } from "@/components/contact-phone";
 import { CREATOR_KINDS, MASTER_EXTENSIONS } from "@/lib/creator-formats";
 import { getCreatorProgramStatus } from "@/lib/creator.functions";
 
@@ -79,6 +80,9 @@ function CreatorsPage() {
             >
               No invite? Join the trade pipeline
             </Link>
+          </div>
+          <div className="mt-5">
+            <ContactPhone variant="energy" />
           </div>
         </section>
 

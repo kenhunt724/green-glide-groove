@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { ContactPhone } from "@/components/contact-phone";
 
 export function SiteFooter() {
   return (
@@ -7,6 +8,9 @@ export function SiteFooter() {
         <div>
           <p className="font-display text-lg font-bold">EARTH PROTECTION SOCIETY</p>
           <p className="label-mono mt-2">Block 12 · Coming Soon · Sovereign charter · Customer-funded · Locally owned</p>
+          <div className="mt-3">
+            <ContactPhone />
+          </div>
         </div>
         <nav className="flex gap-6">
           <Link to="/store" className="label-mono hover:text-signal">

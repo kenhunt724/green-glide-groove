@@ -1,4 +1,5 @@
 import containerImage from "@/assets/container-storage.jpg";
+import { ContactPhone } from "@/components/contact-phone";
 
 function StatBox({ label, value }: { label: string; value: string }) {
   return (
@@ -268,6 +269,9 @@ function CtaSlide() {
       <p className="slide-caption mt-8 text-muted-foreground">
         earthresonancehub.com/energy · eps724@outlook.com
       </p>
+      <div className="mt-4">
+        <ContactPhone variant="light" />
+      </div>
     </div>
   );
 }
