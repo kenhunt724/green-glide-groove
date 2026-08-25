@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useNavigate, useSearch } from "@tanstack/react-router";
 import { Maximize, Minimize, ChevronLeft, ChevronRight } from "lucide-react";
 
