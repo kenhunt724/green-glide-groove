@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ContactPhone } from "@/components/contact-phone";
 import { WaveformPlayer } from "@/components/waveform-player";
 import { FormatABPlayer } from "@/components/format-ab-player";
 import { audioSamples } from "@/content/audio-samples";
@@ -326,6 +327,19 @@ function StorePage() {
                     </dl>
                   </div>
                 ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="border-t border-border">
+            <div className="mx-auto max-w-7xl px-5 py-16">
+              <h2 className="text-2xl font-semibold">Questions about a release?</h2>
+              <p className="mt-4 max-w-2xl text-muted-foreground">
+                The Society runs this counter directly. Call or text for consignment, masters, or
+                press orders.
+              </p>
+              <div className="mt-8">
+                <ContactPhone variant="signal" />
               </div>
             </div>
           </section>

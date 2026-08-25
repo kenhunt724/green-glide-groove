@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ContactPhone } from "@/components/contact-phone";
 import freightlinerGlider from "@/assets/freightliner-glider.jpg";
 
 export const Route = createFileRoute("/mobility")({
@@ -127,6 +128,19 @@ function MobilityPage() {
                 LiFePO4 carries the duty cycle without cobalt, tolerates deep cycling, and retires
                 into the campus UPS bank when it drops below traction spec.
               </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-t border-border bg-surface">
+          <div className="mx-auto max-w-7xl px-5 py-16">
+            <h2 className="text-2xl font-semibold">Build with us</h2>
+            <p className="mt-4 max-w-2xl text-muted-foreground">
+              Glider conversions are assembled in partner shops on the block. If you want a truck,
+              a bench, or a fleet order, call or text directly.
+            </p>
+            <div className="mt-8">
+              <ContactPhone variant="signal" />
             </div>
           </div>
         </section>

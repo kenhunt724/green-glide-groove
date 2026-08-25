@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ContactPhone } from "@/components/contact-phone";
 import { deepDive } from "@/content/deep-dive";
 
 export const Route = createFileRoute("/about")({
@@ -72,6 +73,19 @@ function AboutPage() {
             </div>
           </section>
         ))}
+
+        <section className="border-t border-border bg-surface">
+          <div className="mx-auto max-w-7xl px-5 py-16">
+            <h2 className="text-3xl font-semibold">Start a conversation</h2>
+            <p className="mt-4 max-w-2xl text-muted-foreground">
+              Whether you want a site assessment, a shop partnership, or just a straight answer
+              about how the charter works, call or text directly.
+            </p>
+            <div className="mt-8">
+              <ContactPhone variant="signal" />
+            </div>
+          </div>
+        </section>
       </main>
       <SiteFooter />
     </div>

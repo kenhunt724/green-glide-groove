@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Disc3, Factory, Leaf } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ContactPhone } from "@/components/contact-phone";
 import { deepDive } from "@/content/deep-dive";
 import heroCampus from "@/assets/hero-campus.jpg";
 
@@ -88,6 +89,9 @@ function Index() {
               >
                 Read the charter
               </Link>
+            </div>
+            <div className="mt-6">
+              <ContactPhone variant="signal" />
             </div>
           </div>
         </section>

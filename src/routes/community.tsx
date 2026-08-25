@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ContactPhone } from "@/components/contact-phone";
 import { CommunityIntake } from "@/components/community/community-intake";
 
 export const Route = createFileRoute("/community")({
@@ -127,6 +128,9 @@ function CommunityPage() {
             <p className="mt-3 text-muted-foreground">
               Tell us which side you&apos;re coming in on and a crew lead will follow up.
             </p>
+            <div className="mt-6">
+              <ContactPhone variant="signal" />
+            </div>
             <div className="mt-8">
               <CommunityIntake />
             </div>
