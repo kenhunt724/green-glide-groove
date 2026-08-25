@@ -39,7 +39,7 @@ function TitleSlide() {
         <p className="slide-subtitle mt-8 max-w-3xl text-muted-foreground">
           A customer-funded retrofit playbook that turns data centers into edge
           compute centers — no new substation, no megawatt feeder wait, no
-          outside investors.
+          outside capital.
         </p>
       </div>
       <div className="slide-body text-muted-foreground">
