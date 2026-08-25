@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useNavigate, useSearch } from "@tanstack/react-router";
 import { Maximize, Minimize, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -15,7 +15,27 @@ export function DeckShell({ slides, title }: DeckShellProps) {
     Math.min(slides.length - 1, (search.slide ?? 1) - 1)
   );
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const stageRef = useRef<HTMLDivElement>(null);
   const printMode = search.print === "1" || search.print === "true";
+
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage) return;
+    function fit() {
+      const el = stageRef.current;
+      if (!el) return;
+      const scale = Math.min(el.clientWidth / 1920, el.clientHeight / 1080);
+      el.style.setProperty("--slide-scale", String(scale || 1));
+    }
+    fit();
+    const ro = new ResizeObserver(fit);
+    ro.observe(stage);
+    window.addEventListener("resize", fit);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", fit);
+    };
+  }, [printMode]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -74,7 +94,10 @@ export function DeckShell({ slides, title }: DeckShellProps) {
   }
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden bg-black">
+    <div
+      ref={stageRef}
+      className="relative h-screen w-screen overflow-hidden bg-black"
+    >
       <div className="slide-wrapper">{slides[slideIndex]}</div>
 
       <div className="pointer-events-none absolute inset-0 flex flex-col justify-between p-6">
