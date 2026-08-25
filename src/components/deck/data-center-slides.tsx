@@ -269,7 +269,7 @@ function CtaSlide() {
       <p className="slide-caption mt-6 flex items-center justify-center gap-3 text-sm text-muted-foreground">
         <span>eps724@outlook.com</span>
         <span>·</span>
-        <ContactPhone variant="light" />
+        <ContactPhone variant="dark" />
       </p>
     </div>
   );
