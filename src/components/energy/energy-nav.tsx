@@ -111,6 +111,15 @@ export function EnergyNav({ onQuote }: { onQuote: () => void }) {
                     <p className="mt-1 text-sm text-muted-foreground">{e.body}</p>
                   </Link>
                 ))}
+                <Link
+                  to="/join"
+                  className="border-b border-border/60 px-6 py-5 transition-colors hover:bg-surface"
+                >
+                  <p className="font-display text-lg">Join the Energy Corps</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Open roles for technicians, evaluators, and engineers.
+                  </p>
+                </Link>
               </nav>
             </SheetContent>
           </Sheet>

@@ -34,6 +34,9 @@ export function SiteFooter() {
           <Link to="/contact" className="label-mono hover:text-signal">
             Contact
           </Link>
+          <Link to="/join" className="label-mono hover:text-signal">
+            Join
+          </Link>
         </nav>
       </div>
     </footer>
