@@ -33,7 +33,7 @@ function AboutPage() {
           <div className="mx-auto max-w-7xl px-5 py-20">
             <p className="label-mono">Wing III · The Society</p>
             <h1 className="mt-5 max-w-4xl text-4xl font-bold md:text-6xl">
-              A single block, accounted for <span className="text-signal">end to end</span>.
+              Growing globally <span className="text-signal">from the block.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
               Earth Protection Society is not a brand laid over other people&apos;s supply chains.
@@ -41,6 +41,19 @@ function AboutPage() {
               electricity, buildings and work. The client pays for everything, so the land,
               power and product the block builds stay in the neighbourhood. Use the menu for the full systems index.
             </p>
+            <div className="mt-10 border-l-2 border-signal bg-surface p-6 md:p-8">
+              <p className="label-mono text-signal">Mission</p>
+              <p className="mt-3 max-w-3xl text-xl font-semibold leading-relaxed md:text-2xl">
+                &ldquo;Growing Globally From The Block.&rdquo;
+              </p>
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
+                Here in the U.S. this is the only place they gave us — so we will use it to align
+                the earth with nature in this new age, and in many more to come, forever. Every
+                project starts on one block, with one client, one technician and one locally owned
+                plant. That is how a neighbourhood becomes a network, and a network becomes a
+                global pattern of sovereign, nature-aligned work.
+              </p>
+            </div>
           </div>
         </section>
 
