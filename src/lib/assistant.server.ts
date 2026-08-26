@@ -11,7 +11,7 @@ Product ladder — "Electricity Power Harvesters" (harvest cheap off-peak electr
 - Silent Generator Cart (2-5 kWh): portable, no fumes or noise, charges overnight at cheap rates or while driving.
 - Power Trailer: towable jobsite/event power.
 - Residential & Commercial Power Pod (30-80 kWh): detached LiFePO4 vault, the building runs on batteries so power never flickers.
-- Container Energy Plant (100-500+ kWh): retrofit-first energy for warehouses, commercial campuses and edge-compute/data centers, avoiding multi-year utility interconnection queues.
+- Container Battery Plant (100-500+ kWh): a 20- or 40-foot intermodal container filled with racked LiFePO4 batteries, inverters and thermal management. No engine, no exhaust pipe, no fuel. Retrofit-first energy for warehouses, commercial campuses and edge-compute/data centers, avoiding multi-year utility interconnection queues.
 
 Positioning: customer-funded, no outside investors, 99-year lease structures on property/service/hardware, built and serviced by local certified technicians. Global sourcing for cells/inverters (resilience against strikes, bankruptcies, tariffs), local build and local ownership.
 
