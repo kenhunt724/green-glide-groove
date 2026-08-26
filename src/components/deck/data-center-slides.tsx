@@ -205,9 +205,9 @@ function SupplyChainSlide() {
       body: "Below ~5 MW, off-the-shelf C&I-scale inverters work with existing capacity — no utility-scale central inverters, no pad-mount step-ups.",
     },
     {
-      id: "honest",
-      title: "Fast, not instant",
-      body: "C&I inverters, LiFePO4 cells, and switchgear carry 6–18 month lead times. We build procurement into the plan from day one.",
+      id: "global",
+      title: "Global sourcing, local build",
+      body: "We qualify cells and inverters from multiple regions so a strike, bankruptcy or tariff shock at one supplier cannot strand a neighborhood plant. Assembly, ownership and service stay on the block.",
     },
   ];
   return (
