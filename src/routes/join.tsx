@@ -242,7 +242,7 @@ function JoinPage() {
 function ApplicationForm() {
   const uid = useId();
   const fid = (n: string) => `${uid}-${n}`;
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<TalentApplicationInput>({
     full_name: "",
     email: "",
     phone: "",
