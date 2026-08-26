@@ -4,6 +4,16 @@ Use these drafts directly on LinkedIn. They are written to fit LinkedIn's headli
 
 ---
 
+## Mission Statement
+
+> Growing Globally From The Block.
+>
+> Here in the U.S. this is the only place they gave us. We will use it to align the earth with nature in this new age — and in many more to come, forever.
+>
+> Every project starts on one block, with one client, one technician and one locally owned plant. That is how a neighbourhood becomes a network, and a network becomes a global pattern of sovereign, nature-aligned work.
+
+---
+
 ## Company / Profile Headline
 
 > Earth Protection Society — Sovereign power, local ownership, no outside investors.

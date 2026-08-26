@@ -67,14 +67,15 @@ function Index() {
           <div className="relative mx-auto max-w-7xl px-5 py-28 md:py-40">
             <p className="label-mono">The Hero of This Story</p>
             <h1 className="mt-6 max-w-4xl text-5xl leading-[0.95] font-bold md:text-7xl">
-              The community working
-              <span className="text-signal"> together.</span>
+              Growing globally
+              <span className="text-signal"> from the block.</span>
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               Earth Protection Society is not a product line. It is a neighbourhood of hands,
               voices and benches building what the block actually needs: clean power, honest
               mobility, uncompressed sound, and work that pays the people who do it. The client
-              pays for everything, so what we build stays owned by the community that built it.
+              pays for everything, so what we build stays owned by the community that built it —
+              one block at a time, until the pattern reaches everywhere it is needed.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Link
