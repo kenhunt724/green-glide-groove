@@ -70,7 +70,10 @@ function Index() {
               Growing globally
               <span className="text-signal"> from the block.</span>
             </h1>
-            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-4 max-w-2xl text-xl font-semibold text-signal md:text-2xl">
+              When the world run out of resources, we will aways be here.
+            </p>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               Earth Protection Society is not a product line. It is a neighbourhood of hands,
               voices and benches building what the block actually needs: clean power, honest
               mobility, uncompressed sound, and work that pays the people who do it. The client
