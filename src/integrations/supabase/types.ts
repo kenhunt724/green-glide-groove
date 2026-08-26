@@ -623,6 +623,45 @@ export type Database = {
         }
         Relationships: []
       }
+      talent_applications: {
+        Row: {
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          linkedin_url: string | null
+          notes: string | null
+          phone: string | null
+          resume_text: string | null
+          role: string
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          linkedin_url?: string | null
+          notes?: string | null
+          phone?: string | null
+          resume_text?: string | null
+          role: string
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          linkedin_url?: string | null
+          notes?: string | null
+          phone?: string | null
+          resume_text?: string | null
+          role?: string
+          status?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string

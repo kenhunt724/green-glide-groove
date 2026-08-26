@@ -78,10 +78,10 @@ function Index() {
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Link
-                to="/community"
+                to="/join"
                 className="inline-flex items-center gap-2 bg-signal px-6 py-3 font-display text-sm font-semibold text-signal-foreground transition-opacity hover:opacity-90"
               >
-                Join the build <ArrowUpRight className="size-4" />
+                Join the build <ArrowUpRight className="size-4" aria-hidden="true" />
               </Link>
               <Link
                 to="/about"
