@@ -220,18 +220,18 @@ function EnergyPage() {
             className="absolute -top-32 left-1/2 size-[38rem] -translate-x-1/2 rounded-full bg-energy/10 blur-3xl"
           />
           <div className="relative mx-auto max-w-7xl px-5 py-20 md:py-24">
-            <p className="label-mono text-energy">Container Energy Plant · retrofit &amp; new-build playbook</p>
+            <p className="label-mono text-energy">Container Battery Plant · retrofit &amp; new-build playbook</p>
             <h2 className="mt-4 max-w-4xl text-3xl leading-[1.05] font-bold md:text-5xl">
-              The retrofit playbook for turning buildings you already have into locally owned
-              compute — powered at 2.3¢/kWh.
+              Batteries inside the container. No exhaust pipe. No engine. No fuel.
             </h2>
             <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-              Batteries in a data center are not new. What nobody is selling is the playbook: a
-              repeatable retrofit and new-build method that drops a container-scale LiFePO4 plant
-              onto an existing hall, warehouse, campus or brownfield, buys energy when the grid is
-              quiet, discharges through peak windows to dodge demand charges, and rides through
-              outages silently — no diesel, no fuel deliveries, no substation queue. Owned and
-              serviced locally, not leased back from a hyperscaler.
+              A 20- or 40-foot intermodal container packed with racked LiFePO4 battery modules,
+              industrial inverters and active thermal management. Not a generator. Not a diesel
+              backup. A battery vault that drops onto an existing hall, warehouse, campus or
+              brownfield, buys energy when the grid is quiet, discharges through peak windows to
+              dodge demand charges, and rides through outages silently — no diesel, no fumes, no
+              fuel deliveries, no substation queue. Owned and serviced locally, not leased back from
+              a hyperscaler.
             </p>
 
             <div className="mt-9 flex flex-wrap gap-3">
