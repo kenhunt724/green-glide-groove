@@ -87,7 +87,7 @@ For every post image: dark background, single copper accent, one hardware subjec
 ## 7. Personal profile (Kenneth Hunt)
 
 **Headline:**
-> Founder, Earth Protection Society | Customer-funded battery vaults, silent power carts & container energy plants | Growing Globally From The Block | 404-454-0602
+> Founder, Earth Protection Society | Customer-funded battery vaults, silent power carts & container battery plants | Growing Globally From The Block | 404-454-0602
 
 **About (first 2 lines matter most):**
 > I build sovereign power on the block: detached LiFePO4 vaults, silent generator carts, and container energy plants that harvest cheap off-peak electricity and deliver it through peak windows.
