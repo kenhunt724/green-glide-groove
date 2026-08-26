@@ -242,11 +242,19 @@ function JoinPage() {
 function ApplicationForm() {
   const uid = useId();
   const fid = (n: string) => `${uid}-${n}`;
-  const [form, setForm] = useState<TalentApplicationInput>({
+  const [form, setForm] = useState<{
+    full_name: string;
+    email: string;
+    phone: string;
+    role: string;
+    linkedin_url: string;
+    resume_text: string;
+    notes: string;
+  }>({
     full_name: "",
     email: "",
     phone: "",
-    role: applicationRoles[0],
+    role: applicationRoles[0] ?? "",
     linkedin_url: "",
     resume_text: "",
     notes: "",
@@ -254,7 +262,7 @@ function ApplicationForm() {
 
   const submit = useServerFn(submitTalentApplication);
   const mutation = useMutation({
-    mutationFn: submit,
+    mutationFn: (data: typeof form) => submit({ data }),
   });
 
   const handleSubmit = (e: React.FormEvent) => {
