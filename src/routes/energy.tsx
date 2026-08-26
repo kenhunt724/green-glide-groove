@@ -394,7 +394,7 @@ function EnergyPage() {
                     b: "Vaults, pods and containers are welded, wired and commissioned by certified block technicians.",
                   },
                   {
-                    t: "Supplier shocks don&apos;t strand projects",
+                    t: "Supplier shocks never strand projects",
                     b: "If one region or factory goes offline, alternate parts keep builds on schedule.",
                   },
                   {
