@@ -245,7 +245,7 @@ function EnergyPage() {
                 href="#platforms"
                 className="inline-flex min-h-12 items-center gap-2 border border-emerald/60 bg-surface px-7 font-display text-sm font-semibold text-emerald transition-colors hover:bg-emerald/10"
               >
-                View the Container Energy Plant <ArrowDown className="size-4" aria-hidden="true" />
+                View the Container Battery Plant <ArrowDown className="size-4" aria-hidden="true" />
               </a>
               <button
                 type="button"
