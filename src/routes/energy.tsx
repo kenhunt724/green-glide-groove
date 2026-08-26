@@ -20,9 +20,9 @@ import { PlatformLadder } from "@/components/energy/platform-ladder";
 import { LeadForm } from "@/components/energy/lead-form";
 import { services, steps, trustBadges } from "@/content/energy";
 
-const TITLE = "Battery Vaults & Silent Mobile Generators | EPS Clean Energy";
+const TITLE = "Electricity Power Harvesters | EPS Battery Vaults, Pods & Data Center BESS";
 const DESC =
-  "Detached outbuilding LiFePO4 battery vaults that cut peak utility rates up to 90%, stop brownouts and replace noisy gas generators. Charge at ~2.3¢/kWh, from solar, or off your alternator.";
+  "Silent generator carts, residential & commercial LiFePO4 power pods, and container energy plants that harvest cheap off-peak electricity for peak-hour use. Same-day site evaluations: 404-454-0602.";
 
 export const Route = createFileRoute("/energy")({
   head: () => ({
