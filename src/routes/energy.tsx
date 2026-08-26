@@ -57,46 +57,38 @@ function EnergyPage() {
           <div className="relative mx-auto max-w-7xl px-5 py-24 md:py-32">
             <p className="label-mono text-energy">Clean Energy &amp; Mobile Power Division</p>
             <h1 className="mt-6 max-w-5xl text-4xl leading-[1.02] font-bold md:text-6xl lg:text-7xl">
-              Sovereign Power that Stops Brownouts, Flickers &amp; Outages —
-              <span className="text-energy"> Zero Fumes, Zero Noise, Zero Peak Rates.</span>
+              Electricity Power Harvesters —{" "}
+              <span className="text-energy">Cart, Pod &amp; Data-Center BESS.</span>
             </h1>
             <p className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-              Data centers and AI compute are pulling more power than ever through aging neighborhood
-              transformers. We engineer detached LiFePO4 battery vaults that absorb that peak demand
-              locally, slash utility rates by up to 90%, and replace dangerous gas generators with silent
-              mobile power. Charge overnight at ~2.3¢/kWh, from rooftop solar, or directly from your
-              vehicle&apos;s alternator while you drive. And we bring the same playbook to compute: a
-              retrofit path that frees racks from the grid feeder and turns existing buildings into
-              locally owned edge compute centers, serving the load where it lives.
+              We engineer three LiFePO4 product lines that buy power when it is cheap and deliver it
+              when it is expensive or unreliable: a silent generator cart for jobsites and backup, a
+              detached residential &amp; commercial power pod, and a container energy plant for data
+              centers and commercial campuses. All charge overnight at ~2.3¢/kWh, run on batteries
+              instead of the grid, and are built and serviced by certified local technicians.
             </p>
 
-
             <div className="mt-10 flex flex-wrap gap-3">
-              <Link
-                to="/decks/data-center"
+              <a
+                href={`tel:${CONTACT_PHONE.replace(/-/g, "")}`}
                 className="inline-flex min-h-12 items-center gap-2 bg-energy px-7 font-display text-sm font-semibold text-background transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-energy focus-visible:outline-none"
               >
-                View the Data Center Pitch <Presentation className="size-4" aria-hidden="true" />
-              </Link>
-              <a
-                href="#vaults"
-                className="inline-flex min-h-12 items-center gap-2 border border-emerald/60 bg-surface px-7 font-display text-sm font-semibold text-emerald transition-colors hover:bg-emerald/10"
-              >
-                Explore Stationary Energy Vaults <ArrowDown className="size-4" aria-hidden="true" />
-              </a>
-              <a
-                href="#mobile"
-                className="inline-flex min-h-12 items-center gap-2 border border-border bg-surface px-7 font-display text-sm font-semibold transition-colors hover:border-energy hover:text-energy"
-              >
-                View Mobile Silent Generators
+                <Phone className="size-4" aria-hidden="true" />
+                Call {CONTACT_PHONE} — Same-day eval
               </a>
               <button
                 type="button"
                 onClick={() => setQuoteOpen(true)}
+                className="inline-flex min-h-12 items-center gap-2 border border-emerald/60 bg-surface px-7 font-display text-sm font-semibold text-emerald transition-colors hover:bg-emerald/10"
+              >
+                Can&apos;t call? Send details
+              </button>
+              <Link
+                to="/decks/data-center"
                 className="inline-flex min-h-12 items-center gap-2 border border-border bg-surface px-7 font-display text-sm font-semibold transition-colors hover:border-energy hover:text-energy"
               >
-                Book a Free Site Assessment
-              </button>
+                View the Data Center Pitch <Presentation className="size-4" aria-hidden="true" />
+              </Link>
             </div>
             <div className="mt-5">
               <ContactPhone variant="energy" />
@@ -110,6 +102,26 @@ function EnergyPage() {
                 </li>
               ))}
             </ul>
+          </div>
+        </section>
+
+        {/* Phone-first evaluation banner */}
+        <section className="border-b border-border bg-surface">
+          <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-5 py-8 md:flex-row md:items-center">
+            <div>
+              <p className="label-mono text-energy">Same-day site evaluation</p>
+              <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
+                Residential, commercial, warehouse, and data-center sites. We review your interval
+                data, roof or pad conditions, and tariff — then return an engineered savings figure.
+              </p>
+            </div>
+            <a
+              href={`tel:${CONTACT_PHONE.replace(/-/g, "")}`}
+              className="inline-flex min-h-12 shrink-0 items-center gap-2 bg-energy px-7 font-display text-sm font-semibold text-background transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-energy focus-visible:outline-none"
+            >
+              <Phone className="size-4" aria-hidden="true" />
+              Call {CONTACT_PHONE}
+            </a>
           </div>
         </section>
 
