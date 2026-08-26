@@ -21,7 +21,7 @@ Use these drafts directly on LinkedIn. They are written to fit LinkedIn's headli
 Alternative short versions:
 
 - Building battery-backed energy systems that cut peak rates and keep the money on the block.
-- Detached LiFePO4 vaults, silent generators, and container energy plants — owned locally.
+- Detached LiFePO4 vaults, silent generators, and container battery plants — owned locally.
 - We turn cheap off-peak electricity into sovereign power for neighborhoods and edge compute.
 
 ---
