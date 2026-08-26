@@ -63,7 +63,7 @@ function EnergyPage() {
             <p className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground">
               We engineer three LiFePO4 product lines that buy power when it is cheap and deliver it
               when it is expensive or unreliable: a silent generator cart for jobsites and backup, a
-              detached residential &amp; commercial power pod, and a container energy plant for data
+              detached residential &amp; commercial power pod, and a container battery plant for data
               centers and commercial campuses. All charge overnight at ~2.3¢/kWh, run on batteries
               instead of the grid, and are built and serviced by certified local technicians.
             </p>
