@@ -15,7 +15,7 @@ Assets are in the Files panel under `linkedin/`:
 **Name:** Earth Protection Society
 
 **Tagline (120 char max):**
-> Growing Globally From The Block. Sovereign, customer-funded power — battery vaults, silent carts, container energy plants.
+> Growing Globally From The Block. Sovereign, customer-funded power — battery vaults, silent carts, container battery plants.
 
 **Industry:** Renewable Energy Semiconductor Manufacturing
 **Company size:** 2-10 employees
