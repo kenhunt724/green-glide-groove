@@ -361,6 +361,63 @@ function EnergyPage() {
           </div>
         </section>
 
+        {/* Global sourcing, local build */}
+        <section className="border-b border-border bg-background">
+          <div className="mx-auto grid max-w-7xl gap-px bg-border md:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)]">
+            <div className="bg-background p-7 md:p-10">
+              <Globe className="size-6 text-energy" aria-hidden="true" />
+              <p className="label-mono mt-6 text-energy">Global sourcing, local build</p>
+              <h2 className="mt-3 font-display text-2xl font-semibold md:text-3xl">
+                A worldwide parts map protects the neighborhood.
+              </h2>
+              <p className="mt-5 text-sm leading-relaxed text-muted-foreground md:text-base">
+                We source the best cells, inverters and switchgear from wherever they are made best —
+                and we build, own and service every plant right here on the block.
+              </p>
+            </div>
+            <div className="bg-surface p-7 md:p-10">
+              <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
+                A global mindset is not about shipping jobs overseas. It is about resilience: even
+                American suppliers face strikes, bankruptcies, fires and tariff shocks. By qualifying
+                multiple cell and inverter sources across continents, we make sure one supplier&apos;s
+                shutdown never shuts down a community&apos;s power plant. The jobs stay local. The
+                ownership stays local. The parts map stays diversified.
+              </p>
+              <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+                {[
+                  {
+                    t: "No single point of failure",
+                    b: "Cells, inverters and switchgear sourced from qualified vendors in multiple regions.",
+                  },
+                  {
+                    t: "Local assembly & service",
+                    b: "Vaults, pods and containers are welded, wired and commissioned by certified block technicians.",
+                  },
+                  {
+                    t: "Supplier shocks don&apos;t strand projects",
+                    b: "If one region or factory goes offline, alternate parts keep builds on schedule.",
+                  },
+                  {
+                    t: "Community keeps the equity",
+                    b: "Global sourcing lowers capex; local build and ownership keep the value in the neighborhood.",
+                  },
+                ].map((p) => (
+                  <li key={p.t} className="flex gap-3">
+                    <span
+                      aria-hidden="true"
+                      className="mt-[7px] size-1 shrink-0 rounded-full bg-energy"
+                    />
+                    <div>
+                      <h3 className="font-display text-sm font-semibold">{p.t}</h3>
+                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{p.b}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
         {/* Grid resilience */}
         <section id="resilience" className="scroll-mt-20 border-b border-border">
           <div className="mx-auto max-w-7xl px-5 py-20 md:py-24">
