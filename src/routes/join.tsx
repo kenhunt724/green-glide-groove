@@ -16,7 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { submitTalentApplication, type TalentApplicationInput } from "@/lib/talent-applications.functions";
+import { submitTalentApplication } from "@/lib/talent-applications.functions";
 import { applicationRoles, linkedInCopy, roles } from "@/content/talent";
 
 const TITLE = "Join the EPS Energy Corps | Earth Protection Society";
