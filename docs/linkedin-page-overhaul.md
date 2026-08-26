@@ -25,7 +25,7 @@ Assets are in the Files panel under `linkedin/`:
 **Website:** https://earthresonancehub.com
 **Phone:** 404-454-0602
 
-**Specialties (add all):** LiFePO4 battery storage, peak shaving, detached battery vaults, silent generator carts, container energy plants, data center BESS, edge compute power, off-peak charging, site evaluations, community ownership, retrofit energy playbook, solar integration
+**Specialties (add all):** LiFePO4 battery storage, peak shaving, detached battery vaults, silent generator carts, container battery plants, data center BESS, edge compute power, off-peak charging, site evaluations, community ownership, retrofit energy playbook, solar integration
 
 ---
 
