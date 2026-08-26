@@ -56,7 +56,7 @@ We call them Electricity Power Harvesters because that is exactly what they do: 
 
 • Silent Generator Cart — 2–5 kWh, portable, charges overnight or from your alternator.
 • Residential & Commercial Power Pod — 30–80 kWh detached vault, zero living-space intrusion.
-• Container Energy Plant — 100–500+ kWh for data centers, warehouses, and commercial campuses.
+• Container Battery Plant — 100–500+ kWh for data centers, warehouses, and commercial campuses.
 
 All three run on the same Victron GX brain, the same LiFePO4 chemistry, and the same local service model. Charge at ~2.3¢/kWh, discharge through peak windows, and never wait in a substation queue.
 
