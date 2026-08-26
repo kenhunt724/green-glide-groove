@@ -229,9 +229,10 @@ export const platforms = [
     id: "container",
     step: "04",
     scale: "Industrial · 100–500+ kWh",
-    title: "Container Energy Plant",
-    body: "A 20- or 40-foot container built out as a commercial battery plant — racked LiFePO4 modules, industrial inverters, fire separation and active thermal management, delivered and set on a pad. It retrofits onto a site you already have, powers your racks off stored electricity you bought at ~2.3¢/kWh, and shaves the peak off the neighborhood transformer at the same time — no diesel, no fumes, no fuel deliveries.",
+    title: "Container Battery Plant",
+    body: "A 20- or 40-foot intermodal container filled with racked LiFePO4 battery modules, industrial inverters, fire separation and active thermal management — delivered and set on a pad. There is no engine, no fuel tank and no exhaust pipe: this is a battery vault, not a generator. It retrofits onto a site you already have, powers your racks off stored electricity you bought at ~2.3¢/kWh, and shaves the peak off the neighborhood transformer at the same time — no diesel, no fumes, no fuel deliveries.",
     specs: [
+      "Intermodal container packed with LiFePO4 batteries and inverters — no engine, no exhaust, no combustion",
       "Retrofit playbook: drops onto existing halls, warehouses, campuses and brownfields — no new substation, no megawatt feeder wait",
       "Power racks off off-peak electricity bought at ~2.3¢/kWh instead of peak demand charges",
       "Demand-charge shaving and peak-window load defection",
