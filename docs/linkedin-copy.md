@@ -42,7 +42,7 @@ We are currently hiring certified battery and solar technicians, site evaluators
 
 If your utility bill is climbing, your lights flicker, or you are tired of gas-generator noise, call us at 404-454-0602 for a same-day site evaluation.
 
-We will walk your property, review twelve months of interval data, and tell you whether a LiFePO4 battery vault, silent generator cart, or container energy plant makes sense — no obligation, no sales theatre.
+We will walk your property, review twelve months of interval data, and tell you whether a LiFePO4 battery vault, silent generator cart, or container battery plant makes sense — no obligation, no sales theatre.
 
 Customer-funded. Locally owned. No outside investors.
 
