@@ -187,6 +187,47 @@ function OwnershipSlide() {
   );
 }
 
+function SupplyChainSlide() {
+  const points = [
+    {
+      id: "queue",
+      title: "The traditional path is frozen",
+      body: "Utility-scale inverters, medium-voltage step-up transformers, and high-voltage interconnection gear now carry multi-year lead times. New substations and megawatt feeders sit in the same queue.",
+    },
+    {
+      id: "route",
+      title: "We route around the queue",
+      body: "The container plant drops onto existing service and discharges behind the meter — it never asks the utility for new medium-voltage gear.",
+    },
+    {
+      id: "gear",
+      title: "We avoid exactly the gear that's scarce",
+      body: "Below ~5 MW, off-the-shelf C&I-scale inverters work with existing capacity — no utility-scale central inverters, no pad-mount step-ups.",
+    },
+    {
+      id: "honest",
+      title: "Fast, not instant",
+      body: "C&I inverters, LiFePO4 cells, and switchgear carry 6–18 month lead times. We build procurement into the plan from day one.",
+    },
+  ];
+  return (
+    <div className="slide-content flex flex-col bg-background p-20 text-foreground">
+      <p className="slide-kicker text-energy">Supply chain arbitrage</p>
+      <h2 className="slide-title mt-6 text-white">
+        The grid's bottleneck is our moat.
+      </h2>
+      <div className="mt-16 grid grid-cols-2 gap-8">
+        {points.map((p) => (
+          <div key={p.id} className="surface-panel p-8">
+            <h3 className="slide-body-lg text-white">{p.title}</h3>
+            <p className="slide-body mt-3 text-muted-foreground">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function EconomicsSlide() {
   return (
     <div className="slide-content flex flex-col bg-background p-20 text-foreground">
