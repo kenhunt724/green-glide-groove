@@ -71,6 +71,9 @@ function Index() {
               <span className="text-signal"> from the block.</span>
             </h1>
             <p className="mt-4 max-w-2xl text-xl font-semibold text-signal md:text-2xl">
+              When the world run out of resources, we will aways be here.
+            </p>
+            <p className="mt-2 max-w-2xl text-lg font-medium text-muted-foreground md:text-xl">
               Food, soil, water, clean energy, transportation is always here on the block.
             </p>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
