@@ -94,20 +94,22 @@ function SolutionSlide() {
     <div className="slide-content relative text-white">
       <img
         src={containerImage}
-        alt="Container energy plant installed beside an industrial building"
+        alt="Intermodal container battery plant with LiFePO4 modules and inverters inside — no engine, no exhaust pipe"
         className="absolute inset-0 size-full object-cover opacity-30"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
       <div className="relative flex h-full flex-col justify-center p-20">
         <p className="slide-kicker text-energy">The solution</p>
-        <h2 className="slide-title mt-6 max-w-3xl">Container Energy Plant</h2>
+        <h2 className="slide-title mt-6 max-w-3xl">Container Battery Plant</h2>
         <p className="slide-subtitle mt-8 max-w-2xl text-muted-foreground">
-          100–500+ kWh of LiFePO4 storage in a 20- or 40-foot container. Drops
-          onto existing pads, halls, warehouses, and brownfields.
+          100–500+ kWh of LiFePO4 batteries inside a 20- or 40-foot intermodal
+          container. No exhaust pipe, no engine, no fuel — just racked battery
+          modules, inverters and thermal management dropped onto existing pads,
+          halls, warehouses, and brownfields.
         </p>
         <div className="mt-12 flex gap-6">
+          <Pill label="Battery-filled" />
           <Pill label="Retrofit-first" />
-          <Pill label="Air-gapped control" />
           <Pill label="Community-serviced" />
         </div>
       </div>
