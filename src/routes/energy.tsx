@@ -493,20 +493,33 @@ function EnergyPage() {
         <section id="book" className="scroll-mt-20 border-b border-border bg-background">
           <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:py-24 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
             <div>
-              <p className="label-mono text-energy">Free site assessment</p>
+              <p className="label-mono text-energy">Can&apos;t call right now?</p>
               <h2 className="mt-3 text-3xl font-bold md:text-5xl">
-                Book your engineered savings review
+                Send your details and we will call you back
               </h2>
               <p className="mt-6 text-muted-foreground">
                 Four short steps. A local certified technician pulls twelve months of your interval
-                data, models your tariff, and returns a binding vault design — no obligation, no
-                sales theatre.
+                data, models your tariff, and returns an engineered savings figure — no obligation,
+                no sales theatre. Prefer speed? Call 404-454-0602.
               </p>
+              <div className="mt-6">
+                <ContactPhone variant="energy" />
+              </div>
             </div>
             <LeadForm />
           </div>
         </section>
       </main>
+
+      {/* Sticky mobile call button */}
+      <a
+        href={`tel:${CONTACT_PHONE.replace(/-/g, "")}`}
+        className="fixed right-4 bottom-4 z-50 flex h-14 items-center gap-2 rounded-full bg-energy px-5 font-display text-sm font-semibold text-background shadow-lg transition-transform hover:scale-105 focus-visible:ring-2 focus-visible:ring-energy focus-visible:outline-none md:hidden"
+        aria-label="Call Earth Protection Society Energy Division"
+      >
+        <Phone className="size-5" aria-hidden="true" />
+        {CONTACT_PHONE}
+      </a>
 
       <footer className="border-t border-border bg-surface">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-12 md:flex-row md:items-end md:justify-between">
