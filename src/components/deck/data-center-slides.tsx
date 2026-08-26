@@ -322,6 +322,7 @@ export const dataCenterSlides = [
   <SolutionSlide key="solution" />,
   <HowItWorksSlide key="how" />,
   <OwnershipSlide key="ownership" />,
+  <SupplyChainSlide key="supply-chain" />,
   <EconomicsSlide key="economics" />,
   <GroundZeroSlide key="ground-zero" />,
   <CtaSlide key="cta" />,
