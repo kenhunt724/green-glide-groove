@@ -71,3 +71,23 @@ Atlanta-first. Contract-to-W2 as the Block scales. Customer-funded, no outside i
 Apply at earthresonancehub.com/join or call 404-454-0602.
 
 #hiring #energyjobs #atlanta #solarjobs #batterystorage #technician #datacenter #localjobs
+
+---
+
+## Post 4 — Global Sourcing, Local Build
+
+A global supply chain mindset protects the client and the community.
+
+Even US suppliers face strikes, bankruptcies, fires and tariff shocks. If your battery plant depends on one factory in one region, one shutdown can strand an entire neighborhood project.
+
+Our answer: source the best cells and inverters globally, then build, own and service every plant locally.
+
+• Multiple qualified vendors across regions — no single point of failure.
+• Vaults, pods and containers welded and wired by certified block technicians.
+• Ownership and service contracts stay in the neighborhood.
+
+Global parts. Local paychecks. Community-owned resilience.
+
+Call 404-454-0602 for a same-day site evaluation.
+
+#energystorage #batterystorage #localjobs #supplychain #resilience #atlanta #cleanenergy #localownership
