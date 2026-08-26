@@ -551,9 +551,13 @@ function EnergyPage() {
       <Dialog open={quoteOpen} onOpenChange={setQuoteOpen}>
         <DialogContent className="max-h-[90vh] overflow-y-auto border-border bg-background sm:max-w-2xl">
           <DialogHeader>
-            <DialogTitle className="font-display text-2xl">Book a free site assessment</DialogTitle>
+            <DialogTitle className="font-display text-2xl">Send your details</DialogTitle>
             <DialogDescription>
-              Four steps, about ninety seconds. We come back with an engineered savings figure.
+              We will call you back to schedule a site evaluation. For fastest response, call{" "}
+              <a href={`tel:${CONTACT_PHONE.replace(/-/g, "")}`} className="text-energy hover:underline">
+                {CONTACT_PHONE}
+              </a>
+              .
             </DialogDescription>
           </DialogHeader>
           <LeadForm />
