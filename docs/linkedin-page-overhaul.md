@@ -63,7 +63,7 @@ Set the page button to **Contact us** → `https://earthresonancehub.com/contact
 
 ## 5. Page sections to enable
 
-- **Products:** add Silent Generator Cart, Residential & Commercial Power Pod, Container Energy Plant / Data Center BESS — each with the `/energy` link and the copper product photos from the site.
+- **Products:** add Silent Generator Cart, Residential & Commercial Power Pod, Container Battery Plant / Data Center BESS — each with the `/energy` link and the copper product photos from the site.
 - **Jobs:** post the four Energy Corps roles (Site Evaluator, Battery & Solar Technician, Data Center Energy Engineer, Business Development). Apply URL: `https://earthresonancehub.com/join`.
 - **Life:** one photo block of block-built hardware with the caption "Designed & welded by the block."
 
