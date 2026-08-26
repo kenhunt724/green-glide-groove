@@ -22,7 +22,7 @@ import { services, steps, trustBadges } from "@/content/energy";
 
 const TITLE = "Electricity Power Harvesters | EPS Battery Vaults, Pods & Data Center BESS";
 const DESC =
-  "Silent generator carts, residential & commercial LiFePO4 power pods, and container energy plants that harvest cheap off-peak electricity for peak-hour use. Same-day site evaluations: 404-454-0602.";
+  "Silent generator carts, residential & commercial LiFePO4 power pods, and container battery plants that harvest cheap off-peak electricity for peak-hour use. Same-day site evaluations: 404-454-0602.";
 
 export const Route = createFileRoute("/energy")({
   head: () => ({
