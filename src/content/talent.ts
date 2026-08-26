@@ -136,4 +136,4 @@ export const roles = [
   },
 ] as const;
 
-export const applicationRoles = roles.map((r) => r.title);
+export const applicationRoles = roles.map((r) => r.title) as (typeof roles)[number]["title"][];
