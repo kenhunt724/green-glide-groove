@@ -16,7 +16,7 @@ We are currently hiring certified battery and solar technicians, site evaluators
       title: "Same-day site evaluations are open",
       body: `If your utility bill is climbing, your lights flicker, or you are tired of gas-generator noise, call us at 404-454-0602 for a same-day site evaluation.
 
-We will walk your property, review twelve months of interval data, and tell you whether a LiFePO4 battery vault, silent generator cart, or container energy plant makes sense — no obligation, no sales theatre.
+We will walk your property, review twelve months of interval data, and tell you whether a LiFePO4 battery vault, silent generator cart, or container battery plant makes sense — no obligation, no sales theatre.
 
 Customer-funded. Locally owned. No outside investors.
 
@@ -29,7 +29,7 @@ Customer-funded. Locally owned. No outside investors.
 
 • Silent Generator Cart — 2–5 kWh, portable, charges overnight or from your alternator.
 • Residential & Commercial Power Pod — 30–80 kWh detached vault, zero living-space intrusion.
-• Container Energy Plant — 100–500+ kWh for data centers, warehouses, and commercial campuses.
+• Container Battery Plant — 100–500+ kWh for data centers, warehouses, and commercial campuses.
 
 All three run on the same Victron GX brain, the same LiFePO4 chemistry, and the same local service model. Charge at ~2.3¢/kWh, discharge through peak windows, and never wait in a substation queue.
 

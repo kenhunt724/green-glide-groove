@@ -15,7 +15,7 @@ Assets are in the Files panel under `linkedin/`:
 **Name:** Earth Protection Society
 
 **Tagline (120 char max):**
-> Growing Globally From The Block. Sovereign, customer-funded power — battery vaults, silent carts, container energy plants.
+> Growing Globally From The Block. Sovereign, customer-funded power — battery vaults, silent carts, container battery plants.
 
 **Industry:** Renewable Energy Semiconductor Manufacturing
 **Company size:** 2-10 employees
@@ -25,7 +25,7 @@ Assets are in the Files panel under `linkedin/`:
 **Website:** https://earthresonancehub.com
 **Phone:** 404-454-0602
 
-**Specialties (add all):** LiFePO4 battery storage, peak shaving, detached battery vaults, silent generator carts, container energy plants, data center BESS, edge compute power, off-peak charging, site evaluations, community ownership, retrofit energy playbook, solar integration
+**Specialties (add all):** LiFePO4 battery storage, peak shaving, detached battery vaults, silent generator carts, container battery plants, data center BESS, edge compute power, off-peak charging, site evaluations, community ownership, retrofit energy playbook, solar integration
 
 ---
 
@@ -63,7 +63,7 @@ Set the page button to **Contact us** → `https://earthresonancehub.com/contact
 
 ## 5. Page sections to enable
 
-- **Products:** add Silent Generator Cart, Residential & Commercial Power Pod, Container Energy Plant / Data Center BESS — each with the `/energy` link and the copper product photos from the site.
+- **Products:** add Silent Generator Cart, Residential & Commercial Power Pod, Container Battery Plant / Data Center BESS — each with the `/energy` link and the copper product photos from the site.
 - **Jobs:** post the four Energy Corps roles (Site Evaluator, Battery & Solar Technician, Data Center Energy Engineer, Business Development). Apply URL: `https://earthresonancehub.com/join`.
 - **Life:** one photo block of block-built hardware with the caption "Designed & welded by the block."
 
@@ -87,10 +87,10 @@ For every post image: dark background, single copper accent, one hardware subjec
 ## 7. Personal profile (Kenneth Hunt)
 
 **Headline:**
-> Founder, Earth Protection Society | Customer-funded battery vaults, silent power carts & container energy plants | Growing Globally From The Block | 404-454-0602
+> Founder, Earth Protection Society | Customer-funded battery vaults, silent power carts & container battery plants | Growing Globally From The Block | 404-454-0602
 
 **About (first 2 lines matter most):**
-> I build sovereign power on the block: detached LiFePO4 vaults, silent generator carts, and container energy plants that harvest cheap off-peak electricity and deliver it through peak windows.
+> I build sovereign power on the block: detached LiFePO4 vaults, silent generator carts, and container battery plants that harvest cheap off-peak electricity and deliver it through peak windows.
 >
 > No outside investors. The client funds it, the block builds it, the neighborhood owns and services it. We're running same-day site evaluations across metro Atlanta and hiring certified technicians, site evaluators and data-center energy engineers. Call 404-454-0602.
 

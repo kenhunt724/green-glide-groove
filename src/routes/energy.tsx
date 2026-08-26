@@ -22,7 +22,7 @@ import { services, steps, trustBadges } from "@/content/energy";
 
 const TITLE = "Electricity Power Harvesters | EPS Battery Vaults, Pods & Data Center BESS";
 const DESC =
-  "Silent generator carts, residential & commercial LiFePO4 power pods, and container energy plants that harvest cheap off-peak electricity for peak-hour use. Same-day site evaluations: 404-454-0602.";
+  "Silent generator carts, residential & commercial LiFePO4 power pods, and container battery plants that harvest cheap off-peak electricity for peak-hour use. Same-day site evaluations: 404-454-0602.";
 
 export const Route = createFileRoute("/energy")({
   head: () => ({
@@ -63,7 +63,7 @@ function EnergyPage() {
             <p className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground">
               We engineer three LiFePO4 product lines that buy power when it is cheap and deliver it
               when it is expensive or unreliable: a silent generator cart for jobsites and backup, a
-              detached residential &amp; commercial power pod, and a container energy plant for data
+              detached residential &amp; commercial power pod, and a container battery plant for data
               centers and commercial campuses. All charge overnight at ~2.3¢/kWh, run on batteries
               instead of the grid, and are built and serviced by certified local technicians.
             </p>
@@ -220,18 +220,18 @@ function EnergyPage() {
             className="absolute -top-32 left-1/2 size-[38rem] -translate-x-1/2 rounded-full bg-energy/10 blur-3xl"
           />
           <div className="relative mx-auto max-w-7xl px-5 py-20 md:py-24">
-            <p className="label-mono text-energy">Container Energy Plant · retrofit &amp; new-build playbook</p>
+            <p className="label-mono text-energy">Container Battery Plant · retrofit &amp; new-build playbook</p>
             <h2 className="mt-4 max-w-4xl text-3xl leading-[1.05] font-bold md:text-5xl">
-              The retrofit playbook for turning buildings you already have into locally owned
-              compute — powered at 2.3¢/kWh.
+              Batteries inside the container. No exhaust pipe. No engine. No fuel.
             </h2>
             <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-              Batteries in a data center are not new. What nobody is selling is the playbook: a
-              repeatable retrofit and new-build method that drops a container-scale LiFePO4 plant
-              onto an existing hall, warehouse, campus or brownfield, buys energy when the grid is
-              quiet, discharges through peak windows to dodge demand charges, and rides through
-              outages silently — no diesel, no fuel deliveries, no substation queue. Owned and
-              serviced locally, not leased back from a hyperscaler.
+              A 20- or 40-foot intermodal container packed with racked LiFePO4 battery modules,
+              industrial inverters and active thermal management. Not a generator. Not a diesel
+              backup. A battery vault that drops onto an existing hall, warehouse, campus or
+              brownfield, buys energy when the grid is quiet, discharges through peak windows to
+              dodge demand charges, and rides through outages silently — no diesel, no fumes, no
+              fuel deliveries, no substation queue. Owned and serviced locally, not leased back from
+              a hyperscaler.
             </p>
 
             <div className="mt-9 flex flex-wrap gap-3">
@@ -245,7 +245,7 @@ function EnergyPage() {
                 href="#platforms"
                 className="inline-flex min-h-12 items-center gap-2 border border-emerald/60 bg-surface px-7 font-display text-sm font-semibold text-emerald transition-colors hover:bg-emerald/10"
               >
-                View the Container Energy Plant <ArrowDown className="size-4" aria-hidden="true" />
+                View the Container Battery Plant <ArrowDown className="size-4" aria-hidden="true" />
               </a>
               <button
                 type="button"
