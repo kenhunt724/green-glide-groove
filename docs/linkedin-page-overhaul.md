@@ -90,7 +90,7 @@ For every post image: dark background, single copper accent, one hardware subjec
 > Founder, Earth Protection Society | Customer-funded battery vaults, silent power carts & container battery plants | Growing Globally From The Block | 404-454-0602
 
 **About (first 2 lines matter most):**
-> I build sovereign power on the block: detached LiFePO4 vaults, silent generator carts, and container energy plants that harvest cheap off-peak electricity and deliver it through peak windows.
+> I build sovereign power on the block: detached LiFePO4 vaults, silent generator carts, and container battery plants that harvest cheap off-peak electricity and deliver it through peak windows.
 >
 > No outside investors. The client funds it, the block builds it, the neighborhood owns and services it. We're running same-day site evaluations across metro Atlanta and hiring certified technicians, site evaluators and data-center energy engineers. Call 404-454-0602.
 
