@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Phone, ArrowLeft, CheckCircle2, Globe, Wrench, TrendingUp, Megaphone, Container, BatteryCharging } from "lucide-react";
+import { Phone, ArrowLeft, CheckCircle2, Globe, Wrench, TrendingUp, Megaphone, Container, BatteryCharging, Download } from "lucide-react";
 import { ContactPhone, CONTACT_PHONE } from "@/components/contact-phone";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -74,6 +74,14 @@ function CommercialBessPlaybookPage() {
               >
                 <Phone className="size-4" aria-hidden="true" />
                 Call {CONTACT_PHONE} — Same-day eval
+              </a>
+              <a
+                href="/eps-commercial-bess-playbook.pdf"
+                download
+                className="inline-flex min-h-12 items-center gap-2 border border-border bg-surface px-7 font-display text-sm font-semibold transition-colors hover:border-energy hover:text-energy"
+              >
+                <Download className="size-4" aria-hidden="true" />
+                Download PDF
               </a>
               <Link
                 to="/decks/data-center"
