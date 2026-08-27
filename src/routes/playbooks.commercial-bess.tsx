@@ -23,14 +23,14 @@ export const Route = createFileRoute("/playbooks/commercial-bess")({
   component: CommercialBessPlaybookPage,
 });
 
-const pillarIcons = {
+const pillarIcons: Record<string, typeof TrendingUp> = {
   financial: TrendingUp,
   "supply-chain": Globe,
   contractors: Wrench,
   marketing: Megaphone,
-} as const;
+};
 
-function PillarIcon({ id }: { id: keyof typeof pillarIcons }) {
+function PillarIcon({ id }: { id: string }) {
   const Icon = pillarIcons[id] ?? CheckCircle2;
   return <Icon className="size-6 text-energy" aria-hidden="true" />;
 }
