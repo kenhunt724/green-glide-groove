@@ -89,6 +89,12 @@ function EnergyPage() {
               >
                 View the Data Center Pitch <Presentation className="size-4" aria-hidden="true" />
               </Link>
+              <Link
+                to="/playbooks/commercial-bess"
+                className="inline-flex min-h-12 items-center gap-2 border border-border bg-surface px-7 font-display text-sm font-semibold transition-colors hover:border-energy hover:text-energy"
+              >
+                Commercial BESS Playbook
+              </Link>
             </div>
             <div className="mt-5">
               <ContactPhone variant="energy" />

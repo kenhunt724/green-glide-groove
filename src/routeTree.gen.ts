@@ -23,6 +23,7 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as StoreRouteImport } from './routes/store'
 import { Route as CHandleRouteImport } from './routes/c.$handle'
 import { Route as DecksDataCenterRouteImport } from './routes/decks.data-center'
+import { Route as PlaybooksCommercialBessRouteImport } from './routes/playbooks.commercial-bess'
 import { Route as ProducersSlugRouteImport } from './routes/producers.$slug'
 import { Route as AuthenticatedCreatorDashboardRouteImport } from './routes/_authenticated/creator/dashboard'
 import { Route as AuthenticatedOpsCapacityRouteImport } from './routes/_authenticated/ops/capacity'
@@ -97,6 +98,11 @@ const DecksDataCenterRoute = DecksDataCenterRouteImport.update({
   path: '/decks/data-center',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlaybooksCommercialBessRoute = PlaybooksCommercialBessRouteImport.update({
+  id: '/playbooks/commercial-bess',
+  path: '/playbooks/commercial-bess',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProducersSlugRoute = ProducersSlugRouteImport.update({
   id: '/producers/$slug',
   path: '/producers/$slug',
@@ -134,6 +140,7 @@ export interface FileRoutesByFullPath {
   '/store': typeof StoreRoute
   '/c/$handle': typeof CHandleRoute
   '/decks/data-center': typeof DecksDataCenterRoute
+  '/playbooks/commercial-bess': typeof PlaybooksCommercialBessRoute
   '/producers/$slug': typeof ProducersSlugRoute
   '/creator/dashboard': typeof AuthenticatedCreatorDashboardRoute
   '/ops/capacity': typeof AuthenticatedOpsCapacityRoute
@@ -153,6 +160,7 @@ export interface FileRoutesByTo {
   '/store': typeof StoreRoute
   '/c/$handle': typeof CHandleRoute
   '/decks/data-center': typeof DecksDataCenterRoute
+  '/playbooks/commercial-bess': typeof PlaybooksCommercialBessRoute
   '/producers/$slug': typeof ProducersSlugRoute
   '/creator/dashboard': typeof AuthenticatedCreatorDashboardRoute
   '/ops/capacity': typeof AuthenticatedOpsCapacityRoute
@@ -174,6 +182,7 @@ export interface FileRoutesById {
   '/store': typeof StoreRoute
   '/c/$handle': typeof CHandleRoute
   '/decks/data-center': typeof DecksDataCenterRoute
+  '/playbooks/commercial-bess': typeof PlaybooksCommercialBessRoute
   '/producers/$slug': typeof ProducersSlugRoute
   '/_authenticated/creator/dashboard': typeof AuthenticatedCreatorDashboardRoute
   '/_authenticated/ops/capacity': typeof AuthenticatedOpsCapacityRoute
@@ -195,6 +204,7 @@ export interface FileRouteTypes {
     | '/store'
     | '/c/$handle'
     | '/decks/data-center'
+    | '/playbooks/commercial-bess'
     | '/producers/$slug'
     | '/creator/dashboard'
     | '/ops/capacity'
@@ -214,6 +224,7 @@ export interface FileRouteTypes {
     | '/store'
     | '/c/$handle'
     | '/decks/data-center'
+    | '/playbooks/commercial-bess'
     | '/producers/$slug'
     | '/creator/dashboard'
     | '/ops/capacity'
@@ -234,6 +245,7 @@ export interface FileRouteTypes {
     | '/store'
     | '/c/$handle'
     | '/decks/data-center'
+    | '/playbooks/commercial-bess'
     | '/producers/$slug'
     | '/_authenticated/creator/dashboard'
     | '/_authenticated/ops/capacity'
@@ -255,6 +267,7 @@ export interface RootRouteChildren {
   StoreRoute: typeof StoreRoute
   CHandleRoute: typeof CHandleRoute
   DecksDataCenterRoute: typeof DecksDataCenterRoute
+  PlaybooksCommercialBessRoute: typeof PlaybooksCommercialBessRoute
   ProducersSlugRoute: typeof ProducersSlugRoute
 }
 
@@ -358,6 +371,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DecksDataCenterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/playbooks/commercial-bess': {
+      id: '/playbooks/commercial-bess'
+      path: '/playbooks/commercial-bess'
+      fullPath: '/playbooks/commercial-bess'
+      preLoaderRoute: typeof PlaybooksCommercialBessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/producers/$slug': {
       id: '/producers/$slug'
       path: '/producers/$slug'
@@ -419,6 +439,7 @@ const rootRouteChildren: RootRouteChildren = {
   StoreRoute: StoreRoute,
   CHandleRoute: CHandleRoute,
   DecksDataCenterRoute: DecksDataCenterRoute,
+  PlaybooksCommercialBessRoute: PlaybooksCommercialBessRoute,
   ProducersSlugRoute: ProducersSlugRoute,
 }
 export const routeTree = rootRouteImport
