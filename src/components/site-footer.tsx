@@ -37,6 +37,9 @@ export function SiteFooter() {
           <Link to="/join" className="label-mono hover:text-signal">
             Join
           </Link>
+          <Link to="/playbooks/commercial-bess" className="label-mono hover:text-signal">
+            Playbook
+          </Link>
         </nav>
       </div>
     </footer>
