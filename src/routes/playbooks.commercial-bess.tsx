@@ -75,6 +75,14 @@ function CommercialBessPlaybookPage() {
                 <Phone className="size-4" aria-hidden="true" />
                 Call {CONTACT_PHONE} — Same-day eval
               </a>
+              <a
+                href="/eps-commercial-bess-playbook.pdf"
+                download
+                className="inline-flex min-h-12 items-center gap-2 border border-border bg-surface px-7 font-display text-sm font-semibold transition-colors hover:border-energy hover:text-energy"
+              >
+                <Download className="size-4" aria-hidden="true" />
+                Download PDF
+              </a>
               <Link
                 to="/decks/data-center"
                 className="inline-flex min-h-12 items-center gap-2 border border-border bg-surface px-7 font-display text-sm font-semibold transition-colors hover:border-energy hover:text-energy"
