@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Phone, ArrowLeft, CheckCircle2, Globe, Wrench, TrendingUp, Megaphone, Container, BatteryCharging } from "lucide-react";
+import { Phone, ArrowLeft, CheckCircle2, Globe, Wrench, TrendingUp, Megaphone, Container, BatteryCharging, Download } from "lucide-react";
 import { ContactPhone, CONTACT_PHONE } from "@/components/contact-phone";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
