@@ -31,7 +31,7 @@ Customer-funded. Locally owned. No outside investors.
 • Residential & Commercial Power Pod — 30–80 kWh detached vault, zero living-space intrusion.
 • Container Battery Plant — 100–500+ kWh for data centers, warehouses, and commercial campuses.
 
-All three run on the same Victron GX brain, the same LiFePO4 chemistry, and the same local service model. Charge at ~2.3¢/kWh, discharge through peak windows, and never wait in a substation queue.
+All three run on the same system controller, the same LiFePO4 chemistry, and the same local service model. Charge at ~2.3¢/kWh, discharge through peak windows, and never wait in a substation queue.
 
 Which one fits your site? Call 404-454-0602.
 
@@ -83,10 +83,10 @@ export const roles = [
     type: "Field / Atlanta-first",
     pay: "Contract-to-W2 with training stipend",
     summary:
-      "Install, commission, and maintain Victron GX-controlled LiFePO4 systems, DC-coupled rooftop arrays, and detached outbuilding vaults.",
+      "Install, commission, and maintain controller-managed LiFePO4 systems, DC-coupled rooftop arrays, and detached outbuilding vaults.",
     mustHave: [
       "Electrical trade experience or equivalent hands-on background",
-      "Willingness to complete Victron / LiFePO4 certification",
+      "Willingness to complete energy controller / LiFePO4 certification",
       "Tool ownership and reliable transport",
       "Safety-first mindset around high-voltage DC",
     ],

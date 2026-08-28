@@ -55,7 +55,7 @@ const tracks = [
   },
   {
     title: "Install & commissioning",
-    body: "Detached vault sets, sub-panel work, Cerbo/Ekrano configuration, handover walkthrough with the owner.",
+    body: "Detached vault sets, sub-panel work, controller/display configuration, handover walkthrough with the owner.",
   },
   {
     title: "Service & monitoring",

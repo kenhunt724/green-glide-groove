@@ -18,7 +18,7 @@ export function DetachedVault() {
         <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
           Every EPS stationary system ships as a dedicated exterior pod — a shed, utility enclosure
           or separate storage structure sited beside the building it serves. Batteries, inverters,
-          cooling and the Victron brain all live there.
+          cooling and the system controller all live there.
         </p>
 
         <dl className="mt-8 grid gap-px bg-border sm:grid-cols-2">

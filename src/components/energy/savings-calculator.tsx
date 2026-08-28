@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 
-// Tariff assumptions — Georgia Power style time-of-use, tunable.
+// Tariff assumptions — utility-style time-of-use, tunable.
 const PEAK_RATE = 0.2; // $/kWh, on-peak tiered utility rate
 const BLENDED_RATE = 0.135; // $/kWh, blended standard tiered rate
 const OFF_PEAK_RATE = 0.023; // $/kWh, super off-peak charging rate
@@ -319,7 +319,7 @@ export function SavingsCalculator() {
           )}
 
           <p className="text-xs text-muted-foreground">
-            Estimates model Georgia Power–style time-of-use tariffs with a 92% round-trip LiFePO4
+            Estimates model utility-style time-of-use tariffs with a 92% round-trip LiFePO4
             efficiency. Your site assessment produces a binding engineered figure.
           </p>
         </div>
