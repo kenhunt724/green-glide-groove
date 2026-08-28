@@ -279,3 +279,39 @@ export const gridResilience = {
     },
   ],
 } as const;
+
+export const hydrogen = {
+  eyebrow: "On-demand hydrogen",
+  headline: "Cheap HHO & H2, made on the block from off-peak power",
+  lede: "Water and 2.3¢/kWh overnight electricity go in; hydrogen comes out at the moment of use. No tank farm, no tanker deliveries, no stored inventory — point-of-use generation powered by the same harvester architecture.",
+  economics: [
+    { id: "input", label: "Electricity cost per kg H2", value: "~$1.30–1.40", note: "50–55 kWh/kg at super off-peak rates" },
+    { id: "market", label: "Delivered merchant hydrogen", value: "$12–36/kg", note: "Tanker-trucked, plus delivery windows" },
+    { id: "consumable", label: "Water consumed", value: "~9 L/kg", note: "Deionized or distilled feedstock" },
+  ],
+  stack: [
+    {
+      id: "cart",
+      title: "E-Generator Cart supplies the power",
+      body: "The community-built LiFePO4 cart charges overnight on super off-peak power and delivers clean 120/240V pure sine output — enough to run an electrolysis unit anywhere, with no grid tie, no fuel can and no exhaust.",
+    },
+    {
+      id: "epoch",
+      title: "Epoch PEM electrolysis makes the gas",
+      body: "A standard single- or split-phase electrolyzer splits deionized water into hydrogen and oxygen on site. Roll it out, fill the reservoir, and start producing — the fuel is manufactured where it is burned.",
+    },
+    {
+      id: "tankless",
+      title: "Tankless by design",
+      body: "We never store hydrogen. Gas is generated at the rate of consumption and consumed immediately, which keeps the deployment out of tank-farm fire code territory and off the delivery schedule entirely.",
+    },
+  ],
+  applications: [
+    "HHO torch and brazing work in local metal shops",
+    "Fuel-cell forklift fleets in 24/7 distribution centers",
+    "Mobile fuel-cell carts and field power",
+    "Industrial process heat and burner feedstock",
+    "Remote and off-grid sites where delivery cost dominates",
+    "Shop demonstrations and technician training on the block",
+  ],
+} as const;
