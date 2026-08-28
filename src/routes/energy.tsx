@@ -5,6 +5,8 @@ import { ContactPhone, CONTACT_PHONE } from "@/components/contact-phone";
 import { DetachedVault } from "@/components/energy/detached-vault";
 import { GridResilience } from "@/components/energy/grid-resilience";
 import { MobileGenerators } from "@/components/energy/mobile-generators";
+import { HydrogenStation } from "@/components/energy/hydrogen-station";
+import { hydrogen } from "@/content/energy";
 import podImg from "@/assets/home-power-pod.jpg";
 import {
   Dialog,
@@ -462,6 +464,18 @@ function EnergyPage() {
             </p>
             <div className="mt-12">
               <MobileGenerators />
+            </div>
+          </div>
+        </section>
+
+        {/* On-demand hydrogen */}
+        <section id="hydrogen" className="scroll-mt-20 border-b border-border bg-surface">
+          <div className="mx-auto max-w-7xl px-5 py-20 md:py-24">
+            <p className="label-mono text-energy">{hydrogen.eyebrow}</p>
+            <h2 className="mt-3 max-w-3xl text-3xl font-bold md:text-5xl">{hydrogen.headline}</h2>
+            <p className="mt-5 max-w-2xl text-muted-foreground">{hydrogen.lede}</p>
+            <div className="mt-12">
+              <HydrogenStation />
             </div>
           </div>
         </section>
