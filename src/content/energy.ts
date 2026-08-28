@@ -210,6 +210,7 @@ export const platforms = [
     specs: [
       "120/240V split-phase output with jobsite distribution panel",
       "Shore-power, generator or DC solar recharge inputs",
+      "EV overnight charging — pull cheap 11 PM–7 AM power through standard J1772 Level 2 stations",
       "Silent and fume-free — runs beside the stage, in loading docks and indoors",
       "Tour-ready: powers backline, lighting and bus hotel loads where venue service falls short",
       "Same Victron brain and monitoring as the fixed vaults",
