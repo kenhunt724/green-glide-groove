@@ -59,12 +59,12 @@ export const tiers = [
   {
     id: "executive",
     name: "Tier 3 — Executive Touch Command Hub",
-    tagline: "Ekrano GX all-in-one",
-    body: 'The Ekrano GX: an integrated 7" high-performance colour touchscreen and controller in one unit, mounted directly into your wall or console.',
+    tagline: "All-in-one touch command hub",
+    body: 'An integrated 7" high-performance colour touchscreen and controller in one unit, mounted directly into your wall or console.',
     specs: {
       Interface: 'Integrated 7" high-performance colour touchscreen',
       Placement: "In-wall or console flush mount",
-      Processing: "Ekrano GX quad-core, 2 GB RAM, faster refresh",
+      Processing: "Quad-core controller, 2 GB RAM, faster refresh",
       "Local clock control": "Air-gapped RTC with multi-schedule profiles",
       "Offline reliability": "Full local UI and control with zero connectivity",
     },
