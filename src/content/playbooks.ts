@@ -35,7 +35,7 @@ export const commercialBessPlaybook = {
       points: [
         {
           title: "Demand-charge arbitrage",
-          body: "Buy energy at super off-peak rates (~2.3¢/kWh on Georgia Power time-of-use tariffs), store it in LiFePO4, and discharge through peak windows to avoid the most expensive kW on the bill.",
+          body: "Buy energy at super off-peak rates (~2.3¢/kWh on local utility time-of-use tariffs), store it in LiFePO4, and discharge through peak windows to avoid the most expensive kW on the bill.",
         },
         {
           title: "NOI & cap-rate lift",
