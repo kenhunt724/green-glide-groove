@@ -46,12 +46,12 @@ export const tiers = [
   {
     id: "console",
     name: "Tier 2 — Modular Living-Space Console",
-    tagline: "Cerbo GX + GX Touch 50/70",
-    body: "The same Cerbo GX brain paired with a flush wall-mounted 5\" or 7\" GX Touch display in the living space, so the household can read state of charge at a glance.",
+    tagline: "Controller + local touch display",
+    body: "The same controller brain paired with a flush wall-mounted 5\" or 7\" local touch display in the living space, so the household can read state of charge at a glance.",
     specs: {
-      Interface: 'Flush 5" or 7" GX Touch panel',
+      Interface: 'Flush 5" or 7" local touch panel',
       Placement: "Wall-mounted, living space",
-      Processing: "Cerbo GX controller + dedicated display bus",
+      Processing: "Local controller + dedicated display bus",
       "Local clock control": "Air-gapped RTC scheduling, editable on-panel",
       "Offline reliability": "Panel keeps full read/write control offline",
     },
