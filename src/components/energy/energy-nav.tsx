@@ -12,6 +12,7 @@ import {
 const anchors = [
   { href: "#vaults", label: "Detached Outbuilding Vaults" },
   { href: "#mobile", label: "Mobile Generators" },
+  { href: "#hydrogen", label: "On-Demand Hydrogen" },
   { href: "#calculator", label: "Off-Peak Math" },
   { href: "#hardware", label: "Hardware Tiers" },
 ];
