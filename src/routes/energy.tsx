@@ -5,6 +5,8 @@ import { ContactPhone, CONTACT_PHONE } from "@/components/contact-phone";
 import { DetachedVault } from "@/components/energy/detached-vault";
 import { GridResilience } from "@/components/energy/grid-resilience";
 import { MobileGenerators } from "@/components/energy/mobile-generators";
+import { HydrogenStation } from "@/components/energy/hydrogen-station";
+import { hydrogen } from "@/content/energy";
 import podImg from "@/assets/home-power-pod.jpg";
 import {
   Dialog,
