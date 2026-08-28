@@ -468,6 +468,18 @@ function EnergyPage() {
           </div>
         </section>
 
+        {/* On-demand hydrogen */}
+        <section id="hydrogen" className="scroll-mt-20 border-b border-border bg-surface">
+          <div className="mx-auto max-w-7xl px-5 py-20 md:py-24">
+            <p className="label-mono text-energy">{hydrogen.eyebrow}</p>
+            <h2 className="mt-3 max-w-3xl text-3xl font-bold md:text-5xl">{hydrogen.headline}</h2>
+            <p className="mt-5 max-w-2xl text-muted-foreground">{hydrogen.lede}</p>
+            <div className="mt-12">
+              <HydrogenStation />
+            </div>
+          </div>
+        </section>
+
         {/* Calculator */}
         <section id="calculator" className="scroll-mt-20 border-b border-border bg-background">
           <div className="mx-auto max-w-7xl px-5 py-20 md:py-24">
