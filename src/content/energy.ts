@@ -170,7 +170,9 @@ export const mobileUseCases = [
   "Outdoor events and night shoots",
   "Fleet & service van workstations",
   "Disaster response staging",
+  "Touring bus & stage rigs at underpowered venues",
 ] as const;
+
 
 export const solutionInterests = [
   "Stationary Outbuilding Power Vault",
@@ -204,14 +206,17 @@ export const platforms = [
     step: "02",
     scale: "Towable · 20–60 kWh",
     title: "Towable Power Trailer",
-    body: "The pod architecture on a single-axle chassis: a full LiFePO4 bank, inverter/charger stack and GX controller in a lockable enclosure you hitch up and pull onto any site that needs remote power.",
+    body: "The pod architecture on a single-axle chassis: a full LiFePO4 bank, inverter/charger stack and GX controller in a lockable enclosure you hitch up and pull onto any site that needs remote power. Touring crews hitch it behind the bus and stop worrying whether the venue has enough service for the rig — you carry your own power, plug the stage in, and recharge overnight on cheap shore power.",
     specs: [
       "120/240V split-phase output with jobsite distribution panel",
       "Shore-power, generator or DC solar recharge inputs",
+      "Silent and fume-free — runs beside the stage, in loading docks and indoors",
+      "Tour-ready: powers backline, lighting and bus hotel loads where venue service falls short",
       "Same Victron brain and monitoring as the fixed vaults",
     ],
-    who: "For contractors, events and disaster response",
+    who: "For contractors, touring crews, events and disaster response",
   },
+
   {
     id: "pod",
     step: "03",
