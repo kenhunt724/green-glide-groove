@@ -1,6 +1,6 @@
 export const trustBadges = [
   "LEED Platinum Standards",
-  "Victron Energy Authorized Architecture",
+  "Open-Protocol Energy Architecture",
   "Community Trained Technicians",
   "Grid Brownout & Outage Protection",
 ] as const;
@@ -11,7 +11,7 @@ export const steps = [
     step: "01",
     window: "11 PM – 7 AM",
     title: "Super Off-Peak Overnight Charging",
-    body: "The system pulls power automatically between 11 PM and 7 AM at rock-bottom super off-peak utility rates — roughly 2.3¢/kWh on Georgia Power's time-of-use tariffs — and fills the LiFePO4 vault while the grid is quiet.",
+    body: "The system pulls power automatically between 11 PM and 7 AM at rock-bottom super off-peak utility rates — roughly 2.3¢/kWh on your local utility's time-of-use tariffs — and fills the LiFePO4 vault while the grid is quiet.",
   },
   {
     id: "defection",
@@ -33,12 +33,12 @@ export const tiers = [
   {
     id: "stealth",
     name: "Tier 1 — Stealth Industrial Node",
-    tagline: "Cerbo GX headless core",
-    body: "The full Victron brain with no display, hidden inside a server rack or utility closet. Monitoring lives entirely in the mobile app and browser dashboard.",
+    tagline: "Headless local control core",
+    body: "The full system controller with no display, hidden inside a server rack or utility closet. Monitoring lives entirely in the mobile app and browser dashboard.",
     specs: {
       Interface: "Headless — mobile app & browser",
       Placement: "Server rack / utility closet",
-      Processing: "Cerbo GX controller, 1 GB RAM",
+      Processing: "Local controller, 1 GB RAM",
       "Local clock control": "Air-gapped RTC scheduling, no cloud dependency",
       "Offline reliability": "Full autonomous operation without internet",
     },
@@ -46,12 +46,12 @@ export const tiers = [
   {
     id: "console",
     name: "Tier 2 — Modular Living-Space Console",
-    tagline: "Cerbo GX + GX Touch 50/70",
-    body: "The same Cerbo GX brain paired with a flush wall-mounted 5\" or 7\" GX Touch display in the living space, so the household can read state of charge at a glance.",
+    tagline: "Controller + local touch display",
+    body: "The same controller brain paired with a flush wall-mounted 5\" or 7\" local touch display in the living space, so the household can read state of charge at a glance.",
     specs: {
-      Interface: 'Flush 5" or 7" GX Touch panel',
+      Interface: 'Flush 5" or 7" local touch panel',
       Placement: "Wall-mounted, living space",
-      Processing: "Cerbo GX controller + dedicated display bus",
+      Processing: "Local controller + dedicated display bus",
       "Local clock control": "Air-gapped RTC scheduling, editable on-panel",
       "Offline reliability": "Panel keeps full read/write control offline",
     },
@@ -59,12 +59,12 @@ export const tiers = [
   {
     id: "executive",
     name: "Tier 3 — Executive Touch Command Hub",
-    tagline: "Ekrano GX all-in-one",
-    body: 'The Ekrano GX: an integrated 7" high-performance colour touchscreen and controller in one unit, mounted directly into your wall or console.',
+    tagline: "All-in-one touch command hub",
+    body: 'An integrated 7" high-performance colour touchscreen and controller in one unit, mounted directly into your wall or console.',
     specs: {
       Interface: 'Integrated 7" high-performance colour touchscreen',
       Placement: "In-wall or console flush mount",
-      Processing: "Ekrano GX quad-core, 2 GB RAM, faster refresh",
+      Processing: "Quad-core controller, 2 GB RAM, faster refresh",
       "Local clock control": "Air-gapped RTC with multi-schedule profiles",
       "Offline reliability": "Full local UI and control with zero connectivity",
     },
@@ -213,7 +213,7 @@ export const platforms = [
       "EV overnight charging — pull cheap 11 PM–7 AM power through standard J1772 Level 2 stations",
       "Silent and fume-free — runs beside the stage, in loading docks and indoors",
       "Tour-ready: powers backline, lighting and bus hotel loads where venue service falls short",
-      "Same Victron brain and monitoring as the fixed vaults",
+      "Same controller and monitoring as the fixed vaults",
     ],
     who: "For contractors, touring crews, events and disaster response",
   },
@@ -296,8 +296,8 @@ export const hydrogen = {
       body: "The community-built LiFePO4 cart charges overnight on super off-peak power and delivers clean 120/240V pure sine output — enough to run an electrolysis unit anywhere, with no grid tie, no fuel can and no exhaust.",
     },
     {
-      id: "epoch",
-      title: "Epoch PEM electrolysis makes the gas",
+      id: "electrolyzer",
+      title: "Standard PEM electrolyzer makes the gas",
       body: "A standard single- or split-phase electrolyzer splits deionized water into hydrogen and oxygen on site. Roll it out, fill the reservoir, and start producing — the fuel is manufactured where it is burned.",
     },
     {

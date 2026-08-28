@@ -141,7 +141,7 @@ function EnergyPage() {
               Cart, trailer, home pod, container
             </h2>
             <p className="mt-5 max-w-2xl text-muted-foreground">
-              The same LiFePO4 bank, inverter stack and Victron GX brain, packaged four ways — from
+              The same LiFePO4 bank, inverter stack and system control brain, packaged four ways — from
               a one-person cart to a container-scale plant.
             </p>
             <div className="mt-12">
@@ -605,7 +605,7 @@ function EnergyPage() {
               EARTH PROTECTION SOCIETY · ENERGY DIVISION
             </p>
             <p className="label-mono mt-2">
-              Block 12 · Sovereign charter · Victron authorized architecture
+              Block 12 · Sovereign charter · Locally controlled architecture
             </p>
           </div>
           <nav className="flex flex-wrap gap-6" aria-label="Footer">
