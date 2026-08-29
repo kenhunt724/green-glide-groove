@@ -76,6 +76,7 @@ export function LeadForm() {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<FormState>(empty);
   const [error, setError] = useState<string | null>(null);
+  const [slotsAvailable, setSlotsAvailable] = useState(true);
 
   const queryClient = useQueryClient();
   const submit = useServerFn(submitEnergyLead);
@@ -98,7 +99,8 @@ export function LeadForm() {
         form.monthly_bill_range !== ""
       );
     }
-    return form.slot_id !== "" && form.preferred_time !== "";
+    // No open slots: the visitor can still submit and we schedule by phone.
+    return slotsAvailable ? form.slot_id !== "" && form.preferred_time !== "" : true;
   })();
 
   if (mutation.isSuccess) {
@@ -138,7 +140,10 @@ export function LeadForm() {
           return;
         }
         if (!stepValid) return;
-        mutation.mutate(form, {
+        const payload = slotsAvailable
+          ? form
+          : { ...form, slot_id: "", preferred_time: "Call me to schedule" };
+        mutation.mutate(payload, {
           onError: (err) =>
             setError(err instanceof Error ? err.message : "Something went wrong. Please try again."),
         });
@@ -253,6 +258,7 @@ export function LeadForm() {
               </p>
               <SlotPicker
                 value={form.slot_id}
+                onAvailability={setSlotsAvailable}
                 onChange={(slot) =>
                   setForm((f) => ({
                     ...f,
