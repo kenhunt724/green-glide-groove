@@ -591,7 +591,7 @@ function EnergyPage() {
       {/* Sticky mobile call button */}
       <a
         href={`tel:${CONTACT_PHONE.replace(/-/g, "")}`}
-        className="fixed right-4 bottom-4 z-50 flex h-14 items-center gap-2 rounded-full bg-energy px-5 font-display text-sm font-semibold text-background shadow-lg transition-transform hover:scale-105 focus-visible:ring-2 focus-visible:ring-energy focus-visible:outline-none md:hidden"
+        className="fixed right-4 bottom-24 z-40 flex h-14 items-center gap-2 rounded-full bg-energy px-5 font-display text-sm font-semibold text-background shadow-lg transition-transform hover:scale-105 focus-visible:ring-2 focus-visible:ring-energy focus-visible:outline-none md:hidden"
         aria-label="Call Earth Protection Society Energy Division"
       >
         <Phone className="size-5" aria-hidden="true" />
