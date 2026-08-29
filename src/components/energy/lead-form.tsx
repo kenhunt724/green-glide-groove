@@ -76,6 +76,7 @@ export function LeadForm() {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<FormState>(empty);
   const [error, setError] = useState<string | null>(null);
+  const [slotsAvailable, setSlotsAvailable] = useState(true);
 
   const queryClient = useQueryClient();
   const submit = useServerFn(submitEnergyLead);
@@ -98,7 +99,8 @@ export function LeadForm() {
         form.monthly_bill_range !== ""
       );
     }
-    return form.slot_id !== "" && form.preferred_time !== "";
+    // No open slots: the visitor can still submit and we schedule by phone.
+    return slotsAvailable ? form.slot_id !== "" && form.preferred_time !== "" : true;
   })();
 
   if (mutation.isSuccess) {
@@ -107,10 +109,20 @@ export function LeadForm() {
         <CheckCircle2 className="size-8 text-emerald" aria-hidden="true" />
         <h3 className="font-display text-2xl font-semibold">Assessment request received</h3>
         <p className="text-sm leading-relaxed text-muted-foreground">
-          Your slot is locked in for{" "}
-          <span className="text-foreground">{form.preferred_time}</span>. A community-trained
-          technician will confirm at <span className="text-foreground">{form.email}</span> and
-          prepare your <span className="text-foreground">{form.solution_interest}</span> scope.
+          {form.slot_id ? (
+            <>
+              Your slot is locked in for{" "}
+              <span className="text-foreground">{form.preferred_time}</span>.
+            </>
+          ) : (
+            <>
+              No online slots were open, so we will call{" "}
+              <span className="text-foreground">{form.phone}</span> to schedule.
+            </>
+          )}{" "}
+          A community-trained technician will confirm at{" "}
+          <span className="text-foreground">{form.email}</span> and prepare your{" "}
+          <span className="text-foreground">{form.solution_interest}</span> scope.
         </p>
         <button
           type="button"
@@ -138,7 +150,10 @@ export function LeadForm() {
           return;
         }
         if (!stepValid) return;
-        mutation.mutate(form, {
+        const payload = slotsAvailable
+          ? form
+          : { ...form, slot_id: "", preferred_time: "Call me to schedule" };
+        mutation.mutate(payload, {
           onError: (err) =>
             setError(err instanceof Error ? err.message : "Something went wrong. Please try again."),
         });
@@ -253,6 +268,7 @@ export function LeadForm() {
               </p>
               <SlotPicker
                 value={form.slot_id}
+                onAvailability={setSlotsAvailable}
                 onChange={(slot) =>
                   setForm((f) => ({
                     ...f,

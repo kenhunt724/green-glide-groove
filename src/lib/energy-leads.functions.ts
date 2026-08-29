@@ -13,7 +13,7 @@ const leadSchema = z.object({
   monthly_bill_range: z.string().trim().min(1).max(80),
   roof_condition: z.string().trim().min(1).max(80).optional().or(z.literal("")),
   preferred_time: z.string().trim().min(1).max(120),
-  slot_id: z.string().uuid(),
+  slot_id: z.string().uuid().optional().or(z.literal("")),
   notes: z.string().trim().max(1000).optional().or(z.literal("")),
 });
 
@@ -69,21 +69,26 @@ export const submitEnergyLead = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
-    // Atomically claim the slot before creating the lead.
-    const { data: claimed, error: claimError } = await supabaseAdmin
-      .from("consultation_slots")
-      .update({ is_booked: true })
-      .eq("id", data.slot_id)
-      .eq("is_booked", false)
-      .select("id, slot_at, duration_minutes")
-      .maybeSingle();
+    // Atomically claim the slot before creating the lead. When no slots are
+    // available the form submits without one and we schedule by phone.
+    let claimed: { id: string; slot_at: string; duration_minutes: number } | null = null;
+    if (data.slot_id) {
+      const { data: slot, error: claimError } = await supabaseAdmin
+        .from("consultation_slots")
+        .update({ is_booked: true })
+        .eq("id", data.slot_id)
+        .eq("is_booked", false)
+        .select("id, slot_at, duration_minutes")
+        .maybeSingle();
 
-    if (claimError) {
-      console.error("slot claim failed", claimError);
-      throw new Error("We could not reserve that time. Please try again.");
-    }
-    if (!claimed) {
-      throw new Error("That slot was just taken. Please pick another time.");
+      if (claimError) {
+        console.error("slot claim failed", claimError);
+        throw new Error("We could not reserve that time. Please try again.");
+      }
+      if (!slot) {
+        throw new Error("That slot was just taken. Please pick another time.");
+      }
+      claimed = slot;
     }
 
     const { slot_id, notes, roof_condition, ...lead } = data;
@@ -93,24 +98,32 @@ export const submitEnergyLead = createServerFn({ method: "POST" })
         ...lead,
         roof_condition: roof_condition ? roof_condition : null,
         notes: notes ? notes : null,
-        slot_id,
+        slot_id: claimed ? claimed.id : null,
       })
       .select("id")
       .single();
 
     if (error || !inserted) {
       console.error("energy lead insert failed", error);
-      await supabaseAdmin
-        .from("consultation_slots")
-        .update({ is_booked: false, lead_id: null })
-        .eq("id", slot_id);
+      if (claimed) {
+        await supabaseAdmin
+          .from("consultation_slots")
+          .update({ is_booked: false, lead_id: null })
+          .eq("id", claimed.id);
+      }
       throw new Error("We could not save your request. Please try again.");
     }
 
-    await supabaseAdmin
-      .from("consultation_slots")
-      .update({ lead_id: inserted.id })
-      .eq("id", slot_id);
+    if (claimed) {
+      await supabaseAdmin
+        .from("consultation_slots")
+        .update({ lead_id: inserted.id })
+        .eq("id", claimed.id);
+    }
 
-    return { ok: true as const, slot_at: claimed.slot_at, duration: claimed.duration_minutes };
+    return {
+      ok: true as const,
+      slot_at: claimed ? claimed.slot_at : null,
+      duration: claimed ? claimed.duration_minutes : null,
+    };
   });

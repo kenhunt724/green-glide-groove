@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
 import { CalendarDays, Loader2 } from "lucide-react";
@@ -19,9 +19,11 @@ export function formatSlotLabel(slotAt: string) {
 export function SlotPicker({
   value,
   onChange,
+  onAvailability,
 }: {
   value: string;
   onChange: (slot: ConsultationSlot) => void;
+  onAvailability?: (available: boolean) => void;
 }) {
   const fetchSlots = useServerFn(listConsultationSlots);
   const { data, isPending, isError } = useQuery({
@@ -43,6 +45,11 @@ export function SlotPicker({
 
   const [dayIndex, setDayIndex] = useState(0);
   const activeDay = days[dayIndex] ?? days[0];
+
+  useEffect(() => {
+    if (isPending) return;
+    onAvailability?.(!isError && !data?.error && days.length > 0);
+  }, [isPending, isError, data, days.length, onAvailability]);
 
   if (isPending) {
     return (
