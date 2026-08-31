@@ -372,8 +372,10 @@ export type Database = {
         Row: {
           created_at: string
           email: string
+          entry_mode: string
           full_name: string
           id: string
+          landing_path: string | null
           monthly_bill_range: string
           notes: string | null
           outcome: string
@@ -381,19 +383,27 @@ export type Database = {
           phone: string
           preferred_time: string
           property_type: string
+          referrer_host: string | null
           roof_condition: string | null
           score: number | null
           scored_at: string | null
           slot_id: string | null
           solution_interest: string | null
+          source_channel: string | null
+          source_detail: string | null
+          utm_campaign: string | null
+          utm_medium: string | null
+          utm_source: string | null
           vehicle_type: string | null
           zip_code: string
         }
         Insert: {
           created_at?: string
           email: string
+          entry_mode?: string
           full_name: string
           id?: string
+          landing_path?: string | null
           monthly_bill_range: string
           notes?: string | null
           outcome?: string
@@ -401,19 +411,27 @@ export type Database = {
           phone: string
           preferred_time: string
           property_type: string
+          referrer_host?: string | null
           roof_condition?: string | null
           score?: number | null
           scored_at?: string | null
           slot_id?: string | null
           solution_interest?: string | null
+          source_channel?: string | null
+          source_detail?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
           vehicle_type?: string | null
           zip_code: string
         }
         Update: {
           created_at?: string
           email?: string
+          entry_mode?: string
           full_name?: string
           id?: string
+          landing_path?: string | null
           monthly_bill_range?: string
           notes?: string | null
           outcome?: string
@@ -421,11 +439,17 @@ export type Database = {
           phone?: string
           preferred_time?: string
           property_type?: string
+          referrer_host?: string | null
           roof_condition?: string | null
           score?: number | null
           scored_at?: string | null
           slot_id?: string | null
           solution_interest?: string | null
+          source_channel?: string | null
+          source_detail?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
           vehicle_type?: string | null
           zip_code?: string
         }
