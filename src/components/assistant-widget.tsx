@@ -1,8 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { Bot, Loader2, MessageSquare, Phone, Send, X } from "lucide-react";
+import { Bot, Loader2, MessageSquare, Mic, Phone, Send, Square, X } from "lucide-react";
 
 import { askAssistant } from "@/lib/assistant.functions";
+import { transcribeAudio } from "@/lib/transcribe.functions";
+import { useVoiceInput } from "@/lib/use-voice-input";
 import { cn } from "@/lib/utils";
 
 type Mode = "support" | "interview";
