@@ -1,4 +1,4 @@
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { CheckCircle2, Loader2 } from "lucide-react";
@@ -8,6 +8,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { submitEnergyLead } from "@/lib/energy-leads.functions";
 import { SlotPicker, formatSlotLabel } from "@/components/energy/slot-picker";
 import { billRanges, siteTypes, solutionInterests } from "@/content/energy";
+import {
+  captureAttribution,
+  inferChannel,
+  sourceChannels,
+  type Attribution,
+} from "@/lib/attribution";
 
 type FormState = {
   solution_interest: string;
@@ -20,6 +26,8 @@ type FormState = {
   preferred_time: string;
   slot_id: string;
   notes: string;
+  source_channel: string;
+  source_detail: string;
 };
 
 const empty: FormState = {
@@ -33,6 +41,8 @@ const empty: FormState = {
   preferred_time: "",
   slot_id: "",
   notes: "",
+  source_channel: "",
+  source_detail: "",
 };
 
 const stepLabels = ["Solution", "Property / vehicle", "Location & spend", "Schedule"];
@@ -77,11 +87,19 @@ export function LeadForm() {
   const [form, setForm] = useState<FormState>(empty);
   const [error, setError] = useState<string | null>(null);
   const [slotsAvailable, setSlotsAvailable] = useState(true);
+  const attribution = useRef<Attribution | null>(null);
+
+  useEffect(() => {
+    const a = captureAttribution();
+    attribution.current = a;
+    const guess = inferChannel(a);
+    if (guess) setForm((f) => (f.source_channel ? f : { ...f, source_channel: guess }));
+  }, []);
 
   const queryClient = useQueryClient();
   const submit = useServerFn(submitEnergyLead);
   const mutation = useMutation({
-    mutationFn: (data: FormState) => submit({ data }),
+    mutationFn: (data: FormState & Partial<Attribution>) => submit({ data }),
     onSettled: () => queryClient.invalidateQueries({ queryKey: ["consultation-slots"] }),
   });
 
@@ -150,9 +168,10 @@ export function LeadForm() {
           return;
         }
         if (!stepValid) return;
-        const payload = slotsAvailable
+        const base = slotsAvailable
           ? form
           : { ...form, slot_id: "", preferred_time: "Call me to schedule" };
+        const payload = { ...base, ...(attribution.current ?? {}) };
         mutation.mutate(payload, {
           onError: (err) =>
             setError(err instanceof Error ? err.message : "Something went wrong. Please try again."),
@@ -254,6 +273,28 @@ export function LeadForm() {
                 value={form.monthly_bill_range}
                 onChange={set("monthly_bill_range")}
               />
+            </div>
+            <div className="space-y-3">
+              <p className="label-mono">How did you hear about us?</p>
+              <OptionGrid
+                name="How did you hear about us"
+                options={sourceChannels}
+                value={form.source_channel}
+                onChange={set("source_channel")}
+              />
+              {form.source_channel !== "" && (
+                <div className="space-y-2">
+                  <Label htmlFor={fid("source_detail")}>
+                    Who or where, exactly? (optional)
+                  </Label>
+                  <Input
+                    id={fid("source_detail")}
+                    placeholder="Name of the person, agent, post or event"
+                    value={form.source_detail}
+                    onChange={(e) => set("source_detail")(e.target.value)}
+                  />
+                </div>
+              )}
             </div>
           </>
         )}

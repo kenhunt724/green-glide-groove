@@ -15,6 +15,13 @@ const leadSchema = z.object({
   preferred_time: z.string().trim().min(1).max(120),
   slot_id: z.string().uuid().optional().or(z.literal("")),
   notes: z.string().trim().max(1000).optional().or(z.literal("")),
+  source_channel: z.string().trim().max(80).optional().or(z.literal("")),
+  source_detail: z.string().trim().max(200).optional().or(z.literal("")),
+  utm_source: z.string().trim().max(80).optional().or(z.literal("")),
+  utm_medium: z.string().trim().max(80).optional().or(z.literal("")),
+  utm_campaign: z.string().trim().max(80).optional().or(z.literal("")),
+  landing_path: z.string().trim().max(200).optional().or(z.literal("")),
+  referrer_host: z.string().trim().max(120).optional().or(z.literal("")),
 });
 
 export type EnergyLeadInput = z.infer<typeof leadSchema>;
@@ -91,7 +98,20 @@ export const submitEnergyLead = createServerFn({ method: "POST" })
       claimed = slot;
     }
 
-    const { slot_id, notes, roof_condition, ...lead } = data;
+    const {
+      slot_id,
+      notes,
+      roof_condition,
+      source_channel,
+      source_detail,
+      utm_source,
+      utm_medium,
+      utm_campaign,
+      landing_path,
+      referrer_host,
+      ...lead
+    } = data;
+    const blank = (v: string | undefined) => (v && v.trim() ? v.trim() : null);
     const { data: inserted, error } = await supabaseAdmin
       .from("energy_leads")
       .insert({
@@ -99,6 +119,14 @@ export const submitEnergyLead = createServerFn({ method: "POST" })
         roof_condition: roof_condition ? roof_condition : null,
         notes: notes ? notes : null,
         slot_id: claimed ? claimed.id : null,
+        source_channel: blank(source_channel),
+        source_detail: blank(source_detail),
+        utm_source: blank(utm_source),
+        utm_medium: blank(utm_medium),
+        utm_campaign: blank(utm_campaign),
+        landing_path: blank(landing_path),
+        referrer_host: blank(referrer_host),
+        entry_mode: "web_form",
       })
       .select("id")
       .single();

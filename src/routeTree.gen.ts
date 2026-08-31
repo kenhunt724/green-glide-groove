@@ -27,6 +27,7 @@ import { Route as PlaybooksCommercialBessRouteImport } from './routes/playbooks.
 import { Route as ProducersSlugRouteImport } from './routes/producers.$slug'
 import { Route as AuthenticatedCreatorDashboardRouteImport } from './routes/_authenticated/creator/dashboard'
 import { Route as AuthenticatedOpsCapacityRouteImport } from './routes/_authenticated/ops/capacity'
+import { Route as AuthenticatedOpsMarketingRouteImport } from './routes/_authenticated/ops/marketing'
 import { Route as AuthenticatedOpsStoresRouteImport } from './routes/_authenticated/ops/stores'
 
 const IndexRoute = IndexRouteImport.update({
@@ -120,6 +121,12 @@ const AuthenticatedOpsCapacityRoute =
     path: '/ops/capacity',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedOpsMarketingRoute =
+  AuthenticatedOpsMarketingRouteImport.update({
+    id: '/ops/marketing',
+    path: '/ops/marketing',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedOpsStoresRoute = AuthenticatedOpsStoresRouteImport.update({
   id: '/ops/stores',
   path: '/ops/stores',
@@ -144,6 +151,7 @@ export interface FileRoutesByFullPath {
   '/producers/$slug': typeof ProducersSlugRoute
   '/creator/dashboard': typeof AuthenticatedCreatorDashboardRoute
   '/ops/capacity': typeof AuthenticatedOpsCapacityRoute
+  '/ops/marketing': typeof AuthenticatedOpsMarketingRoute
   '/ops/stores': typeof AuthenticatedOpsStoresRoute
 }
 export interface FileRoutesByTo {
@@ -164,6 +172,7 @@ export interface FileRoutesByTo {
   '/producers/$slug': typeof ProducersSlugRoute
   '/creator/dashboard': typeof AuthenticatedCreatorDashboardRoute
   '/ops/capacity': typeof AuthenticatedOpsCapacityRoute
+  '/ops/marketing': typeof AuthenticatedOpsMarketingRoute
   '/ops/stores': typeof AuthenticatedOpsStoresRoute
 }
 export interface FileRoutesById {
@@ -186,6 +195,7 @@ export interface FileRoutesById {
   '/producers/$slug': typeof ProducersSlugRoute
   '/_authenticated/creator/dashboard': typeof AuthenticatedCreatorDashboardRoute
   '/_authenticated/ops/capacity': typeof AuthenticatedOpsCapacityRoute
+  '/_authenticated/ops/marketing': typeof AuthenticatedOpsMarketingRoute
   '/_authenticated/ops/stores': typeof AuthenticatedOpsStoresRoute
 }
 export interface FileRouteTypes {
@@ -208,6 +218,7 @@ export interface FileRouteTypes {
     | '/producers/$slug'
     | '/creator/dashboard'
     | '/ops/capacity'
+    | '/ops/marketing'
     | '/ops/stores'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -228,6 +239,7 @@ export interface FileRouteTypes {
     | '/producers/$slug'
     | '/creator/dashboard'
     | '/ops/capacity'
+    | '/ops/marketing'
     | '/ops/stores'
   id:
     | '__root__'
@@ -249,6 +261,7 @@ export interface FileRouteTypes {
     | '/producers/$slug'
     | '/_authenticated/creator/dashboard'
     | '/_authenticated/ops/capacity'
+    | '/_authenticated/ops/marketing'
     | '/_authenticated/ops/stores'
   fileRoutesById: FileRoutesById
 }
@@ -399,6 +412,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedOpsCapacityRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/ops/marketing': {
+      id: '/_authenticated/ops/marketing'
+      path: '/ops/marketing'
+      fullPath: '/ops/marketing'
+      preLoaderRoute: typeof AuthenticatedOpsMarketingRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/ops/stores': {
       id: '/_authenticated/ops/stores'
       path: '/ops/stores'
@@ -412,12 +432,14 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedCreatorDashboardRoute: typeof AuthenticatedCreatorDashboardRoute
   AuthenticatedOpsCapacityRoute: typeof AuthenticatedOpsCapacityRoute
+  AuthenticatedOpsMarketingRoute: typeof AuthenticatedOpsMarketingRoute
   AuthenticatedOpsStoresRoute: typeof AuthenticatedOpsStoresRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCreatorDashboardRoute: AuthenticatedCreatorDashboardRoute,
   AuthenticatedOpsCapacityRoute: AuthenticatedOpsCapacityRoute,
+  AuthenticatedOpsMarketingRoute: AuthenticatedOpsMarketingRoute,
   AuthenticatedOpsStoresRoute: AuthenticatedOpsStoresRoute,
 }
 

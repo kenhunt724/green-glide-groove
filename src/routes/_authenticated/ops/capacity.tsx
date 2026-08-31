@@ -139,6 +139,9 @@ function CapacityConsole() {
             Product and service are the currency. This is the weekly ledger of delivery capacity,
             the demand pressing against it, and the constraint that decides how fast you scale.
           </p>
+          <Link to="/ops/marketing" className="label-mono mt-4 inline-block text-energy">
+            Go to the channel console →
+          </Link>
         </div>
         <button
           type="button"
