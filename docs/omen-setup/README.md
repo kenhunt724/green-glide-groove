@@ -147,20 +147,31 @@ ffmpeg (installed by the bootstrap script) handles the audio mux. Rendering is C
 
 ---
 
-## 7. Lead-scoring model training
+## 7. Lead-scoring model training (runs only on your machine)
 
-The capacity engine's scorer is small tabular ML — it trains in seconds on CPU, no GPU needed. The trainer ships in the repo at `scripts/train_lead_scorer.py`. Your customer data never leaves the Omen.
+The scorer is small tabular ML — seconds on CPU, no GPU needed, and no customer
+data ever leaves the Omen. Nothing about this model is trained in the cloud: the
+site only *evaluates* the weights you produce here.
 
 The full loop:
 
-1. In the running app, open **Operations → Lead readiness queue → Export training data**. Save the CSV in your project folder.
+1. In the running app, export the labelled leads from either console —
+   **Operations → Lead readiness queue → Export training data**, or
+   **Channel console → Export training data for the workshop machine**. Save the
+   CSV in your project folder. It carries the bill band, solution interest,
+   property type, **the channel the lead came from**, whether it came in by web
+   form or a logged conversation, slot booking, notes, age, and the won/lost label.
 2. Train and apply the model in one step:
 
 ```bash
 python scripts/train_lead_scorer.py eps-lead-training.csv
 ```
 
-   This prints a cross-validated AUC (0.5 = coin flip, 0.7+ = useful), writes a `coefficients.json` record, and **rewrites the `COEFFICIENTS` block in `src/lib/lead-model.ts` directly** — no hand-pasting.
+   This prints a cross-validated AUC (0.5 = coin flip, 0.7+ = useful), writes a
+   `coefficients.json` record, and **rewrites the `COEFFICIENTS` block in
+   `src/lib/lead-model.ts` directly** — including the learned per-channel
+   weights, so marketing ranking and lead ranking come from the same trained
+   model. No hand-pasting.
 3. Ship it back to the site and re-start the app:
 
 ```bash
@@ -173,6 +184,7 @@ bash docs/omen-setup/start.sh
    The new scores are live in the app once the site republishes.
 
 **When:** the trainer needs at least ~60 labelled won/lost leads to run, and warns below ~150. Until then the transparent starter model in the app is the more honest ranking. So: keep marking leads won/lost in the console, and re-run the loop every time you have more outcomes.
+
 
 ---
 
