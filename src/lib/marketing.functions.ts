@@ -41,6 +41,8 @@ export const getMarketingSnapshot = createServerFn({ method: "GET" })
           slot_id: l.slot_id,
           notes: l.notes,
           created_at: l.created_at,
+          source_channel: l.source_channel,
+
         },
         now,
       ).score,

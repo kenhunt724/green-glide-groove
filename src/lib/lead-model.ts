@@ -17,6 +17,8 @@ export type ModelCoefficients = {
   bill_range: Record<string, number>;
   solution_interest: Record<string, number>;
   property_type: Record<string, number>;
+  source_channel: Record<string, number>;
+  entry_mode: Record<string, number>;
   has_booked_slot: number;
   wrote_notes: number;
   age_days_per_week_decay: number;
@@ -45,11 +47,17 @@ export const COEFFICIENTS: ModelCoefficients = {
     "Commercial Facility": 0.7,
     "Service Van / Fleet": 0.05,
   },
+  source_channel: {},
+  entry_mode: {
+    manual: 0.3,
+    web_form: 0,
+  },
   has_booked_slot: 0.9,
   wrote_notes: 0.4,
   age_days_per_week_decay: -0.18,
 };
 // ---- END COEFFICIENTS ----
+
 
 export type ScorableLead = {
   monthly_bill_range: string | null;
@@ -58,7 +66,10 @@ export type ScorableLead = {
   slot_id: string | null;
   notes: string | null;
   created_at: string;
+  source_channel?: string | null;
+  entry_mode?: string | null;
 };
+
 
 export type LeadScore = {
   score: number;
@@ -85,7 +96,14 @@ export function scoreLead(lead: ScorableLead, now: Date = new Date()): LeadScore
   const property = lead.property_type ?? "";
   push(`Site: ${property || "unspecified"}`, c.property_type[property]);
 
+  const channel = lead.source_channel ?? "";
+  if (channel) push(`Came via: ${channel}`, c.source_channel[channel]);
+
+  const mode = lead.entry_mode ?? "";
+  if (mode) push(mode === "manual" ? "Logged from a live conversation" : "Web form", c.entry_mode[mode]);
+
   if (lead.slot_id) push("Booked an assessment slot", c.has_booked_slot);
+
   if (lead.notes && lead.notes.trim().length > 12) push("Wrote detailed notes", c.wrote_notes);
 
   const ageDays = Math.max(0, (now.getTime() - new Date(lead.created_at).getTime()) / 86_400_000);

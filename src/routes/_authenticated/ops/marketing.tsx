@@ -2,12 +2,14 @@ import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Loader2, Plus } from "lucide-react";
+import { Download, Loader2, Plus } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { getMarketingSnapshot, logManualLead } from "@/lib/marketing.functions";
+import { exportTrainingCsv } from "@/lib/capacity.functions";
 import { sourceChannels } from "@/lib/attribution";
+
 import { billRanges, siteTypes, solutionInterests } from "@/content/energy";
 
 export const Route = createFileRoute("/_authenticated/ops/marketing")({
@@ -48,7 +50,10 @@ const emptyManual = {
 function MarketingConsole() {
   const snapshotFn = useServerFn(getMarketingSnapshot);
   const logFn = useServerFn(logManualLead);
+  const exportFn = useServerFn(exportTrainingCsv);
+  const [exporting, setExporting] = useState(false);
   const qc = useQueryClient();
+
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["marketing-snapshot"],
@@ -112,10 +117,46 @@ function MarketingConsole() {
           how well they actually convert — carefully, so a single lucky close does not send you
           chasing the wrong room.
         </p>
-        <Link to="/ops/capacity" className="label-mono mt-4 inline-block text-energy">
-          Go to the capacity console →
-        </Link>
+        <div className="mt-4 flex flex-wrap items-center gap-4">
+          <Link to="/ops/capacity" className="label-mono inline-block text-energy">
+            Go to the capacity console →
+          </Link>
+          <button
+            type="button"
+            className="label-mono inline-flex items-center gap-2 rounded-md border border-border px-3 py-2 text-xs hover:border-energy disabled:opacity-50"
+            disabled={exporting}
+            onClick={async () => {
+              setExporting(true);
+              try {
+                const res = await exportFn();
+                const blob = new Blob([res.csv], { type: "text/csv" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "eps-lead-training.csv";
+                a.click();
+                URL.revokeObjectURL(url);
+              } finally {
+                setExporting(false);
+              }
+            }}
+          >
+            {exporting ? (
+              <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+            ) : (
+              <Download className="size-4" aria-hidden="true" />
+            )}
+            Export training data for the workshop machine
+          </button>
+        </div>
+        <p className="mt-2 max-w-2xl text-xs text-muted-foreground">
+          The export now carries the channel and how the lead came in, so the local trainer on your
+          Omen learns which rooms convert. Nothing trains in the cloud — run{" "}
+          <code>python scripts/train_lead_scorer.py eps-lead-training.csv</code> at home, then push
+          the updated weights.
+        </p>
       </header>
+
 
       {/* Headline numbers */}
       <section className="mt-10 grid gap-4 sm:grid-cols-3" aria-label="Pipeline summary">

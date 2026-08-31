@@ -193,13 +193,14 @@ export const exportTrainingCsv = createServerFn({ method: "GET" })
     const { data, error } = await context.supabase
       .from("energy_leads")
       .select(
-        "monthly_bill_range, solution_interest, property_type, slot_id, notes, created_at, outcome",
+        "monthly_bill_range, solution_interest, property_type, slot_id, notes, created_at, outcome, source_channel, entry_mode",
       )
       .neq("outcome", "pending")
       .limit(5000);
     if (error) throw new Error("Could not export training data.");
 
-    const header = "bill_range,solution_interest,property_type,booked_slot,has_notes,age_days,label";
+    const header =
+      "bill_range,solution_interest,property_type,source_channel,entry_mode,booked_slot,has_notes,age_days,label";
     const rows = (data ?? []).map((l) => {
       const ageDays = Math.round((Date.now() - new Date(l.created_at).getTime()) / 86_400_000);
       const esc = (v: string | null) => `"${(v ?? "").replace(/"/g, '""')}"`;
@@ -207,12 +208,15 @@ export const exportTrainingCsv = createServerFn({ method: "GET" })
         esc(l.monthly_bill_range),
         esc(l.solution_interest),
         esc(l.property_type),
+        esc(l.source_channel ?? "Unattributed"),
+        esc(l.entry_mode ?? "web_form"),
         l.slot_id ? 1 : 0,
         l.notes && l.notes.trim().length > 12 ? 1 : 0,
         ageDays,
         l.outcome === "won" ? 1 : 0,
       ].join(",");
     });
+
 
     return { csv: [header, ...rows].join("\n"), rows: rows.length };
   });
