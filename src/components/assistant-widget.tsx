@@ -1,8 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { Bot, Loader2, MessageSquare, Phone, Send, X } from "lucide-react";
+import { Bot, Loader2, MessageSquare, Mic, Phone, Send, Square, X } from "lucide-react";
 
 import { askAssistant } from "@/lib/assistant.functions";
+import { transcribeAudio } from "@/lib/transcribe.functions";
+import { useVoiceInput } from "@/lib/use-voice-input";
 import { cn } from "@/lib/utils";
 
 type Mode = "support" | "interview";
@@ -27,6 +29,12 @@ export function AssistantWidget() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const ask = useServerFn(askAssistant);
+  const transcribe = useServerFn(transcribeAudio);
+
+  const appendTranscript = useCallback((text: string) => {
+    setInput((prev) => (prev ? `${prev.trim()} ${text}` : text));
+  }, []);
+  const { recording, transcribing, voiceError, toggle } = useVoiceInput(appendTranscript);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
@@ -132,6 +140,16 @@ export function AssistantWidget() {
               </div>
             )}
             {error && <p className="text-xs text-destructive">{error}</p>}
+            {voiceError && <p className="text-xs text-destructive">{voiceError}</p>}
+            {recording && (
+              <p className="text-xs text-energy">Listening… tap the stop button when you're done.</p>
+            )}
+            {transcribing && (
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <Loader2 className="size-3 animate-spin" aria-hidden="true" />
+                Transcribing…
+              </div>
+            )}
           </div>
 
           <form onSubmit={send} className="border-t border-border p-3">
@@ -151,6 +169,26 @@ export function AssistantWidget() {
                 }
                 className="min-h-[44px] flex-1 resize-none rounded-md border border-border bg-surface px-3 py-2 text-sm outline-none focus:border-energy"
               />
+              <button
+                type="button"
+                onClick={() => void toggle(transcribe)}
+                disabled={transcribing}
+                className={cn(
+                  "inline-flex size-10 items-center justify-center rounded-md border border-border transition-colors disabled:opacity-40",
+                  recording
+                    ? "border-energy bg-energy/20 text-energy"
+                    : "bg-surface text-muted-foreground hover:text-foreground",
+                )}
+                aria-label={recording ? "Stop recording" : "Speak your message"}
+              >
+                {transcribing ? (
+                  <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+                ) : recording ? (
+                  <Square className="size-4" aria-hidden="true" />
+                ) : (
+                  <Mic className="size-4" aria-hidden="true" />
+                )}
+              </button>
               <button
                 type="submit"
                 disabled={pending || !input.trim()}
