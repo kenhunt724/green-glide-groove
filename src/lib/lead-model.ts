@@ -17,6 +17,8 @@ export type ModelCoefficients = {
   bill_range: Record<string, number>;
   solution_interest: Record<string, number>;
   property_type: Record<string, number>;
+  source_channel: Record<string, number>;
+  entry_mode: Record<string, number>;
   has_booked_slot: number;
   wrote_notes: number;
   age_days_per_week_decay: number;
@@ -45,11 +47,17 @@ export const COEFFICIENTS: ModelCoefficients = {
     "Commercial Facility": 0.7,
     "Service Van / Fleet": 0.05,
   },
+  source_channel: {},
+  entry_mode: {
+    manual: 0.3,
+    web_form: 0,
+  },
   has_booked_slot: 0.9,
   wrote_notes: 0.4,
   age_days_per_week_decay: -0.18,
 };
 // ---- END COEFFICIENTS ----
+
 
 export type ScorableLead = {
   monthly_bill_range: string | null;
