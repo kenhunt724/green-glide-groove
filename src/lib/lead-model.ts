@@ -66,7 +66,10 @@ export type ScorableLead = {
   slot_id: string | null;
   notes: string | null;
   created_at: string;
+  source_channel?: string | null;
+  entry_mode?: string | null;
 };
+
 
 export type LeadScore = {
   score: number;
