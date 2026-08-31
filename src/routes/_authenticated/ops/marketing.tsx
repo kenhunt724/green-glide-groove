@@ -2,12 +2,14 @@ import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Loader2, Plus } from "lucide-react";
+import { Download, Loader2, Plus } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { getMarketingSnapshot, logManualLead } from "@/lib/marketing.functions";
+import { exportTrainingCsv } from "@/lib/capacity.functions";
 import { sourceChannels } from "@/lib/attribution";
+
 import { billRanges, siteTypes, solutionInterests } from "@/content/energy";
 
 export const Route = createFileRoute("/_authenticated/ops/marketing")({
