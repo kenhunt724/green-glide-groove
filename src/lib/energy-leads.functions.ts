@@ -149,6 +149,25 @@ export const submitEnergyLead = createServerFn({ method: "POST" })
         .eq("id", claimed.id);
     }
 
+    // Mirror into the team's Google Sheet. Never blocks the submission.
+    const { appendLeadToSheet } = await import("@/lib/sheets.server");
+    await appendLeadToSheet({
+      full_name: lead.full_name,
+      phone: lead.phone,
+      email: lead.email,
+      zip_code: lead.zip_code,
+      solution_interest: lead.solution_interest,
+      property_type: lead.property_type,
+      monthly_bill_range: lead.monthly_bill_range,
+      preferred_time: lead.preferred_time,
+      booked_slot: claimed ? claimed.slot_at : "",
+      source_channel: blank(source_channel),
+      source_detail: blank(source_detail),
+      utm_campaign: blank(utm_campaign),
+      entry_mode: "web_form",
+      notes: notes ?? "",
+    });
+
     return {
       ok: true as const,
       slot_at: claimed ? claimed.slot_at : null,
