@@ -107,5 +107,22 @@ export const logManualLead = createServerFn({ method: "POST" })
       entry_mode: "manual",
     });
     if (error) throw new Error("Could not save that lead.");
+
+    const { appendLeadToSheet } = await import("@/lib/sheets.server");
+    await appendLeadToSheet({
+      full_name: data.full_name,
+      phone: data.phone,
+      email: blank(data.email),
+      zip_code: data.zip_code,
+      solution_interest: blank(data.solution_interest),
+      property_type: data.property_type?.trim() || "Unspecified",
+      monthly_bill_range: data.monthly_bill_range?.trim() || "Unknown",
+      preferred_time: "Logged manually",
+      source_channel: data.source_channel,
+      source_detail: blank(data.source_detail),
+      entry_mode: "manual",
+      notes: blank(data.notes),
+    });
+
     return { ok: true };
   });
