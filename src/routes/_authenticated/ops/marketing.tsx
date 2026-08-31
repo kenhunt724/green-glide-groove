@@ -50,7 +50,10 @@ const emptyManual = {
 function MarketingConsole() {
   const snapshotFn = useServerFn(getMarketingSnapshot);
   const logFn = useServerFn(logManualLead);
+  const exportFn = useServerFn(exportTrainingCsv);
+  const [exporting, setExporting] = useState(false);
   const qc = useQueryClient();
+
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["marketing-snapshot"],
