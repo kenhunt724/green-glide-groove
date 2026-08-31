@@ -29,6 +29,12 @@ export function AssistantWidget() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const ask = useServerFn(askAssistant);
+  const transcribe = useServerFn(transcribeAudio);
+
+  const appendTranscript = useCallback((text: string) => {
+    setInput((prev) => (prev ? `${prev.trim()} ${text}` : text));
+  }, []);
+  const { recording, transcribing, voiceError, toggle } = useVoiceInput(appendTranscript);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
@@ -134,6 +140,16 @@ export function AssistantWidget() {
               </div>
             )}
             {error && <p className="text-xs text-destructive">{error}</p>}
+            {voiceError && <p className="text-xs text-destructive">{voiceError}</p>}
+            {recording && (
+              <p className="text-xs text-energy">Listening… tap the stop button when you're done.</p>
+            )}
+            {transcribing && (
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <Loader2 className="size-3 animate-spin" aria-hidden="true" />
+                Transcribing…
+              </div>
+            )}
           </div>
 
           <form onSubmit={send} className="border-t border-border p-3">
