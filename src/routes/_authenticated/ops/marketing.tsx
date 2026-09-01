@@ -121,6 +121,9 @@ function MarketingConsole() {
           <Link to="/ops/capacity" className="label-mono inline-block text-energy">
             Go to the capacity console →
           </Link>
+          <Link to="/ops/twin" className="label-mono inline-block text-energy">
+            Go to the digital twin →
+          </Link>
           <button
             type="button"
             className="label-mono inline-flex items-center gap-2 rounded-md border border-border px-3 py-2 text-xs hover:border-energy disabled:opacity-50"
