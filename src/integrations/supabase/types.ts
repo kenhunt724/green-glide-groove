@@ -463,6 +463,60 @@ export type Database = {
           },
         ]
       }
+      fleet_units: {
+        Row: {
+          commissioned_at: string
+          created_at: string
+          customer_name: string
+          cycles_per_week: number
+          duty_factor: number
+          id: string
+          module_count: number
+          notes: string | null
+          pack_kwh: number
+          service_contract: boolean
+          site_label: string | null
+          status: string
+          unit_code: string
+          unit_kind: string
+          updated_at: string
+        }
+        Insert: {
+          commissioned_at?: string
+          created_at?: string
+          customer_name: string
+          cycles_per_week?: number
+          duty_factor?: number
+          id?: string
+          module_count?: number
+          notes?: string | null
+          pack_kwh?: number
+          service_contract?: boolean
+          site_label?: string | null
+          status?: string
+          unit_code: string
+          unit_kind?: string
+          updated_at?: string
+        }
+        Update: {
+          commissioned_at?: string
+          created_at?: string
+          customer_name?: string
+          cycles_per_week?: number
+          duty_factor?: number
+          id?: string
+          module_count?: number
+          notes?: string | null
+          pack_kwh?: number
+          service_contract?: boolean
+          site_label?: string | null
+          status?: string
+          unit_code?: string
+          unit_kind?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       job_profiles: {
         Row: {
           build_hours: number
@@ -685,6 +739,56 @@ export type Database = {
           status?: string
         }
         Relationships: []
+      }
+      unit_telemetry: {
+        Row: {
+          cell_delta_mv: number | null
+          created_at: string
+          cycle_count: number | null
+          fault_code: string | null
+          id: string
+          inverter_hours: number | null
+          max_cell_temp_c: number | null
+          pack_voltage: number | null
+          recorded_at: string
+          state_of_health: number | null
+          unit_id: string
+        }
+        Insert: {
+          cell_delta_mv?: number | null
+          created_at?: string
+          cycle_count?: number | null
+          fault_code?: string | null
+          id?: string
+          inverter_hours?: number | null
+          max_cell_temp_c?: number | null
+          pack_voltage?: number | null
+          recorded_at?: string
+          state_of_health?: number | null
+          unit_id: string
+        }
+        Update: {
+          cell_delta_mv?: number | null
+          created_at?: string
+          cycle_count?: number | null
+          fault_code?: string | null
+          id?: string
+          inverter_hours?: number | null
+          max_cell_temp_c?: number | null
+          pack_voltage?: number | null
+          recorded_at?: string
+          state_of_health?: number | null
+          unit_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "unit_telemetry_unit_id_fkey"
+            columns: ["unit_id"]
+            isOneToOne: false
+            referencedRelation: "fleet_units"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_roles: {
         Row: {
