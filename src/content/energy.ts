@@ -191,15 +191,17 @@ export const platforms = [
   {
     id: "cart",
     step: "01",
-    scale: "Portable · 2–5 kWh",
-    title: "Silent Generator Cart",
-    body: "The gas-generator form factor crews already trust — tubular roll cage, never-flat wheels, fold-down handle — with LiFePO4 cells and a pure sine inverter behind the outlet panel instead of an engine.",
+    scale: "Portable · up to four battery modules",
+    title: "Rolling Mini-Micro Grid Cart",
+    body: "The gas-generator form factor crews already trust — tubular roll cage, never-flat wheels, fold-down handle — built as a rolling Mini-Micro Grid. Our demo unit was fabricated by Blackwell Welding Service on Donald Lee Hollowell Parkway in Atlanta and carries up to four battery modules, a pure sine inverter, and direct solar-panel hookups behind a standard outlet panel.",
     specs: [
       "120V/30A outlet panel, pure sine output",
+      "Holds up to four battery modules in the cart frame",
+      "Solar panel hookups for silent on-site top-up",
       "Charges overnight at ~2.3¢/kWh, from solar, or off an alternator",
       "Zero fumes, zero engine noise — safe indoors",
     ],
-    who: "For tradespeople, vendors and home backup",
+    who: "For tradespeople, vendors, home backup and mobile worksites",
   },
   {
     id: "trailer",

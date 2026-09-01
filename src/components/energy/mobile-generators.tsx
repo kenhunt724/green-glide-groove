@@ -16,21 +16,21 @@ export function MobileGenerators() {
           muted
           loop
           playsInline
-          aria-label="The community-built LiFePO4 generator cart: steel diamond-plate frame, pure sine inverter panel and 12.8V LiFePO4 battery"
+          aria-label="The Blackwell Welding Service demo cart: steel diamond-plate frame, up to four battery modules, pure sine inverter panel, and solar-panel hookups"
           className="h-full w-full object-cover"
         />
 
         <figcaption className="flex flex-col justify-center bg-background p-7">
-          <p className="label-mono text-emerald">Same footprint, no engine</p>
+          <p className="label-mono text-emerald">Rolling Mini-Micro Grid — demo unit</p>
           <h3 className="mt-3 font-display text-2xl font-semibold">
-            Built on gas-generator hardware
+            A gas-generator footprint with battery, inverter and solar hooks behind the panel
           </h3>
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            We reuse the exact chassis language crews already trust — tubular roll cage, never-flat
-            wheels, fold-down tow handle, and a standard 120V/30A outlet panel. Everything behind
-            the panel is LiFePO4 and pure sine inverter instead of a combustion engine, so it drops
-            straight into the same jobsite workflow with none of the fumes, fuel cans, or pull-cord
-            starts.
+            Our demo cart was fabricated by Blackwell Welding Service at 2994 Donald Lee Hollowell
+            Pkwy in Atlanta. It holds up to four battery modules, a pure sine inverter, and direct
+            solar-panel hookups in the exact chassis crews already trust — tubular roll cage,
+            never-flat wheels, fold-down tow handle, and a standard 120V/30A outlet panel. It drops
+            into the same jobsite workflow with none of the fumes, fuel cans, or pull-cord starts.
           </p>
         </figcaption>
       </figure>
@@ -40,13 +40,14 @@ export function MobileGenerators() {
         <article className="bg-background p-7">
           <p className="label-mono text-emerald">Designed &amp; welded by the block</p>
           <h3 className="mt-3 font-display text-2xl font-semibold">
-            A maker-partner in our Product &amp; Service Community builds the frame
+            Blackwell Welding Service built this frame in Atlanta
           </h3>
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            Every roll cage is designed and welded by a community maker-partner who knows the
-            gas-generator chassis crews already trust — tubular frame, never-flat wheels, fold-down
-            tow handle, standard outlet panel. Same workflow you run today, so your crew doesn&apos;t
-            relearn anything. The craft is local; the reliability is engineering.
+            The roll cage on our demo unit was designed and welded by Blackwell Welding Service on
+            Donald Lee Hollowell Parkway — a local Atlanta fabricator that knows the gas-generator
+            chassis crews already trust. Tubular frame, never-flat wheels, fold-down tow handle,
+            standard outlet panel. Same workflow you run today, so your crew doesn&apos;t relearn
+            anything. The craft is local; the reliability is engineering.
           </p>
         </article>
         <article className="bg-background p-7">
