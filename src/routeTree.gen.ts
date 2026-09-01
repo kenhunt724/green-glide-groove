@@ -29,6 +29,7 @@ import { Route as AuthenticatedCreatorDashboardRouteImport } from './routes/_aut
 import { Route as AuthenticatedOpsCapacityRouteImport } from './routes/_authenticated/ops/capacity'
 import { Route as AuthenticatedOpsMarketingRouteImport } from './routes/_authenticated/ops/marketing'
 import { Route as AuthenticatedOpsStoresRouteImport } from './routes/_authenticated/ops/stores'
+import { Route as AuthenticatedOpsTwinRouteImport } from './routes/_authenticated/ops/twin'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -132,6 +133,11 @@ const AuthenticatedOpsStoresRoute = AuthenticatedOpsStoresRouteImport.update({
   path: '/ops/stores',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedOpsTwinRoute = AuthenticatedOpsTwinRouteImport.update({
+  id: '/ops/twin',
+  path: '/ops/twin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -153,6 +159,7 @@ export interface FileRoutesByFullPath {
   '/ops/capacity': typeof AuthenticatedOpsCapacityRoute
   '/ops/marketing': typeof AuthenticatedOpsMarketingRoute
   '/ops/stores': typeof AuthenticatedOpsStoresRoute
+  '/ops/twin': typeof AuthenticatedOpsTwinRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -174,6 +181,7 @@ export interface FileRoutesByTo {
   '/ops/capacity': typeof AuthenticatedOpsCapacityRoute
   '/ops/marketing': typeof AuthenticatedOpsMarketingRoute
   '/ops/stores': typeof AuthenticatedOpsStoresRoute
+  '/ops/twin': typeof AuthenticatedOpsTwinRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -197,6 +205,7 @@ export interface FileRoutesById {
   '/_authenticated/ops/capacity': typeof AuthenticatedOpsCapacityRoute
   '/_authenticated/ops/marketing': typeof AuthenticatedOpsMarketingRoute
   '/_authenticated/ops/stores': typeof AuthenticatedOpsStoresRoute
+  '/_authenticated/ops/twin': typeof AuthenticatedOpsTwinRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -220,6 +229,7 @@ export interface FileRouteTypes {
     | '/ops/capacity'
     | '/ops/marketing'
     | '/ops/stores'
+    | '/ops/twin'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -241,6 +251,7 @@ export interface FileRouteTypes {
     | '/ops/capacity'
     | '/ops/marketing'
     | '/ops/stores'
+    | '/ops/twin'
   id:
     | '__root__'
     | '/'
@@ -263,6 +274,7 @@ export interface FileRouteTypes {
     | '/_authenticated/ops/capacity'
     | '/_authenticated/ops/marketing'
     | '/_authenticated/ops/stores'
+    | '/_authenticated/ops/twin'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -426,6 +438,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedOpsStoresRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/ops/twin': {
+      id: '/_authenticated/ops/twin'
+      path: '/ops/twin'
+      fullPath: '/ops/twin'
+      preLoaderRoute: typeof AuthenticatedOpsTwinRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
@@ -434,6 +453,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedOpsCapacityRoute: typeof AuthenticatedOpsCapacityRoute
   AuthenticatedOpsMarketingRoute: typeof AuthenticatedOpsMarketingRoute
   AuthenticatedOpsStoresRoute: typeof AuthenticatedOpsStoresRoute
+  AuthenticatedOpsTwinRoute: typeof AuthenticatedOpsTwinRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -441,6 +461,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedOpsCapacityRoute: AuthenticatedOpsCapacityRoute,
   AuthenticatedOpsMarketingRoute: AuthenticatedOpsMarketingRoute,
   AuthenticatedOpsStoresRoute: AuthenticatedOpsStoresRoute,
+  AuthenticatedOpsTwinRoute: AuthenticatedOpsTwinRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
