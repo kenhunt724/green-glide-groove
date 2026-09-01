@@ -38,7 +38,7 @@ export function MobileGenerators() {
       {/* Built by the block — two audiences, one cart */}
       <div className="grid gap-px bg-border lg:grid-cols-2">
         <article className="bg-background p-7">
-          <p className="label-mono text-emerald">Designed &amp; welded by the block</p>
+          <p className="label-mono text-emerald">Built By The Block</p>
           <h3 className="mt-3 font-display text-2xl font-semibold">
             Blackwell Welding Service built this frame in Atlanta
           </h3>
