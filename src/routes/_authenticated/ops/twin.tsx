@@ -310,7 +310,7 @@ function UnitDetail({
             min={0}
             max={21}
             step={1}
-            onValueChange={([v]) => setCycles(v)}
+            onValueChange={([v]) => setCycles(v ?? 0)}
           />
         </div>
         <div>
@@ -321,7 +321,7 @@ function UnitDetail({
             min={0.2}
             max={2}
             step={0.05}
-            onValueChange={([v]) => setDuty(v)}
+            onValueChange={([v]) => setDuty(v ?? 1)}
           />
         </div>
       </div>

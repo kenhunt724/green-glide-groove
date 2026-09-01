@@ -198,7 +198,7 @@ export function assessUnit(unit: FleetUnit, reading: Telemetry | null, now: Date
     healthScore,
     band,
     components,
-    nextPart: components[0],
+    nextPart: components[0]!,
     alerts,
   };
 }
