@@ -16,7 +16,7 @@ export function MobileGenerators() {
           muted
           loop
           playsInline
-          aria-label="The community-built LiFePO4 generator cart: steel diamond-plate frame, pure sine inverter panel and 12.8V LiFePO4 battery"
+          aria-label="The Blackwell Welding Service demo cart: steel diamond-plate frame, up to four battery modules, pure sine inverter panel, and solar-panel hookups"
           className="h-full w-full object-cover"
         />
 
