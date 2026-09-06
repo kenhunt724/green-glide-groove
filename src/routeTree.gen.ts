@@ -30,6 +30,7 @@ import { Route as AuthenticatedOpsCapacityRouteImport } from './routes/_authenti
 import { Route as AuthenticatedOpsMarketingRouteImport } from './routes/_authenticated/ops/marketing'
 import { Route as AuthenticatedOpsStoresRouteImport } from './routes/_authenticated/ops/stores'
 import { Route as AuthenticatedOpsTwinRouteImport } from './routes/_authenticated/ops/twin'
+import { Route as ApiPublicStreamCheckRouteImport } from './routes/api/public/stream-check'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -138,6 +139,11 @@ const AuthenticatedOpsTwinRoute = AuthenticatedOpsTwinRouteImport.update({
   path: '/ops/twin',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const ApiPublicStreamCheckRoute = ApiPublicStreamCheckRouteImport.update({
+  id: '/api/public/stream-check',
+  path: '/api/public/stream-check',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -160,6 +166,7 @@ export interface FileRoutesByFullPath {
   '/ops/marketing': typeof AuthenticatedOpsMarketingRoute
   '/ops/stores': typeof AuthenticatedOpsStoresRoute
   '/ops/twin': typeof AuthenticatedOpsTwinRoute
+  '/api/public/stream-check': typeof ApiPublicStreamCheckRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -182,6 +189,7 @@ export interface FileRoutesByTo {
   '/ops/marketing': typeof AuthenticatedOpsMarketingRoute
   '/ops/stores': typeof AuthenticatedOpsStoresRoute
   '/ops/twin': typeof AuthenticatedOpsTwinRoute
+  '/api/public/stream-check': typeof ApiPublicStreamCheckRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -206,6 +214,7 @@ export interface FileRoutesById {
   '/_authenticated/ops/marketing': typeof AuthenticatedOpsMarketingRoute
   '/_authenticated/ops/stores': typeof AuthenticatedOpsStoresRoute
   '/_authenticated/ops/twin': typeof AuthenticatedOpsTwinRoute
+  '/api/public/stream-check': typeof ApiPublicStreamCheckRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -230,6 +239,7 @@ export interface FileRouteTypes {
     | '/ops/marketing'
     | '/ops/stores'
     | '/ops/twin'
+    | '/api/public/stream-check'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -252,6 +262,7 @@ export interface FileRouteTypes {
     | '/ops/marketing'
     | '/ops/stores'
     | '/ops/twin'
+    | '/api/public/stream-check'
   id:
     | '__root__'
     | '/'
@@ -275,6 +286,7 @@ export interface FileRouteTypes {
     | '/_authenticated/ops/marketing'
     | '/_authenticated/ops/stores'
     | '/_authenticated/ops/twin'
+    | '/api/public/stream-check'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -294,6 +306,7 @@ export interface RootRouteChildren {
   DecksDataCenterRoute: typeof DecksDataCenterRoute
   PlaybooksCommercialBessRoute: typeof PlaybooksCommercialBessRoute
   ProducersSlugRoute: typeof ProducersSlugRoute
+  ApiPublicStreamCheckRoute: typeof ApiPublicStreamCheckRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -445,6 +458,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedOpsTwinRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/api/public/stream-check': {
+      id: '/api/public/stream-check'
+      path: '/api/public/stream-check'
+      fullPath: '/api/public/stream-check'
+      preLoaderRoute: typeof ApiPublicStreamCheckRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -484,6 +504,7 @@ const rootRouteChildren: RootRouteChildren = {
   DecksDataCenterRoute: DecksDataCenterRoute,
   PlaybooksCommercialBessRoute: PlaybooksCommercialBessRoute,
   ProducersSlugRoute: ProducersSlugRoute,
+  ApiPublicStreamCheckRoute: ApiPublicStreamCheckRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
