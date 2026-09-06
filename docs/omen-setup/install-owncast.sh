@@ -26,12 +26,25 @@ sudo apt-get install -y curl unzip ffmpeg ca-certificates
 log "Installing Owncast into $OWNCAST_DIR"
 mkdir -p "$OWNCAST_DIR"
 cd "$OWNCAST_DIR"
-if [ ! -x "$OWNCAST_DIR/owncast" ]; then
+if [ ! -x "$OWNCAST_DIR/owncast" ] && [ ! -x "$OWNCAST_DIR/owncast/owncast" ]; then
   curl -sL https://owncast.online/install.sh | bash
 else
   echo "Owncast binary already present — leaving it in place."
   echo "To upgrade later: cd $OWNCAST_DIR && curl -sL https://owncast.online/install.sh | bash"
 fi
+
+# The installer sometimes unpacks into a nested folder — find the real binary.
+if [ -x "$OWNCAST_DIR/owncast" ] && [ ! -d "$OWNCAST_DIR/owncast" ]; then
+  OWNCAST_BIN="$OWNCAST_DIR/owncast"
+  OWNCAST_HOME="$OWNCAST_DIR"
+elif [ -x "$OWNCAST_DIR/owncast/owncast" ]; then
+  OWNCAST_BIN="$OWNCAST_DIR/owncast/owncast"
+  OWNCAST_HOME="$OWNCAST_DIR/owncast"
+else
+  echo "Could not find the Owncast program inside $OWNCAST_DIR" >&2
+  exit 1
+fi
+echo "Using Owncast program at: $OWNCAST_BIN"
 
 log "Creating the systemd service (auto-start on reboot)"
 SERVICE=/etc/systemd/system/owncast.service
@@ -43,8 +56,8 @@ After=network.target
 [Service]
 Type=simple
 User=$USER
-WorkingDirectory=$OWNCAST_DIR
-ExecStart=$OWNCAST_DIR/owncast -webserverport $OWNCAST_PORT -rtmpport $RTMP_PORT
+WorkingDirectory=$OWNCAST_HOME
+ExecStart=$OWNCAST_BIN -webserverport $OWNCAST_PORT -rtmpport $RTMP_PORT
 Restart=always
 RestartSec=5
 
