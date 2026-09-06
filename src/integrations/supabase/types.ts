@@ -701,6 +701,39 @@ export type Database = {
         }
         Relationships: []
       }
+      stream_checks: {
+        Row: {
+          checked_at: string
+          error: string | null
+          id: string
+          latency_ms: number | null
+          live: boolean
+          online: boolean
+          target: string
+          viewers: number | null
+        }
+        Insert: {
+          checked_at?: string
+          error?: string | null
+          id?: string
+          latency_ms?: number | null
+          live?: boolean
+          online: boolean
+          target: string
+          viewers?: number | null
+        }
+        Update: {
+          checked_at?: string
+          error?: string | null
+          id?: string
+          latency_ms?: number | null
+          live?: boolean
+          online?: boolean
+          target?: string
+          viewers?: number | null
+        }
+        Relationships: []
+      }
       talent_applications: {
         Row: {
           created_at: string

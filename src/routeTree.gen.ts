@@ -18,8 +18,10 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CreatorsRouteImport } from './routes/creators'
 import { Route as EnergyRouteImport } from './routes/energy'
 import { Route as JoinRouteImport } from './routes/join'
+import { Route as LiveRouteImport } from './routes/live'
 import { Route as MobilityRouteImport } from './routes/mobility'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as StatusRouteImport } from './routes/status'
 import { Route as StoreRouteImport } from './routes/store'
 import { Route as CHandleRouteImport } from './routes/c.$handle'
 import { Route as DecksDataCenterRouteImport } from './routes/decks.data-center'
@@ -30,6 +32,7 @@ import { Route as AuthenticatedOpsCapacityRouteImport } from './routes/_authenti
 import { Route as AuthenticatedOpsMarketingRouteImport } from './routes/_authenticated/ops/marketing'
 import { Route as AuthenticatedOpsStoresRouteImport } from './routes/_authenticated/ops/stores'
 import { Route as AuthenticatedOpsTwinRouteImport } from './routes/_authenticated/ops/twin'
+import { Route as ApiPublicStreamCheckRouteImport } from './routes/api/public/stream-check'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -75,6 +78,11 @@ const JoinRoute = JoinRouteImport.update({
   path: '/join',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LiveRoute = LiveRouteImport.update({
+  id: '/live',
+  path: '/live',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MobilityRoute = MobilityRouteImport.update({
   id: '/mobility',
   path: '/mobility',
@@ -83,6 +91,11 @@ const MobilityRoute = MobilityRouteImport.update({
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StatusRoute = StatusRouteImport.update({
+  id: '/status',
+  path: '/status',
   getParentRoute: () => rootRouteImport,
 } as any)
 const StoreRoute = StoreRouteImport.update({
@@ -138,6 +151,11 @@ const AuthenticatedOpsTwinRoute = AuthenticatedOpsTwinRouteImport.update({
   path: '/ops/twin',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const ApiPublicStreamCheckRoute = ApiPublicStreamCheckRouteImport.update({
+  id: '/api/public/stream-check',
+  path: '/api/public/stream-check',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -148,8 +166,10 @@ export interface FileRoutesByFullPath {
   '/creators': typeof CreatorsRoute
   '/energy': typeof EnergyRoute
   '/join': typeof JoinRoute
+  '/live': typeof LiveRoute
   '/mobility': typeof MobilityRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/status': typeof StatusRoute
   '/store': typeof StoreRoute
   '/c/$handle': typeof CHandleRoute
   '/decks/data-center': typeof DecksDataCenterRoute
@@ -160,6 +180,7 @@ export interface FileRoutesByFullPath {
   '/ops/marketing': typeof AuthenticatedOpsMarketingRoute
   '/ops/stores': typeof AuthenticatedOpsStoresRoute
   '/ops/twin': typeof AuthenticatedOpsTwinRoute
+  '/api/public/stream-check': typeof ApiPublicStreamCheckRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -170,8 +191,10 @@ export interface FileRoutesByTo {
   '/creators': typeof CreatorsRoute
   '/energy': typeof EnergyRoute
   '/join': typeof JoinRoute
+  '/live': typeof LiveRoute
   '/mobility': typeof MobilityRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/status': typeof StatusRoute
   '/store': typeof StoreRoute
   '/c/$handle': typeof CHandleRoute
   '/decks/data-center': typeof DecksDataCenterRoute
@@ -182,6 +205,7 @@ export interface FileRoutesByTo {
   '/ops/marketing': typeof AuthenticatedOpsMarketingRoute
   '/ops/stores': typeof AuthenticatedOpsStoresRoute
   '/ops/twin': typeof AuthenticatedOpsTwinRoute
+  '/api/public/stream-check': typeof ApiPublicStreamCheckRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -194,8 +218,10 @@ export interface FileRoutesById {
   '/creators': typeof CreatorsRoute
   '/energy': typeof EnergyRoute
   '/join': typeof JoinRoute
+  '/live': typeof LiveRoute
   '/mobility': typeof MobilityRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/status': typeof StatusRoute
   '/store': typeof StoreRoute
   '/c/$handle': typeof CHandleRoute
   '/decks/data-center': typeof DecksDataCenterRoute
@@ -206,6 +232,7 @@ export interface FileRoutesById {
   '/_authenticated/ops/marketing': typeof AuthenticatedOpsMarketingRoute
   '/_authenticated/ops/stores': typeof AuthenticatedOpsStoresRoute
   '/_authenticated/ops/twin': typeof AuthenticatedOpsTwinRoute
+  '/api/public/stream-check': typeof ApiPublicStreamCheckRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -218,8 +245,10 @@ export interface FileRouteTypes {
     | '/creators'
     | '/energy'
     | '/join'
+    | '/live'
     | '/mobility'
     | '/reset-password'
+    | '/status'
     | '/store'
     | '/c/$handle'
     | '/decks/data-center'
@@ -230,6 +259,7 @@ export interface FileRouteTypes {
     | '/ops/marketing'
     | '/ops/stores'
     | '/ops/twin'
+    | '/api/public/stream-check'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -240,8 +270,10 @@ export interface FileRouteTypes {
     | '/creators'
     | '/energy'
     | '/join'
+    | '/live'
     | '/mobility'
     | '/reset-password'
+    | '/status'
     | '/store'
     | '/c/$handle'
     | '/decks/data-center'
@@ -252,6 +284,7 @@ export interface FileRouteTypes {
     | '/ops/marketing'
     | '/ops/stores'
     | '/ops/twin'
+    | '/api/public/stream-check'
   id:
     | '__root__'
     | '/'
@@ -263,8 +296,10 @@ export interface FileRouteTypes {
     | '/creators'
     | '/energy'
     | '/join'
+    | '/live'
     | '/mobility'
     | '/reset-password'
+    | '/status'
     | '/store'
     | '/c/$handle'
     | '/decks/data-center'
@@ -275,6 +310,7 @@ export interface FileRouteTypes {
     | '/_authenticated/ops/marketing'
     | '/_authenticated/ops/stores'
     | '/_authenticated/ops/twin'
+    | '/api/public/stream-check'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -287,13 +323,16 @@ export interface RootRouteChildren {
   CreatorsRoute: typeof CreatorsRoute
   EnergyRoute: typeof EnergyRoute
   JoinRoute: typeof JoinRoute
+  LiveRoute: typeof LiveRoute
   MobilityRoute: typeof MobilityRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  StatusRoute: typeof StatusRoute
   StoreRoute: typeof StoreRoute
   CHandleRoute: typeof CHandleRoute
   DecksDataCenterRoute: typeof DecksDataCenterRoute
   PlaybooksCommercialBessRoute: typeof PlaybooksCommercialBessRoute
   ProducersSlugRoute: typeof ProducersSlugRoute
+  ApiPublicStreamCheckRoute: typeof ApiPublicStreamCheckRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -361,6 +400,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JoinRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/live': {
+      id: '/live'
+      path: '/live'
+      fullPath: '/live'
+      preLoaderRoute: typeof LiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mobility': {
       id: '/mobility'
       path: '/mobility'
@@ -373,6 +419,13 @@ declare module '@tanstack/react-router' {
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/status': {
+      id: '/status'
+      path: '/status'
+      fullPath: '/status'
+      preLoaderRoute: typeof StatusRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/store': {
@@ -445,6 +498,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedOpsTwinRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/api/public/stream-check': {
+      id: '/api/public/stream-check'
+      path: '/api/public/stream-check'
+      fullPath: '/api/public/stream-check'
+      preLoaderRoute: typeof ApiPublicStreamCheckRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -477,13 +537,16 @@ const rootRouteChildren: RootRouteChildren = {
   CreatorsRoute: CreatorsRoute,
   EnergyRoute: EnergyRoute,
   JoinRoute: JoinRoute,
+  LiveRoute: LiveRoute,
   MobilityRoute: MobilityRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  StatusRoute: StatusRoute,
   StoreRoute: StoreRoute,
   CHandleRoute: CHandleRoute,
   DecksDataCenterRoute: DecksDataCenterRoute,
   PlaybooksCommercialBessRoute: PlaybooksCommercialBessRoute,
   ProducersSlugRoute: ProducersSlugRoute,
+  ApiPublicStreamCheckRoute: ApiPublicStreamCheckRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
