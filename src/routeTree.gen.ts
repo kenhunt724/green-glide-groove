@@ -18,6 +18,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CreatorsRouteImport } from './routes/creators'
 import { Route as EnergyRouteImport } from './routes/energy'
 import { Route as JoinRouteImport } from './routes/join'
+import { Route as LiveRouteImport } from './routes/live'
 import { Route as MobilityRouteImport } from './routes/mobility'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as StoreRouteImport } from './routes/store'
@@ -74,6 +75,11 @@ const EnergyRoute = EnergyRouteImport.update({
 const JoinRoute = JoinRouteImport.update({
   id: '/join',
   path: '/join',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LiveRoute = LiveRouteImport.update({
+  id: '/live',
+  path: '/live',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MobilityRoute = MobilityRouteImport.update({
@@ -154,6 +160,7 @@ export interface FileRoutesByFullPath {
   '/creators': typeof CreatorsRoute
   '/energy': typeof EnergyRoute
   '/join': typeof JoinRoute
+  '/live': typeof LiveRoute
   '/mobility': typeof MobilityRoute
   '/reset-password': typeof ResetPasswordRoute
   '/store': typeof StoreRoute
@@ -177,6 +184,7 @@ export interface FileRoutesByTo {
   '/creators': typeof CreatorsRoute
   '/energy': typeof EnergyRoute
   '/join': typeof JoinRoute
+  '/live': typeof LiveRoute
   '/mobility': typeof MobilityRoute
   '/reset-password': typeof ResetPasswordRoute
   '/store': typeof StoreRoute
@@ -202,6 +210,7 @@ export interface FileRoutesById {
   '/creators': typeof CreatorsRoute
   '/energy': typeof EnergyRoute
   '/join': typeof JoinRoute
+  '/live': typeof LiveRoute
   '/mobility': typeof MobilityRoute
   '/reset-password': typeof ResetPasswordRoute
   '/store': typeof StoreRoute
@@ -227,6 +236,7 @@ export interface FileRouteTypes {
     | '/creators'
     | '/energy'
     | '/join'
+    | '/live'
     | '/mobility'
     | '/reset-password'
     | '/store'
@@ -250,6 +260,7 @@ export interface FileRouteTypes {
     | '/creators'
     | '/energy'
     | '/join'
+    | '/live'
     | '/mobility'
     | '/reset-password'
     | '/store'
@@ -274,6 +285,7 @@ export interface FileRouteTypes {
     | '/creators'
     | '/energy'
     | '/join'
+    | '/live'
     | '/mobility'
     | '/reset-password'
     | '/store'
@@ -299,6 +311,7 @@ export interface RootRouteChildren {
   CreatorsRoute: typeof CreatorsRoute
   EnergyRoute: typeof EnergyRoute
   JoinRoute: typeof JoinRoute
+  LiveRoute: typeof LiveRoute
   MobilityRoute: typeof MobilityRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   StoreRoute: typeof StoreRoute
@@ -372,6 +385,13 @@ declare module '@tanstack/react-router' {
       path: '/join'
       fullPath: '/join'
       preLoaderRoute: typeof JoinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/live': {
+      id: '/live'
+      path: '/live'
+      fullPath: '/live'
+      preLoaderRoute: typeof LiveRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mobility': {
@@ -497,6 +517,7 @@ const rootRouteChildren: RootRouteChildren = {
   CreatorsRoute: CreatorsRoute,
   EnergyRoute: EnergyRoute,
   JoinRoute: JoinRoute,
+  LiveRoute: LiveRoute,
   MobilityRoute: MobilityRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   StoreRoute: StoreRoute,
