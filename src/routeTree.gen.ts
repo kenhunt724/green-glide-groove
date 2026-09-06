@@ -21,6 +21,7 @@ import { Route as JoinRouteImport } from './routes/join'
 import { Route as LiveRouteImport } from './routes/live'
 import { Route as MobilityRouteImport } from './routes/mobility'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as StatusRouteImport } from './routes/status'
 import { Route as StoreRouteImport } from './routes/store'
 import { Route as CHandleRouteImport } from './routes/c.$handle'
 import { Route as DecksDataCenterRouteImport } from './routes/decks.data-center'
@@ -90,6 +91,11 @@ const MobilityRoute = MobilityRouteImport.update({
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StatusRoute = StatusRouteImport.update({
+  id: '/status',
+  path: '/status',
   getParentRoute: () => rootRouteImport,
 } as any)
 const StoreRoute = StoreRouteImport.update({
@@ -163,6 +169,7 @@ export interface FileRoutesByFullPath {
   '/live': typeof LiveRoute
   '/mobility': typeof MobilityRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/status': typeof StatusRoute
   '/store': typeof StoreRoute
   '/c/$handle': typeof CHandleRoute
   '/decks/data-center': typeof DecksDataCenterRoute
@@ -187,6 +194,7 @@ export interface FileRoutesByTo {
   '/live': typeof LiveRoute
   '/mobility': typeof MobilityRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/status': typeof StatusRoute
   '/store': typeof StoreRoute
   '/c/$handle': typeof CHandleRoute
   '/decks/data-center': typeof DecksDataCenterRoute
@@ -213,6 +221,7 @@ export interface FileRoutesById {
   '/live': typeof LiveRoute
   '/mobility': typeof MobilityRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/status': typeof StatusRoute
   '/store': typeof StoreRoute
   '/c/$handle': typeof CHandleRoute
   '/decks/data-center': typeof DecksDataCenterRoute
@@ -239,6 +248,7 @@ export interface FileRouteTypes {
     | '/live'
     | '/mobility'
     | '/reset-password'
+    | '/status'
     | '/store'
     | '/c/$handle'
     | '/decks/data-center'
@@ -263,6 +273,7 @@ export interface FileRouteTypes {
     | '/live'
     | '/mobility'
     | '/reset-password'
+    | '/status'
     | '/store'
     | '/c/$handle'
     | '/decks/data-center'
@@ -288,6 +299,7 @@ export interface FileRouteTypes {
     | '/live'
     | '/mobility'
     | '/reset-password'
+    | '/status'
     | '/store'
     | '/c/$handle'
     | '/decks/data-center'
@@ -314,6 +326,7 @@ export interface RootRouteChildren {
   LiveRoute: typeof LiveRoute
   MobilityRoute: typeof MobilityRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  StatusRoute: typeof StatusRoute
   StoreRoute: typeof StoreRoute
   CHandleRoute: typeof CHandleRoute
   DecksDataCenterRoute: typeof DecksDataCenterRoute
@@ -406,6 +419,13 @@ declare module '@tanstack/react-router' {
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/status': {
+      id: '/status'
+      path: '/status'
+      fullPath: '/status'
+      preLoaderRoute: typeof StatusRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/store': {
@@ -520,6 +540,7 @@ const rootRouteChildren: RootRouteChildren = {
   LiveRoute: LiveRoute,
   MobilityRoute: MobilityRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  StatusRoute: StatusRoute,
   StoreRoute: StoreRoute,
   CHandleRoute: CHandleRoute,
   DecksDataCenterRoute: DecksDataCenterRoute,
