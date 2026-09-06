@@ -40,6 +40,12 @@ export function SiteFooter() {
           <Link to="/playbooks/commercial-bess" className="label-mono hover:text-signal">
             Playbook
           </Link>
+          <Link to="/live" className="label-mono hover:text-signal">
+            Live
+          </Link>
+          <Link to="/status" className="label-mono hover:text-signal">
+            Status
+          </Link>
         </nav>
       </div>
     </footer>
