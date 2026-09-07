@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, Phone, ScanBarcode } from "lucide-react";
+import { Mail, Phone, QrCode } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ContactPhone } from "@/components/contact-phone";
-import barcodeAsset from "@/assets/eps-website-barcode.png.asset.json";
+import qrAsset from "@/assets/eps-website-qr.png.asset.json";
 
 export const CONTACT_EMAIL = "eps724@outlook.com";
 
