@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ContactPhone } from "@/components/contact-phone";
-import barcodeAsset from "@/assets/eps-website-barcode.png.asset.json";
+import qrAsset from "@/assets/eps-website-qr.png.asset.json";
 
 export function SiteFooter() {
   return (
