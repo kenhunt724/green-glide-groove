@@ -33,6 +33,7 @@ import { Route as AuthenticatedOpsMarketingRouteImport } from './routes/_authent
 import { Route as AuthenticatedOpsStoresRouteImport } from './routes/_authenticated/ops/stores'
 import { Route as AuthenticatedOpsTwinRouteImport } from './routes/_authenticated/ops/twin'
 import { Route as ApiPublicStreamCheckRouteImport } from './routes/api/public/stream-check'
+import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -156,6 +157,12 @@ const ApiPublicStreamCheckRoute = ApiPublicStreamCheckRouteImport.update({
   path: '/api/public/stream-check',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LovableEmailTransactionalPreviewRoute =
+  LovableEmailTransactionalPreviewRouteImport.update({
+    id: '/lovable/email/transactional/preview',
+    path: '/lovable/email/transactional/preview',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -181,6 +188,7 @@ export interface FileRoutesByFullPath {
   '/ops/stores': typeof AuthenticatedOpsStoresRoute
   '/ops/twin': typeof AuthenticatedOpsTwinRoute
   '/api/public/stream-check': typeof ApiPublicStreamCheckRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -206,6 +214,7 @@ export interface FileRoutesByTo {
   '/ops/stores': typeof AuthenticatedOpsStoresRoute
   '/ops/twin': typeof AuthenticatedOpsTwinRoute
   '/api/public/stream-check': typeof ApiPublicStreamCheckRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -233,6 +242,7 @@ export interface FileRoutesById {
   '/_authenticated/ops/stores': typeof AuthenticatedOpsStoresRoute
   '/_authenticated/ops/twin': typeof AuthenticatedOpsTwinRoute
   '/api/public/stream-check': typeof ApiPublicStreamCheckRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -260,6 +270,7 @@ export interface FileRouteTypes {
     | '/ops/stores'
     | '/ops/twin'
     | '/api/public/stream-check'
+    | '/lovable/email/transactional/preview'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -285,6 +296,7 @@ export interface FileRouteTypes {
     | '/ops/stores'
     | '/ops/twin'
     | '/api/public/stream-check'
+    | '/lovable/email/transactional/preview'
   id:
     | '__root__'
     | '/'
@@ -311,6 +323,7 @@ export interface FileRouteTypes {
     | '/_authenticated/ops/stores'
     | '/_authenticated/ops/twin'
     | '/api/public/stream-check'
+    | '/lovable/email/transactional/preview'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -333,6 +346,7 @@ export interface RootRouteChildren {
   PlaybooksCommercialBessRoute: typeof PlaybooksCommercialBessRoute
   ProducersSlugRoute: typeof ProducersSlugRoute
   ApiPublicStreamCheckRoute: typeof ApiPublicStreamCheckRoute
+  LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -505,6 +519,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicStreamCheckRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lovable/email/transactional/preview': {
+      id: '/lovable/email/transactional/preview'
+      path: '/lovable/email/transactional/preview'
+      fullPath: '/lovable/email/transactional/preview'
+      preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -547,6 +568,7 @@ const rootRouteChildren: RootRouteChildren = {
   PlaybooksCommercialBessRoute: PlaybooksCommercialBessRoute,
   ProducersSlugRoute: ProducersSlugRoute,
   ApiPublicStreamCheckRoute: ApiPublicStreamCheckRoute,
+  LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -168,6 +168,22 @@ export const submitEnergyLead = createServerFn({ method: "POST" })
       notes: notes ?? "",
     });
 
+    // Immediate confirmation to the lead. Never blocks the submission.
+    try {
+      const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
+      await sendTemplateEmail("lead-confirmation", lead.email, {
+        templateData: {
+          name: lead.full_name,
+          solutionInterest: lead.solution_interest,
+          preferredTime: claimed ? lead.preferred_time : "",
+          phone: "404-454-0602",
+        },
+        idempotencyKey: `lead-confirmation-${inserted.id}`,
+      });
+    } catch (err) {
+      console.error("lead confirmation email failed", err);
+    }
+
     return {
       ok: true as const,
       slot_at: claimed ? claimed.slot_at : null,
