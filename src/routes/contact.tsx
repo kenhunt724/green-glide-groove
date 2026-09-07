@@ -84,14 +84,14 @@ function ContactPage() {
                 </div>
               </a>
               <div className="surface-panel flex flex-col items-center justify-center gap-3 p-6">
-                <ScanBarcode className="size-6 text-signal" aria-hidden="true" />
+                <QrCode className="size-6 text-signal" aria-hidden="true" />
                 <img
-                  src={barcodeAsset.url}
-                  alt="Barcode linking to earthresonancehub.com"
-                  width={220}
-                  height={66}
+                  src={qrAsset.url}
+                  alt="QR code linking to earthresonancehub.com"
+                  width={120}
+                  height={120}
                   loading="lazy"
-                  className="h-16 w-auto"
+                  className="size-28"
                 />
                 <p className="label-mono text-[10px] uppercase tracking-wide text-muted-foreground">
                   Scan to visit
