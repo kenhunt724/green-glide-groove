@@ -12,6 +12,19 @@ export function SiteFooter() {
           <div className="mt-3">
             <ContactPhone />
           </div>
+          <div className="mt-5 inline-block border border-border bg-white p-2">
+            <img
+              src={barcodeAsset.url}
+              alt="Barcode linking to earthresonancehub.com"
+              width={200}
+              height={60}
+              loading="lazy"
+              className="h-14 w-auto"
+            />
+            <p className="label-mono mt-1 text-center text-[10px] uppercase tracking-wide text-muted-foreground">
+              earthresonancehub.com
+            </p>
+          </div>
         </div>
         <nav className="flex flex-wrap gap-6">
           <Link to="/store" className="label-mono hover:text-signal">
