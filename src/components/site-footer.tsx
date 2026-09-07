@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ContactPhone } from "@/components/contact-phone";
+import qrAsset from "@/assets/eps-website-qr.png.asset.json";
 
 export function SiteFooter() {
   return (
@@ -10,6 +11,19 @@ export function SiteFooter() {
           <p className="label-mono mt-2">Block 12 · Coming Soon · Sovereign charter · Customer-funded · Locally owned</p>
           <div className="mt-3">
             <ContactPhone />
+          </div>
+          <div className="mt-5 inline-block border border-border bg-white p-2">
+            <img
+              src={qrAsset.url}
+              alt="QR code linking to earthresonancehub.com"
+              width={120}
+              height={120}
+              loading="lazy"
+              className="size-28"
+            />
+            <p className="label-mono mt-1 text-center text-[10px] uppercase tracking-wide text-muted-foreground">
+              earthresonancehub.com
+            </p>
           </div>
         </div>
         <nav className="flex flex-wrap gap-6">

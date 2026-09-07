@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, Phone } from "lucide-react";
+import { Mail, Phone, QrCode } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ContactPhone } from "@/components/contact-phone";
+import qrAsset from "@/assets/eps-website-qr.png.asset.json";
 
 export const CONTACT_EMAIL = "eps724@outlook.com";
 
@@ -61,7 +62,7 @@ function ContactPage() {
               and we will tell you honestly whether the block can help.
             </p>
 
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:max-w-2xl">
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:max-w-3xl lg:grid-cols-3">
               <a
                 href={`tel:${"404-454-0602".replace(/-/g, "")}`}
                 className="surface-panel flex items-center gap-4 p-6 transition-colors hover:border-signal focus-visible:ring-2 focus-visible:ring-signal focus-visible:outline-none"
@@ -82,6 +83,20 @@ function ContactPage() {
                   <p className="mt-1 font-display text-xl font-semibold break-all">{CONTACT_EMAIL}</p>
                 </div>
               </a>
+              <div className="surface-panel flex flex-col items-center justify-center gap-3 p-6">
+                <QrCode className="size-6 text-signal" aria-hidden="true" />
+                <img
+                  src={qrAsset.url}
+                  alt="QR code linking to earthresonancehub.com"
+                  width={120}
+                  height={120}
+                  loading="lazy"
+                  className="size-28"
+                />
+                <p className="label-mono text-[10px] uppercase tracking-wide text-muted-foreground">
+                  Scan to visit
+                </p>
+              </div>
             </div>
           </div>
         </section>
